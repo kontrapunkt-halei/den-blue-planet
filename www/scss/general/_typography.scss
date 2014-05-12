@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "graublau_sans_boldregular";
+    src: url("/fonts/fdi_-_graublau_sans_bold-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/fdi_-_graublau_sans_bold-webfont.woff") format("woff"), url("/fonts/fdi_-_graublau_sans_bold-webfont.ttf") format("truetype"), url("/fonts/fdi_-_graublau_sans_bold-webfont.svg#graublau_sans_boldregular") format("svg");
+}
+@font-face {
+    font-family: "graublau_sansitalic";
+    src: url("/fonts/fdi_-_graublau_sans_italic-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/fdi_-_graublau_sans_italic-webfont.woff") format("woff"), url("/fonts/fdi_-_graublau_sans_italic-webfont.ttf") format("truetype"), url("/fonts/fdi_-_graublau_sans_italic-webfont.svg#graublau_sansitalic") format("svg");
+}
+@font-face {
+    font-family: "graublau_sansregular";
+    src: url("/fonts/fdi_-_graublau_sans_regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/fdi_-_graublau_sans_regular-webfont.woff") format("woff"), url("/fonts/fdi_-_graublau_sans_regular-webfont.ttf") format("truetype"), url("/fonts/fdi_-_graublau_sans_regular-webfont.svg#graublau_sansregular") format("svg");
+}
+
+h1,h2,h3,h4,h5 {
+	font-family:$font;
+	-webkit-font-smoothing: antialiased;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height:0.85;
+	margin-bottom: 5px
+}
+
+h1 {
+	@include font-size(8em, 8vw);
+}
+
+h2 {
+	@include font-size(6em, 6vw);
+}
+
+h3 {
+	font-family:$font;
+	font-style:italic;
+	@include font-size(2em, 1.3vw);
+	text-transform: none;
+	line-height:1.2;
+}
+
+h4 {
+	@include font-size(3em, 2vw);
+}
+
+p {
+	font-family:$font;
+	font-size:1em;
+}

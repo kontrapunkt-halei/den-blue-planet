@@ -1,0 +1,12 @@
+<script data-main="js/config" src="js/lib/requirejs/require.js"></script>
+<script>
+    // Load common code that includes config, then load the app logic for
+    // this page. Do the require calls here instead of a separate file
+    // so after a build there are only 2 HTTP requests instead of three.
+    require(['config'], function(config) {
+        // baseUrl is js/ so we can just ask for `app/main` here instead of `js/app/main`.
+        require(['app/<!-- @appfile -->']);
+    });
+</script>
+</body>
+</html>
