@@ -9,4 +9,6 @@ www/css
 www/css/
 www/*.css
 www/*.html
+www/img/dev2
+www/img/dev3
 remove-generated.sh
