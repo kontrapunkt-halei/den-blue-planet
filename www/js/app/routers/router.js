@@ -5,11 +5,12 @@
 define([
         'backbone',
 
-        'text!/data.json',
+        'APP_CONFIG',
 
         //Views
         'views/BackgroundView',
         'views/MenuView',
+        'views/ProgressBarView',
 
         //General
         'channel',
@@ -22,11 +23,12 @@ define([
     function(
         Backbone,
 
-        dataJson,
+        APP_CONFIG,
 
         //Views
         BackgroundView,
         MenuView,
+        ProgressBarView,
 
         //General
         Channel,
@@ -37,7 +39,6 @@ define([
 
         var Router = Backbone.Router.extend({
 
-            data: $.parseJSON(dataJson),
             firstLoad: true,
             currentSlideId: 0,
 
@@ -65,7 +66,7 @@ define([
             initialize: function() {
                 var self = this;
 
-                console.log(this.data.slides);
+                console.log(APP_CONFIG.slides);
 
                 //Window resize
                 $(window).resize(function() {
@@ -75,8 +76,9 @@ define([
                 LayoutManager.useLayout("app").setViews({
                     ".background": new BackgroundView({}),
                     ".menu": new MenuView({
-                        slides: this.data.slides
-                    })
+                        slides: APP_CONFIG.slides
+                    }),
+                    ".progress": new ProgressBarView({})
                 }).render(function() {});
 
                 //Dont call this until preoading done.
@@ -90,34 +92,36 @@ define([
 
             //Default route.
             index: function() {
-                Backbone.history.navigate(this.data.slides[0].url, {
+                Backbone.history.navigate(APP_CONFIG.slides[0].url, {
                     trigger: true
                 });
             },
 
             showSection: function(sectionUrl, callback) {
                 Channel.on('Loader.SequenceProgress', function(attrs) {
-                    console.log('Progress: ' + attrs.progress * 100);
+                    // console.log('Progress: ' + attrs.progress * 100);
                 }, this);
 
                 if (this.firstLoad) {
-                    Channel.on('Loader.SequenceReady', function() {
-                        console.log('Start with this.');
-                    }, this);
                     setTimeout(function() {
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: 0,
                             endFrame: 0
                         });
                     }, 100);
-                    setTimeout(function() {
-                        Channel.trigger('Loader.LoadSequence', {
-                            startFrame: 500,
-                            endFrame: 800
-                        });
-                    }, 1500);
                 }
                 this.firstLoad = false;
+                $('body').on('click', '.node', function() {
+                    Channel.trigger('Loader.LoadSequence', {
+                        startFrame: 1600,
+                        endFrame: 1900
+                    });
+                    Channel.on('Loader.SequenceReady', function() {}, this);
+                });
+
+                $('body').on('touchend', '.content', function() {
+                    Channel.trigger('Loader.PlaySequence');
+                });
             }
         });
 

@@ -1,24 +1,24 @@
 /*
  * Gruntfile for the Grunt Front-End Workflow/Boilerplate
- * (previously called Backbone/RequireJS multipage boilerplate). 
- * 
+ * (previously called Backbone/RequireJS multipage boilerplate).
+ *
  * DEV URL: http://localhost:9001/
- * 
+ *
  * @author Aki Karkkainen
  * @url https://github.com/akikoo/grunt-frontend-workflow
  * Twitter: http://twitter.com/akikoo
- * 
+ *
  */
 
 // Needed for `grunt-contrib-livereload`.
-var path        = require('path'),
-    lrSnippet   = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
+var path = require('path'),
+    lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
     folderMount = function folderMount(connect, point) {
         return connect.static(path.resolve(point));
     };
 
 // Grunt configuration wrapper function.
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     'use strict';
 
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         /*
-         * Get configuration options. 
+         * Get configuration options.
          */
         config: config,
 
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
 
 
         /*
-         * Create a dynamic build header. 
+         * Create a dynamic build header.
          */
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> | ' +
             '<%= grunt.template.today("dd-mm-yyyy-hh:MM:ss") %>\n' +
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 
 
         /*
-         * Start a static web server. 
+         * Start a static web server.
          * DEV URL http://localhost:9001/.
          * To view the local site on another device on the same LAN, use your master machine's IP address instead, for example http://10.0.0.32:9001/.
          */
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                     port: 9001, // The port on which the webserver will respond.
                     hostname: '*', // Default 'localhost'. Setting this to '*' will make the server accessible from anywhere. Useful for cross-device testing.
                     base: '<%= config.webroot %>', // The base (or root) directory from which files will be served. Defaults to the project Gruntfile's directory.
-                    middleware: function (connect, options) {
+                    middleware: function(connect, options) {
                         return [lrSnippet, folderMount(connect, options.base)];
                     }
                 }
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
                 livereload: 35729 // Default livereload listening port.
             },
             html: {
-                files: ['<%= config.webroot %>/html/*.html','<%= config.webroot %>/html/views/*.html'],
+                files: ['<%= config.webroot %>/html/*.html', '<%= config.webroot %>/html/views/*.html'],
                 tasks: [
                     'includereplace'
                 ]
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
                 ]
             },
             js: {
-                files: ['<%= config.webroot %>/js/app/**/*.js','<%= config.webroot %>/js/lib/**/*.js'],
+                files: ['<%= config.webroot %>/js/app/**/*.js', '<%= config.webroot %>/js/lib/**/*.js'],
                 tasks: [
                     'jshint'
                 ]
@@ -196,9 +196,9 @@ module.exports = function (grunt) {
                 // Source-destination file mappings where the property name is the 
                 // destination directory, and its value is the source file to 
                 // perform replacements and includes with.
-                files: [
-                    {'<%= config.webroot %>/': '<%= config.webroot %>/html/index.html'}
-                ]
+                files: [{
+                    '<%= config.webroot %>/': '<%= config.webroot %>/html/index.html'
+                }]
             }
         },
 
@@ -209,14 +209,17 @@ module.exports = function (grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: 'js',                          // The JS source dir, relative to the 'appDir' if set below. No forward slash here!
-                    appDir: '<%= config.webroot %>',        // The top level assets directory, relative to this file. All the files from this directory will be copied to 'dir'.
-                    dir: '<%= config.dist %>',              // The CSS and JS output dir, relative to this file.
+                    baseUrl: 'js', // The JS source dir, relative to the 'appDir' if set below. No forward slash here!
+                    appDir: '<%= config.webroot %>', // The top level assets directory, relative to this file. All the files from this directory will be copied to 'dir'.
+                    dir: '<%= config.dist %>', // The CSS and JS output dir, relative to this file.
                     mainConfigFile: '<%= config.webroot %>/js/config.js', // Include the main configuration file (paths, shim). Relative to this file.
-                    optimize: 'uglify',                     // (default) uses UglifyJS to minify the code.
-                    skipDirOptimize: true,                  // Set to true, to skip optimizing other non-build layer JS files (speeds up builds).
-                    optimizeCss: 'standard',                // @import inlining, comment removal and line returns.
+                    optimize: 'uglify', // (default) uses UglifyJS to minify the code.
+                    skipDirOptimize: true, // Set to true, to skip optimizing other non-build layer JS files (speeds up builds).
+                    optimizeCss: 'standard', // @import inlining, comment removal and line returns.
                     fileExclusionRegExp: /^\.|\.((json))|scss$/, // If the regexp matches, it means the file/directory will be excluded.
+
+                    preserveLicenseComments: false,
+                    inlineText: true,
 
                     // List of modules that will be optimized. All their immediate and deep dependencies will be included.
                     modules: [
@@ -299,10 +302,10 @@ module.exports = function (grunt) {
                     optimizationLevel: 3 // PNG only.
                 },
                 files: [{
-                    expand: true,                       // Enable dynamic expansion.
-                    cwd: '<%= config.webroot %>/img/',  // Src matches are relative to this path.
-                    src: '**/*.{png,jpg,jpeg}',         // Actual pattern(s) to match.
-                    dest: '<%= config.dist %>/img/'     // Destination path prefix.
+                    expand: true, // Enable dynamic expansion.
+                    cwd: '<%= config.webroot %>/img/', // Src matches are relative to this path.
+                    src: '**/*.{png,jpg,jpeg}', // Actual pattern(s) to match.
+                    dest: '<%= config.dist %>/img/' // Destination path prefix.
                 }]
             }
         },
@@ -313,23 +316,21 @@ module.exports = function (grunt) {
          */
         concat: {
             options: {
-                stripBanners: true,                     // Strip any existing JavaScript banner comments from source files.
-                banner: '<%= banner %>'                 // Get dynamic build header.
+                stripBanners: true, // Strip any existing JavaScript banner comments from source files.
+                banner: '<%= banner %>' // Get dynamic build header.
             },
             dist: {
-                files: [
-                    {
-                        expand: true,                   // Enable dynamic expansion.
-                        cwd: '<%= config.dist %>/',     // Src matches are relative to this path.
-                        src: [                          // Actual pattern(s) to match.
-                            'css/*.css',                // Process only main css files in CSS root.
-                            'js/app/*.js',              // Process only main js files in JS app root.
-                            'js/config.js'              // Process also the common layer. 
-                        ],
-                        dest: '<%= config.dist %>/',    // Destination path prefix.
-                        nonull: false                   // Set nonull to true if you want the concat task to warn if a given file is missing or invalid.
-                    }
-                ]
+                files: [{
+                    expand: true, // Enable dynamic expansion.
+                    cwd: '<%= config.dist %>/', // Src matches are relative to this path.
+                    src: [ // Actual pattern(s) to match.
+                        'css/*.css', // Process only main css files in CSS root.
+                        'js/app/*.js', // Process only main js files in JS app root.
+                        'js/config.js' // Process also the common layer. 
+                    ],
+                    dest: '<%= config.dist %>/', // Destination path prefix.
+                    nonull: false // Set nonull to true if you want the concat task to warn if a given file is missing or invalid.
+                }]
             }
         }
 

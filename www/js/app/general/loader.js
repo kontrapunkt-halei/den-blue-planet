@@ -20,12 +20,10 @@ define(['jquery', 'channel', 'preloadjs'],
                 this.singleQueue.on('fileload', this.singleQueue_fileLoadHandler, this);
 
                 Channel.on('Loader.LoadSequence', this.loadSequence, this);
-
-
-                this.loadSequence(20, 80);
             },
             loadSequence: function(attrs) {
                 console.log('!!');
+                this.singleQueue.setMaxConnections(15);
                 this.singleQueue.close();
 
                 var startFrame = attrs.startFrame,
@@ -53,11 +51,11 @@ define(['jquery', 'channel', 'preloadjs'],
                 var item = event.item;
                 // console.log(event);
                 if (item.type === 'image') {
-                    this.loadedImages[item.id] = event.result;
+                    this.loadedImages[Number(item.id)] = event.result;
                 }
             },
             singleQueue_completeHandler: function() {
-                console.log('readh');
+                console.log('Loader: Complete loading.');
                 Channel.trigger('Loader.SequenceReady');
             },
             singleQueue_progressHandler: function(event) {
@@ -68,9 +66,9 @@ define(['jquery', 'channel', 'preloadjs'],
             singleQueue_errorHandler: function() {},
 
             clearArray: function(arr) {
-                while (arr.length > 0) {
-                    arr.pop();
-                }
+                // while (arr.length > 0) {
+                //     arr.pop();
+                // }
             }
         };
         LoaderInstance.getInstance = function() {

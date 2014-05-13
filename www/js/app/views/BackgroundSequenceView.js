@@ -4,12 +4,13 @@ define([
 
         'channel',
         'loader',
+        'animationFrame',
 
         'backbone',
         'backbone.layoutmanager'
     ],
 
-    function($, Channel, Loader) {
+    function($, Channel, Loader, AnimationFrame) {
         var View = Backbone.LayoutView.extend({
             template: 'BackgroundSequence',
 
@@ -24,6 +25,8 @@ define([
 
             drawFrame: function(image) {
                 var imagePos = this.calcImagePos();
+
+                console.log('we be drawing: ' + image);
 
                 if (image) {
                     this.ctx.drawImage(image, imagePos.left, imagePos.top, imagePos.width, imagePos.height);
@@ -66,14 +69,6 @@ define([
                 };
             },
 
-            rightNow: function(argument) {
-                if (window['performance'] && window['performance']['now']) {
-                    return window['performance']['now']();
-                } else {
-                    return +(new Date());
-                }
-            },
-
             window_resizeHandler: function(args) {
                 this.canvas = $(this.el).find('#bg-sequence');
                 this.canvas[0].width = args.width;
@@ -98,42 +93,54 @@ define([
                 this.canvas.width = this.width;
                 this.canvas.height = this.height;
 
-                Channel.on('Loader.SequenceReady', function() {
+                self.animationFrame = new AnimationFrame(25);
+
+                Channel.on('Loader.PlaySequence', function() {
+                    self.stopAnimation();
+
                     self.stillImage = Loader.loadedImages[Loader.loadedImages.length - 1];
+
+                    self.loadedImages = Loader.loadedImages;
 
                     console.log('---as asdas');
                     console.log(self.stillImage);
                     console.log('---as asdasasdad');
 
                     if (Loader.loadedImages.length === 1) {
+                        console.log('something still');
                         self.drawFrame(self.stillImage);
                     } else {
                         self.animating = true;
-                        var fps = 24,
-                            currentFrame = 0,
-                            totalFrames = Loader.loadedImages.length - 1,
-                            currentTime = self.rightNow();
 
-                        (function animloop(time) {
-                            var delta = (time - currentTime) / 1000;
-
-                            currentFrame += (delta * fps);
-
-                            var frameNum = Math.floor(currentFrame);
-
-                            if (frameNum >= totalFrames) {
-                                self.animating = false;
-                                return false;
-                            }
-
-                            window.requestAnimationFrame(animloop);
-                            self.drawFrame(Loader.loadedImages[frameNum + 1]);
-
-                            currentTime = time;
-                        })(currentTime);
+                        self.currentFrame = 0;
+                        self.stopAnimation();
+                        self.startAnimation();
                     }
-                    // ctx.putImageData(imgData, 10, 70);
                 });
+            },
+            startAnimation: function() {
+                var self = this;
+                // this.currentFrame = 0;
+
+                self.requestID = this.animationFrame.request(function() {
+                    self.animate();
+                });
+            },
+            stopAnimation: function() {
+                // this.animationFrame.cancel(this.animationFrameFunc);
+                this.animationFrame.cancel(this.requestID);
+            },
+            animate: function() {
+                var self = this;
+                console.log('currentFrame: ' + self.currentFrame);
+
+                if (self.currentFrame < self.loadedImages.length - 1) {
+                    self.drawFrame(self.loadedImages[self.currentFrame + 1]);
+                    self.currentFrame++;
+                    self.startAnimation();
+                } else {
+                    self.stopAnimation();
+                }
             },
             serialize: function() {
                 return {};
@@ -141,5 +148,4 @@ define([
             cleanup: function() {}
         });
         return View;
-    }
-);
+    });

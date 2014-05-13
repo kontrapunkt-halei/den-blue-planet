@@ -1,0 +1,17 @@
+.progress {
+
+}
+
+.progress-bar {
+	position: absolute;
+	left:0;
+	top:0;
+	width:50%;
+	height:0px;
+	background:#ff9900;
+	@include transition-property(width,height);
+	@include transition-duration(0.1s);
+	&.loading {
+		height:10px;
+	}
+}

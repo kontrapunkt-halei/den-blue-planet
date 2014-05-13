@@ -22,6 +22,8 @@ require.config({
 
     paths: {
 
+        'APP_CONFIG': 'app/APP_CONFIG',
+
         // Core libraries.
         jquery: 'lib/jquery/jquery',
         jqueryEasing: 'lib/jquery/jquery.easing',
@@ -30,6 +32,7 @@ require.config({
         'backbone.layoutmanager': 'lib/backbone.layoutmanager/backbone.layoutmanager',
         'layoutmanager': 'app/general/layoutmanager',
         preloadjs: 'lib/preloadjs/preloadjs-0.4.0.min',
+        animationFrame: 'lib/AnimationFrame/AnimationFrame',
 
         // Templating.
         handlebars: 'lib/handlebars/handlebars',
