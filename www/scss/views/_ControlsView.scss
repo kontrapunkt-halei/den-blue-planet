@@ -1,0 +1,18 @@
+.ControlsView {
+	background:white;
+	position: fixed;
+	width:200px;
+	height:80px;
+	left:50%;
+	bottom:20px;
+	margin-left:-100px;
+	.prev, .next {
+		display: block;
+		height:80px;
+		float:left;
+		width:50%;
+		box-sizing:border-box;
+		border:3px solid #ccc;
+		cursor:pointer;
+	}
+}

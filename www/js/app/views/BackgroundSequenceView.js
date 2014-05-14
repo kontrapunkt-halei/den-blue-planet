@@ -26,7 +26,7 @@ define([
             drawFrame: function(image) {
                 var imagePos = this.calcImagePos();
 
-                console.log('we be drawing: ' + image);
+                // console.log('we be drawing: ' + image);
 
                 if (image) {
                     this.ctx.drawImage(image, imagePos.left, imagePos.top, imagePos.width, imagePos.height);
@@ -95,30 +95,25 @@ define([
 
                 self.animationFrame = new AnimationFrame(25);
 
-                Channel.on('Loader.PlaySequence', function() {
+                Channel.on('Background.PlaySequence', function() {
                     self.stopAnimation();
 
                     self.stillImage = Loader.loadedImages[Loader.loadedImages.length - 1];
 
                     self.loadedImages = Loader.loadedImages;
 
-                    console.log('---as asdas');
-                    console.log(self.stillImage);
-                    console.log('---as asdasasdad');
-
                     if (Loader.loadedImages.length === 1) {
-                        console.log('something still');
                         self.drawFrame(self.stillImage);
                     } else {
-                        self.animating = true;
+
 
                         self.currentFrame = 0;
                         self.stopAnimation();
-                        self.startAnimation();
+                        self.triggerAnimation();
                     }
                 });
             },
-            startAnimation: function() {
+            triggerAnimation: function() {
                 var self = this;
                 // this.currentFrame = 0;
 
@@ -129,15 +124,16 @@ define([
             stopAnimation: function() {
                 // this.animationFrame.cancel(this.animationFrameFunc);
                 this.animationFrame.cancel(this.requestID);
+                Channel.trigger('Background.PlaybackComplete');
             },
             animate: function() {
                 var self = this;
-                console.log('currentFrame: ' + self.currentFrame);
+                // console.log('currentFrame: ' + self.currentFrame);
 
                 if (self.currentFrame < self.loadedImages.length - 1) {
                     self.drawFrame(self.loadedImages[self.currentFrame + 1]);
                     self.currentFrame++;
-                    self.startAnimation();
+                    self.triggerAnimation();
                 } else {
                     self.stopAnimation();
                 }

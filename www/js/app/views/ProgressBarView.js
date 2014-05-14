@@ -19,7 +19,7 @@ define([
                 Channel.on('Loader.LoadSequence', this.showProgress, this);
             },
             setProgress: function(attrs) {
-                console.log(attrs.progress);
+                // console.log(attrs.progress);
                 $(this.el).find('.progress-bar').css('width', Math.round(attrs.progress * 100) + '%');
             },
             hideProgress: function(argument) {

@@ -1,5 +1,5 @@
-define(['jquery', 'channel', 'preloadjs'],
-    function($, Channel) {
+define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
+    function($, Channel, APP_CONFIG) {
         var instance = null;
 
         function LoaderInstance() {
@@ -19,37 +19,93 @@ define(['jquery', 'channel', 'preloadjs'],
                 this.singleQueue.on('progress', this.singleQueue_progressHandler, this);
                 this.singleQueue.on('fileload', this.singleQueue_fileLoadHandler, this);
 
+                this.initLargeQueue();
+
                 Channel.on('Loader.LoadSequence', this.loadSequence, this);
             },
+            initLargeQueue: function(attrs) {
+                //Touch devices can't handle pre-fetching/caching of images in the background, so it's turned off for them.
+                if (!Modernizr.touch) {
+                    var startFrame = 0,
+                        endFrame = APP_CONFIG.slides[APP_CONFIG.slides.length - 1].frame,
+                        manifest = [],
+                        index = 0;
+
+                    this.largeQueue.setMaxConnections(30);
+
+                    for (var i = startFrame; i <= endFrame; i++) {
+                        var pad = "0000";
+                        var str = String(i);
+
+                        manifest.push({
+                            id: index,
+                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                        });
+
+                        index++;
+                    }
+
+                    this.largeQueue.loadManifest(manifest, false);
+                }
+            },
+            setPausedLargeQueue: function(paused) {
+                this.largeQueue.setPaused(paused);
+            },
             loadSequence: function(attrs) {
-                console.log('!!');
-                this.singleQueue.setMaxConnections(15);
-                this.singleQueue.close();
+                this.setPausedLargeQueue(true);
+
+                this.stopSequenceLoad();
 
                 var startFrame = attrs.startFrame,
                     endFrame = attrs.endFrame,
                     manifest = [],
                     index = 1;
 
-                this.clearArray(this.loadedImages);
 
-                for (var i = startFrame; i <= endFrame; i++) {
-                    var pad = "00000";
-                    var str = String(i);
+                var start = startFrame,
+                    end = endFrame;
 
-                    manifest.push({
-                        id: index,
-                        src: "/img/dev3/JPEG/samlet_dbp_002_" + pad.slice(str.length) + str + ".jpg"
-                    });
+                console.log(startFrame, endFrame);
 
-                    index++;
+                if (startFrame <= endFrame) {
+                    for (var i = startFrame; i <= endFrame; i++) {
+                        var pad = "0000";
+                        var str = String(i);
+
+                        manifest.push({
+                            id: index,
+                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                        });
+
+                        index++;
+                    }
+                } else {
+                    for (var j = startFrame; j >= endFrame; j--) {
+                        var pad2 = "0000";
+                        var str2 = String(j);
+
+                        manifest.push({
+                            id: index,
+                            src: "/img/dev/" + pad2.slice(str2.length) + str2 + ".jpg"
+                        });
+
+                        index++;
+                    }
                 }
 
                 this.singleQueue.loadManifest(manifest);
             },
+            stopSequenceLoad: function(argument) {
+                this.singleQueue.setMaxConnections(50);
+                this.singleQueue.removeAll();
+                this.singleQueue.close();
+                this.clearArray(this.loadedImages);
+            },
             singleQueue_fileLoadHandler: function(event) {
                 var item = event.item;
-                // console.log(event);
+
+                this.largeQueue.remove(item.src);
+
                 if (item.type === 'image') {
                     this.loadedImages[Number(item.id)] = event.result;
                 }
@@ -57,6 +113,8 @@ define(['jquery', 'channel', 'preloadjs'],
             singleQueue_completeHandler: function() {
                 console.log('Loader: Complete loading.');
                 Channel.trigger('Loader.SequenceReady');
+
+                this.setPausedLargeQueue(false);
             },
             singleQueue_progressHandler: function(event) {
                 Channel.trigger('Loader.SequenceProgress', {
@@ -66,9 +124,9 @@ define(['jquery', 'channel', 'preloadjs'],
             singleQueue_errorHandler: function() {},
 
             clearArray: function(arr) {
-                // while (arr.length > 0) {
-                //     arr.pop();
-                // }
+                while (arr.length > 0) {
+                    arr.pop();
+                }
             }
         };
         LoaderInstance.getInstance = function() {

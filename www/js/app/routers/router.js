@@ -11,6 +11,8 @@ define([
         'views/BackgroundView',
         'views/MenuView',
         'views/ProgressBarView',
+        'views/SectionBigGraphicView',
+        'views/ControlsView',
 
         //General
         'channel',
@@ -29,6 +31,8 @@ define([
         BackgroundView,
         MenuView,
         ProgressBarView,
+        SectionBigGraphicView,
+        ControlsView,
 
         //General
         Channel,
@@ -40,7 +44,7 @@ define([
         var Router = Backbone.Router.extend({
 
             firstLoad: true,
-            currentSlideId: 0,
+            currentSection: {},
 
             routes: {
                 '': 'index',
@@ -78,7 +82,8 @@ define([
                     ".menu": new MenuView({
                         slides: APP_CONFIG.slides
                     }),
-                    ".progress": new ProgressBarView({})
+                    ".progress": new ProgressBarView({}),
+                    ".controls": new ControlsView({})
                 }).render(function() {});
 
                 //Dont call this until preoading done.
@@ -97,31 +102,85 @@ define([
                 });
             },
 
-            showSection: function(sectionUrl, callback) {
-                Channel.on('Loader.SequenceProgress', function(attrs) {
-                    // console.log('Progress: ' + attrs.progress * 100);
-                }, this);
-
-                if (this.firstLoad) {
-                    setTimeout(function() {
-                        Channel.trigger('Loader.LoadSequence', {
-                            startFrame: 0,
-                            endFrame: 0
-                        });
-                    }, 100);
+            getSectionByURL: function(url) {
+                var returnSlide;
+                for (var i = 0; i < APP_CONFIG.slides.length; i++) {
+                    if (String(APP_CONFIG.slides[i].url) === String(url)) {
+                        returnSlide = APP_CONFIG.slides[i];
+                        return returnSlide;
+                    }
                 }
-                this.firstLoad = false;
-                $('body').on('click', '.node', function() {
-                    Channel.trigger('Loader.LoadSequence', {
-                        startFrame: 1600,
-                        endFrame: 1900
-                    });
-                    Channel.on('Loader.SequenceReady', function() {}, this);
-                });
+            },
 
-                $('body').on('touchend', '.content', function() {
-                    Channel.trigger('Loader.PlaySequence');
-                });
+            setSection: function(section) {
+                this.currentSection = section;
+                LayoutManager.layout.setView(".content", new SectionBigGraphicView({
+                    model: section
+                })).render();
+            },
+
+            showSection: function(sectionURL, callback) {
+                var self = this;
+                var section = this.getSectionByURL(sectionURL);
+
+                if (section === this.currentSection) {
+                    return false;
+                }
+
+                //First load - special case
+                if (this.firstLoad) {
+                    this.firstLoad = false;
+
+                    Channel.on('Loader.SequenceReady', function() {
+                        setTimeout(function() {
+                            Channel.trigger('Background.PlaySequence');
+                            self.setSection(section);
+                        }, 0);
+                    }, this);
+                    Channel.trigger('Loader.LoadSequence', {
+                        startFrame: section.frame,
+                        endFrame: section.frame
+                    });
+                } else {
+                    //Other laods
+                    if (Math.abs(this.currentSection.id - section.id) > 1) {
+                        Channel.on('Loader.SequenceReady', function() {
+                            setTimeout(function() {
+                                Channel.trigger('Background.PlaySequence');
+                                self.setSection(section);
+                            }, 0);
+                        }, this);
+                        Channel.trigger('Loader.LoadSequence', {
+                            startFrame: section.frame,
+                            endFrame: section.frame
+                        });
+                    } else {
+                        console.log('ANIIIMATE matemate');
+                        console.log('frame current: ' + this.currentSection.frame);
+                        console.log('frame section: ' + section.frame);
+                        console.log('----');
+                        Channel.on('Loader.SequenceReady', function() {
+                            setTimeout(function() {
+                                Channel.trigger('Background.PlaySequence');
+                                self.setSection(section);
+                            }, 0);
+                        }, this);
+
+                        var startFrame = this.currentSection.frame + 1,
+                            endFrame = section.frame;
+
+                        if (startFrame > endFrame) {
+                            startFrame = this.currentSection.frame;
+                            endFrame = section.frame + 1;
+                        }
+
+                        Channel.trigger('Loader.LoadSequence', {
+                            startFrame: startFrame,
+                            endFrame: endFrame
+                        });
+                    }
+                }
+
             }
         });
 

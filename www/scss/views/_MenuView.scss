@@ -1,6 +1,11 @@
 .menu {
+	background:white;
 	position: fixed;
 	right:$spacing;
 	top:40px;
 	width:120px;
+
+	.node {
+		cursor: pointer;
+	}
 }

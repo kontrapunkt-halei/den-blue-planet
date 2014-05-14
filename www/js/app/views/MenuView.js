@@ -18,7 +18,10 @@ define([
                 initialize: function() {},
                 afterRender: function() {},
                 this_clickHandler: function(argument) {
-                    console.log('click here');
+                    console.log(this.model.url);
+                    Backbone.history.navigate('/' + this.model.url, {
+                        trigger: true
+                    });
                 },
                 serialize: function() {
                     return {
