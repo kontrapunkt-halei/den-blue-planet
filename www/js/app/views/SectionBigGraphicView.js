@@ -2,17 +2,19 @@ define([
         // Libraries.
         'jquery',
 
+        'views/SectionView',
+
         'backbone',
         'backbone.layoutmanager'
     ],
 
-    function($) {
-        var View = Backbone.LayoutView.extend({
+    function($, Section) {
+        var View = Section.extend({
             template: 'SectionBigGraphic',
             className: 'SectionBigGraphicView',
 
             initialize: function(attrs) {
-                //
+                Section.prototype.initialize.apply(this);
             },
             afterRender: function() {
                 //

@@ -40,7 +40,6 @@ define([
             },
             beforeRender: function() {
                 this.slides.forEach(function(slide) {
-                    console.log(this.slide);
                     this.insertView(".nodes", new this.MenuNodeView({
                         model: slide
                     })).render();

@@ -13,6 +13,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             singleQueue: new createjs.LoadQueue(),
             largeQueue: new createjs.LoadQueue(),
             loadedImages: [],
+            autoplay: false,
 
             initialize: function() {
                 this.singleQueue.on('complete', this.singleQueue_completeHandler, this);
@@ -49,23 +50,27 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 }
             },
             setPausedLargeQueue: function(paused) {
-                this.largeQueue.setPaused(paused);
+                // this.largeQueue.setPaused(paused);
             },
             loadSequence: function(attrs) {
                 this.setPausedLargeQueue(true);
 
+                this.autoplay = attrs.autoplay ||  false;
+
+                if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages) {
+                    console.log('the same');
+                    Channel.trigger('Loader.SequenceReady', {
+                        autoplay: this.autoplay
+                    });
+                    return false;
+                }
+
                 this.stopSequenceLoad();
 
-                var startFrame = attrs.startFrame,
-                    endFrame = attrs.endFrame,
+                var startFrame = this.startFrame = attrs.startFrame,
+                    endFrame = this.endFrame = attrs.endFrame,
                     manifest = [],
                     index = 1;
-
-
-                var start = startFrame,
-                    end = endFrame;
-
-                console.log(startFrame, endFrame);
 
                 if (startFrame <= endFrame) {
                     for (var i = startFrame; i <= endFrame; i++) {
@@ -93,6 +98,8 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                     }
                 }
 
+                console.log(manifest);
+
                 this.singleQueue.loadManifest(manifest);
             },
             stopSequenceLoad: function(argument) {
@@ -112,7 +119,9 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             },
             singleQueue_completeHandler: function() {
                 console.log('Loader: Complete loading.');
-                Channel.trigger('Loader.SequenceReady');
+                Channel.trigger('Loader.SequenceReady', {
+                    autoplay: this.autoplay
+                });
 
                 this.setPausedLargeQueue(false);
             },

@@ -44,7 +44,11 @@ define([
         var Router = Backbone.Router.extend({
 
             firstLoad: true,
-            currentSection: {},
+            currentSection: null,
+            currentSectionView: null,
+            newSection: null,
+            newSectionView: null,
+            playbackComplete: false,
 
             routes: {
                 '': 'index',
@@ -86,6 +90,30 @@ define([
                     ".controls": new ControlsView({})
                 }).render(function() {});
 
+                //Playback complete
+                Channel.on('Background.PlaySequence', function() {
+                    self.playbackComplete = false;
+                });
+                Channel.on('Background.PlaybackComplete', function() {
+                    self.playbackComplete = true;
+                });
+
+                //Animate out complete - change view
+                Channel.on('Section.AnimateOutComplete', this.sectionAnimateOutCompleteHandler, this);
+                Channel.on('Background.PlaybackComplete', this.sectionAnimateOutCompleteHandler, this);
+
+                //Next prev
+                Channel.on('Router.PrevSection', function(argument) {
+                    Backbone.history.navigate('/' + self.getPreviousSection().url, {
+                        trigger: true
+                    });
+                });
+                Channel.on('Router.NextSection', function(argument) {
+                    Backbone.history.navigate('/' + self.getNextSection().url, {
+                        trigger: true
+                    });
+                });
+
                 //Dont call this until preoading done.
                 Backbone.history.start({
                     pushState: false
@@ -103,25 +131,77 @@ define([
             },
 
             getSectionByURL: function(url) {
-                var returnSlide;
                 for (var i = 0; i < APP_CONFIG.slides.length; i++) {
                     if (String(APP_CONFIG.slides[i].url) === String(url)) {
-                        returnSlide = APP_CONFIG.slides[i];
-                        return returnSlide;
+                        return APP_CONFIG.slides[i];
+                    }
+                }
+            },
+
+            getNextSection: function() {
+                return this.getSectionByIndex(this.currentSection.index + 1) ||  false;
+            },
+
+            getPreviousSection: function(index) {
+                return this.getSectionByIndex(this.currentSection.index - 1) ||  false;
+            },
+
+            getSectionByIndex: function(index) {
+                for (var i = 0; i < APP_CONFIG.slides.length; i++) {
+                    if (String(APP_CONFIG.slides[i].index) === String(index)) {
+                        return APP_CONFIG.slides[i];
                     }
                 }
             },
 
             setSection: function(section) {
-                this.currentSection = section;
-                LayoutManager.layout.setView(".content", new SectionBigGraphicView({
-                    model: section
-                })).render();
+                var self = this;
+
+                console.log('Set section called for: ' + section.title);
+
+
+                if (this.currentSection) {
+                    this.newSection = section;
+                    this.newSectionView = new SectionBigGraphicView({
+                        model: section
+                    });
+
+                    this.currentSectionView.animateOut();
+                } else {
+                    this.currentSection = section;
+                    this.currentSectionView = new SectionBigGraphicView({
+                        model: section
+                    });
+                    LayoutManager.layout.setView(".content", this.currentSectionView).render();
+
+                    Channel.trigger('Loader.LoadSequence', {
+                        startFrame: this.currentSection.frame + 1,
+                        endFrame: this.getNextSection().frame
+                    });
+                }
+            },
+
+            sectionAnimateOutCompleteHandler: function() {
+                if (this.playbackComplete && this.newSection) {
+                    this.currentSection = this.newSection;
+                    this.currentSectionView = this.newSectionView;
+                    LayoutManager.layout.setView(".content", this.newSectionView).render();
+
+                    Channel.trigger('Loader.LoadSequence', {
+                        startFrame: this.currentSection.frame + 1,
+                        endFrame: this.getNextSection().frame
+                    });
+                }
             },
 
             showSection: function(sectionURL, callback) {
+                if (!this.playbackComplete && !this.firstLoad) {
+                    return false;
+                }
+
                 var self = this;
                 var section = this.getSectionByURL(sectionURL);
+
 
                 if (section === this.currentSection) {
                     return false;
@@ -131,39 +211,45 @@ define([
                 if (this.firstLoad) {
                     this.firstLoad = false;
 
-                    Channel.on('Loader.SequenceReady', function() {
-                        setTimeout(function() {
-                            Channel.trigger('Background.PlaySequence');
-                            self.setSection(section);
-                        }, 0);
+                    Channel.on('Loader.SequenceReady', function(attrs) {
+                        if (attrs.autoplay) {
+                            setTimeout(function() {
+                                Channel.trigger('Background.PlaySequence');
+                                setTimeout(function() {
+                                    self.setSection(section);
+                                }, 500);
+                            }, 0);
+                        }
                     }, this);
                     Channel.trigger('Loader.LoadSequence', {
                         startFrame: section.frame,
-                        endFrame: section.frame
+                        endFrame: section.frame,
+                        autoplay: true
                     });
                 } else {
                     //Other laods
-                    if (Math.abs(this.currentSection.id - section.id) > 1) {
-                        Channel.on('Loader.SequenceReady', function() {
-                            setTimeout(function() {
-                                Channel.trigger('Background.PlaySequence');
-                                self.setSection(section);
-                            }, 0);
+                    if (Math.abs(this.currentSection.index - section.index) > 1) {
+                        Channel.on('Loader.SequenceReady', function(attrs) {
+                            if (attrs.autoplay) {
+                                setTimeout(function() {
+                                    Channel.trigger('Background.PlaySequence');
+                                    self.setSection(section);
+                                }, 0);
+                            }
                         }, this);
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: section.frame,
-                            endFrame: section.frame
+                            endFrame: section.frame,
+                            autoplay: true
                         });
                     } else {
-                        console.log('ANIIIMATE matemate');
-                        console.log('frame current: ' + this.currentSection.frame);
-                        console.log('frame section: ' + section.frame);
-                        console.log('----');
-                        Channel.on('Loader.SequenceReady', function() {
-                            setTimeout(function() {
-                                Channel.trigger('Background.PlaySequence');
-                                self.setSection(section);
-                            }, 0);
+                        Channel.on('Loader.SequenceReady', function(attrs) {
+                            if (attrs.autoplay) {
+                                setTimeout(function() {
+                                    Channel.trigger('Background.PlaySequence');
+                                    self.setSection(section);
+                                }, 0);
+                            }
                         }, this);
 
                         var startFrame = this.currentSection.frame + 1,
@@ -176,7 +262,8 @@ define([
 
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: startFrame,
-                            endFrame: endFrame
+                            endFrame: endFrame,
+                            autoplay: true
                         });
                     }
                 }

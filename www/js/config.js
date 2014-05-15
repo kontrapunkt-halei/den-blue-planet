@@ -33,6 +33,7 @@ require.config({
         'layoutmanager': 'app/general/layoutmanager',
         preloadjs: 'lib/preloadjs/preloadjs-0.4.0.min',
         animationFrame: 'lib/AnimationFrame/AnimationFrame',
+        TweenLite: 'lib/TweenLite/TweenLite',
 
         // Templating.
         handlebars: 'lib/handlebars/handlebars',

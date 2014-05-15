@@ -96,19 +96,22 @@ define([
                 self.animationFrame = new AnimationFrame(25);
 
                 Channel.on('Background.PlaySequence', function() {
-                    self.stopAnimation();
+                    self.animationFrame.cancel(self.requestID);
 
-                    self.stillImage = Loader.loadedImages[Loader.loadedImages.length - 1];
+                    console.log('--123213213 12-312 -312- 3-12-321-3-213-');
+
+                    console.log('!!!!!!!!!!!!!!!!Loader.loadedImages');
+                    console.log(Loader.loadedImages);
 
                     self.loadedImages = Loader.loadedImages;
+                    self.stillImage = self.loadedImages[self.loadedImages.length - 1];
+
 
                     if (Loader.loadedImages.length === 1) {
                         self.drawFrame(self.stillImage);
                     } else {
-
-
                         self.currentFrame = 0;
-                        self.stopAnimation();
+                        self.animationFrame.cancel(self.requestID);
                         self.triggerAnimation();
                     }
                 });

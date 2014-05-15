@@ -5,6 +5,7 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
+
 	}
 
 	.overlay {
@@ -14,5 +15,13 @@
 		top: 0;
 		bottom: 0;
 		background:$overlay-bg;
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+		@include transition-property(opacity);
+		@include transition-duration(0.4s);
+		opacity:1;
+		&.hide {
+			opacity:0;
+		}
 	}
 }
