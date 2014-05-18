@@ -48,17 +48,21 @@ define([
             currentSectionView: null,
             newSection: null,
             newSectionView: null,
-            playbackComplete: true,
+            playbackComplete: false,
 
             routes: {
-                '': 'index'
-                // ':sectionUrl': 'showSection',
+                '': 'index',
+                ':sectionUrl': 'showSection',
             },
 
+            //Attaching Backbone views to the DOM-elements.
             initViews: function() {
                 var self = this;
             },
 
+            //Handling resizing of elements.
+            //-Changes the sections width/height
+            //-Saves the sections positions in an array (for the snap function.)
             windowResize_handler: function(e, callback) {
                 Channel.trigger('window.resize', {
                     width: $(window).width(),
@@ -100,49 +104,15 @@ define([
 
                 //Next prev
                 Channel.on('Router.PrevSection', function(argument) {
-                    var prevSection = self.getPreviousSection();
-                    if (prevSection) {
-                        Channel.trigger('Section.GoToSection', {
-                            index: prevSection.url
-                        });
-                    }
-                }, this);
+                    Backbone.history.navigate('/' + self.getPreviousSection().url, {
+                        trigger: true
+                    });
+                });
                 Channel.on('Router.NextSection', function(argument) {
-                    var nextSection = self.getNextSection();
-                    if (nextSection) {
-                        Channel.trigger('Section.GoToSection', {
-                            index: nextSection.url
-                        });
-                    }
-                }, this);
-                Channel.on('Section.GoToSection', function(attrs) {
-                    if (!this.playbackComplete) {
-                        console.log('Ignore that go to selection because we are animating.');
-                        return false;
-                    }
-                    var section = this.getSectionByIndex(attrs.index);
-                    if (section) {
-                        this.showSection(section);
-                    }
-                }, this);
-
-                //Sequence loaded
-                Channel.on('Loader.SequenceReady', function(attrs) {
-                    if (attrs.autoplay) {
-                        setTimeout(function() {
-                            if (attrs.loadedImages.length === 1) {
-                                Channel.trigger('Background.SetSingleImage', {
-                                    stillImage: attrs.loadedImages[0]
-                                });
-                            } else {
-                                Channel.trigger('Background.PlaySequence', {
-                                    loadedImages: attrs.loadedImages
-                                });
-                            }
-                        }, 0);
-                        this.setSection();
-                    }
-                }, this);
+                    Backbone.history.navigate('/' + self.getNextSection().url, {
+                        trigger: true
+                    });
+                });
 
                 //Dont call this until preoading done.
                 Backbone.history.start({
@@ -155,8 +125,8 @@ define([
 
             //Default route.
             index: function() {
-                Channel.trigger('Section.GoToSection', {
-                    index: 0
+                Backbone.history.navigate(APP_CONFIG.slides[0].url, {
+                    trigger: true
                 });
             },
 
@@ -184,19 +154,13 @@ define([
                 }
             },
 
-            setSection: function() {
+            setSection: function(section) {
                 var self = this;
 
-                console.log('this.newSection');
-                console.log(this.newSection);
-                console.log('this.newSection');
+                console.log('Set section called for: ' + section.title);
 
-                var section = this.newSection;
-
-                console.log('set section');
 
                 if (this.currentSection) {
-                    console.log('section 0');
                     this.newSection = section;
                     this.newSectionView = new SectionBigGraphicView({
                         model: section
@@ -204,30 +168,11 @@ define([
 
                     this.currentSectionView.animateOut();
                 } else {
-                    console.log('section 1');
-                    this.currentSection = this.newSection;
-                    this.currentSectionView = this.newSectionView = new SectionBigGraphicView({
+                    this.currentSection = section;
+                    this.currentSectionView = new SectionBigGraphicView({
                         model: section
                     });
                     LayoutManager.layout.setView(".content", this.currentSectionView).render();
-                }
-            },
-
-            sectionAnimateOutCompleteHandler: function() {
-                console.log('0 called 1232112');
-                if (this.playbackComplete && this.newSection) {
-                    this.currentSection = this.newSection;
-                    this.currentSectionView = this.newSectionView;
-
-                    Channel.trigger('Section.SectionSelected', {
-                        index: this.currentSection.index
-                    });
-
-                    if (!this.firstLoad) {
-                        LayoutManager.layout.setView(".content", this.newSectionView).render();
-                    } else {
-                        this.firstLoad = false;
-                    }
 
                     Channel.trigger('Loader.LoadSequence', {
                         startFrame: this.currentSection.frame + 1,
@@ -236,20 +181,46 @@ define([
                 }
             },
 
-            showSection: function(section) {
-                var self = this;
+            sectionAnimateOutCompleteHandler: function() {
+                if (this.playbackComplete && this.newSection) {
+                    this.currentSection = this.newSection;
+                    this.currentSectionView = this.newSectionView;
+                    LayoutManager.layout.setView(".content", this.newSectionView).render();
 
-                if (!this.playbackComplete) {
+                    Channel.trigger('Loader.LoadSequence', {
+                        startFrame: this.currentSection.frame + 1,
+                        endFrame: this.getNextSection().frame
+                    });
+                }
+            },
+
+            showSection: function(sectionURL, callback) {
+                if (!this.playbackComplete && !this.firstLoad) {
                     return false;
                 }
+
+                var self = this;
+                var section = this.getSectionByURL(sectionURL);
+
+
                 if (section === this.currentSection) {
                     return false;
                 }
 
-                this.newSection = section;
-
                 //First load - special case
                 if (this.firstLoad) {
+                    this.firstLoad = false;
+
+                    Channel.on('Loader.SequenceReady', function(attrs) {
+                        if (attrs.autoplay) {
+                            setTimeout(function() {
+                                Channel.trigger('Background.PlaySequence');
+                                setTimeout(function() {
+                                    self.setSection(section);
+                                }, 500);
+                            }, 0);
+                        }
+                    }, this);
                     Channel.trigger('Loader.LoadSequence', {
                         startFrame: section.frame,
                         endFrame: section.frame,
@@ -258,12 +229,28 @@ define([
                 } else {
                     //Other laods
                     if (Math.abs(this.currentSection.index - section.index) > 1) {
+                        Channel.on('Loader.SequenceReady', function(attrs) {
+                            if (attrs.autoplay) {
+                                setTimeout(function() {
+                                    Channel.trigger('Background.PlaySequence');
+                                    self.setSection(section);
+                                }, 0);
+                            }
+                        }, this);
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: section.frame,
                             endFrame: section.frame,
                             autoplay: true
                         });
                     } else {
+                        Channel.on('Loader.SequenceReady', function(attrs) {
+                            if (attrs.autoplay) {
+                                setTimeout(function() {
+                                    Channel.trigger('Background.PlaySequence');
+                                    self.setSection(section);
+                                }, 0);
+                            }
+                        }, this);
 
                         var startFrame = this.currentSection.frame + 1,
                             endFrame = section.frame;

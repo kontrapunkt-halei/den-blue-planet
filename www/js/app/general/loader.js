@@ -58,9 +58,9 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 this.autoplay = attrs.autoplay ||  false;
 
                 if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages) {
-                    console.log('the same');
                     Channel.trigger('Loader.SequenceReady', {
-                        autoplay: this.autoplay
+                        autoplay: this.autoplay,
+                        loadedImages: this.loadedImages
                     });
                     return false;
                 }
@@ -98,7 +98,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                     }
                 }
 
-                console.log(manifest);
+                // console.log(manifest);
 
                 this.singleQueue.loadManifest(manifest);
             },
@@ -120,7 +120,8 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             singleQueue_completeHandler: function() {
                 console.log('Loader: Complete loading.');
                 Channel.trigger('Loader.SequenceReady', {
-                    autoplay: this.autoplay
+                    autoplay: this.autoplay,
+                    loadedImages: this.loadedImages
                 });
 
                 this.setPausedLargeQueue(false);

@@ -1,12 +1,13 @@
 define([
         // Libraries.
         'jquery',
+        'channel',
 
         'backbone',
         'backbone.layoutmanager'
     ],
 
-    function($, BackgroundSequenceView) {
+    function($, Channel, BackgroundSequenceView) {
         var View = Backbone.LayoutView.extend({
             template: 'Menu',
 
@@ -19,8 +20,11 @@ define([
                 afterRender: function() {},
                 this_clickHandler: function(argument) {
                     console.log(this.model.url);
-                    Backbone.history.navigate('/' + this.model.url, {
-                        trigger: true
+                    // Backbone.history.navigate('/' + this.model.url, {
+                    //     trigger: true
+                    // });
+                    Channel.trigger('Section.GoToSection', {
+                        index: this.model.index
                     });
                 },
                 serialize: function() {
@@ -32,11 +36,16 @@ define([
 
             initialize: function(attrs) {
                 this.slides = attrs.slides;
-                console.log(attrs.slides);
                 console.log('Menu: Init.');
             },
             afterRender: function() {
                 console.log('Menu: Rendered.');
+                Channel.on('Section.SectionSelected', this.sectionSelected_handler, this);
+            },
+            sectionSelected_handler: function(attrs) {
+                console.log('SELECTED!');
+                $(this.el).find('.node').removeClass('selected');
+                $(this.el).find('.node:eq(' + (attrs.index) + ')').addClass('selected');
             },
             beforeRender: function() {
                 this.slides.forEach(function(slide) {

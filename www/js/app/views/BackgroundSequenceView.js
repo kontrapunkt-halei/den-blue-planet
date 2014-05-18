@@ -26,8 +26,6 @@ define([
             drawFrame: function(image) {
                 var imagePos = this.calcImagePos();
 
-                // console.log('we be drawing: ' + image);
-
                 if (image) {
                     this.ctx.drawImage(image, imagePos.left, imagePos.top, imagePos.width, imagePos.height);
                 }
@@ -44,14 +42,9 @@ define([
                     imgTop = 0,
                     imgLeft = 0;
 
-                //compare window ratio to image ratio so you know which way the image should fill
                 if (windowAspectRatio < imgAspectRatio) {
-                    // we are fill width
                     imgWidth = windowWidth;
-                    // and applying the correct aspect to the height now
                     imgHeight = (windowWidth * imgAspectRatio);
-                    // this can be margin if your element is not positioned relatively, absolutely or fixed
-                    // make sure image is always centered
                     imgLeft = "0";
                     imgTop = (windowHeight - (windowWidth * imgAspectRatio)) / 2;
                 } else { // same thing as above but filling height instead
@@ -95,17 +88,17 @@ define([
 
                 self.animationFrame = new AnimationFrame(25);
 
-                Channel.on('Background.PlaySequence', function() {
+                Channel.on('Background.SetSingleImage', function(attrs) {
+                    if (attrs.stillImage) {
+                        this.setSingleImage(attrs.stillImage);
+                    }
+                });
+
+                Channel.on('Background.PlaySequence', function(attrs) {
                     self.animationFrame.cancel(self.requestID);
 
-                    console.log('--123213213 12-312 -312- 3-12-321-3-213-');
-
-                    console.log('!!!!!!!!!!!!!!!!Loader.loadedImages');
-                    console.log(Loader.loadedImages);
-
-                    self.loadedImages = Loader.loadedImages;
+                    self.loadedImages = attrs.loadedImages;
                     self.stillImage = self.loadedImages[self.loadedImages.length - 1];
-
 
                     if (Loader.loadedImages.length === 1) {
                         self.drawFrame(self.stillImage);
@@ -116,22 +109,26 @@ define([
                     }
                 });
             },
+            setSingleImage: function(stillImage) {
+                if (stillImage) {
+                    this.stillImage = stillImage;
+                    this.drawFrame(this.stillImage);
+                    Channel.trigger('Background.PlaybackComplete');
+                }
+            },
             triggerAnimation: function() {
                 var self = this;
-                // this.currentFrame = 0;
 
                 self.requestID = this.animationFrame.request(function() {
                     self.animate();
                 });
             },
             stopAnimation: function() {
-                // this.animationFrame.cancel(this.animationFrameFunc);
                 this.animationFrame.cancel(this.requestID);
                 Channel.trigger('Background.PlaybackComplete');
             },
             animate: function() {
                 var self = this;
-                // console.log('currentFrame: ' + self.currentFrame);
 
                 if (self.currentFrame < self.loadedImages.length - 1) {
                     self.drawFrame(self.loadedImages[self.currentFrame + 1]);
