@@ -19,13 +19,16 @@ define([
 
                 this.SequenceView = new BackgroundSequenceView({});
             },
-            afterRender: function() {
-                console.log('BG: Rendered.');
-                var self = this;
-                var $overlay = $(self.el).find('.overlay');
+            beforeRender: function(argument) {
 
                 // Background sequence
                 this.insertView(".sequence", this.SequenceView).render(function() {});
+            },
+            afterRender: function() {
+                var self = this;
+                console.log('BG: Rendered.');
+
+                var $overlay = $(self.el).find('.overlay');
 
                 Channel.on('Background.PlaybackComplete', function() {
                     $overlay.removeClass('hide');

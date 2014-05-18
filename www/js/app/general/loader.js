@@ -57,7 +57,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                 this.autoplay = attrs.autoplay ||  false;
 
-                if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages) {
+                if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages.length === Math.abs(this.startFrame - this.endFrame)) {
                     Channel.trigger('Loader.SequenceReady', {
                         autoplay: this.autoplay,
                         loadedImages: this.loadedImages

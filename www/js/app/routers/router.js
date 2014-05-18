@@ -70,7 +70,7 @@ define([
             initialize: function() {
                 var self = this;
 
-                console.log(APP_CONFIG.slides);
+                console.log('INIT!');
 
                 //Window resize
                 $(window).resize(function() {
@@ -84,73 +84,58 @@ define([
                     }),
                     ".progress": new ProgressBarView({}),
                     ".controls": new ControlsView({})
-                }).render(function() {});
+                }).render(function() {
+                    //Playback complete
+                    Channel.on('Background.PlaySequence', function() {
+                        console.log('SET PLAY SEQUENCE FASLSE');
+                        self.playbackComplete = false;
+                    }, self);
+                    Channel.on('Background.PlaybackComplete', function() {
+                        console.log('YEP YEP NOW ITS TRUE');
+                        self.playbackComplete = true;
+                        self.sectionAnimateOutCompleteHandler();
+                    }, self);
 
-                //Playback complete
-                Channel.on('Background.PlaySequence', function() {
-                    self.playbackComplete = false;
-                });
-                Channel.on('Background.PlaybackComplete', function() {
-                    self.playbackComplete = true;
-                });
+                    //Animate out complete - change view
+                    Channel.on('Section.AnimateOutComplete', self.sectionAnimateOutCompleteHandler, self);
 
-                //Animate out complete - change view
-                Channel.on('Section.AnimateOutComplete', this.sectionAnimateOutCompleteHandler, this);
-                Channel.on('Background.PlaybackComplete', this.sectionAnimateOutCompleteHandler, this);
+                    //Next prev
+                    Channel.on('Router.PrevSection', function(argument) {
+                        var prevSection = self.getPreviousSection();
+                        if (prevSection) {
+                            Channel.trigger('Section.GoToSection', {
+                                index: prevSection.index
+                            });
+                        }
+                    }, self);
+                    Channel.on('Router.NextSection', function(argument) {
+                        var nextSection = self.getNextSection();
+                        if (nextSection) {
+                            Channel.trigger('Section.GoToSection', {
+                                index: nextSection.index
+                            });
+                        }
+                    }, self);
+                    Channel.on('Section.GoToSection', function(attrs) {
+                        if (!self.playbackComplete) {
+                            console.log('Ignore that go to selection because we are animating.');
+                            return false;
+                        }
+                        var section = self.getSectionByIndex(attrs.index);
+                        if (section) {
+                            self.showSection(section);
+                        }
+                    }, self);
 
-                //Next prev
-                Channel.on('Router.PrevSection', function(argument) {
-                    var prevSection = self.getPreviousSection();
-                    if (prevSection) {
-                        Channel.trigger('Section.GoToSection', {
-                            index: prevSection.url
-                        });
-                    }
-                }, this);
-                Channel.on('Router.NextSection', function(argument) {
-                    var nextSection = self.getNextSection();
-                    if (nextSection) {
-                        Channel.trigger('Section.GoToSection', {
-                            index: nextSection.url
-                        });
-                    }
-                }, this);
-                Channel.on('Section.GoToSection', function(attrs) {
-                    if (!this.playbackComplete) {
-                        console.log('Ignore that go to selection because we are animating.');
-                        return false;
-                    }
-                    var section = this.getSectionByIndex(attrs.index);
-                    if (section) {
-                        this.showSection(section);
-                    }
-                }, this);
+                    //Sequence loaded
+                    Channel.on('Loader.SequenceReady', self.setSection, self);
 
-                //Sequence loaded
-                Channel.on('Loader.SequenceReady', function(attrs) {
-                    if (attrs.autoplay) {
-                        setTimeout(function() {
-                            if (attrs.loadedImages.length === 1) {
-                                Channel.trigger('Background.SetSingleImage', {
-                                    stillImage: attrs.loadedImages[0]
-                                });
-                            } else {
-                                Channel.trigger('Background.PlaySequence', {
-                                    loadedImages: attrs.loadedImages
-                                });
-                            }
-                        }, 0);
-                        this.setSection();
-                    }
-                }, this);
-
-                //Dont call this until preoading done.
-                Backbone.history.start({
-                    pushState: false
+                    //Dont call this until preoading done.
+                    Backbone.history.start({
+                        pushState: false
+                    });
                 });
 
-                //View init
-                this.initViews();
             },
 
             //Default route.
@@ -184,12 +169,12 @@ define([
                 }
             },
 
-            setSection: function() {
+            setSection: function(attrs) {
                 var self = this;
 
-                console.log('this.newSection');
-                console.log(this.newSection);
-                console.log('this.newSection');
+                if (!attrs.autoplay) {
+                    return false;
+                }
 
                 var section = this.newSection;
 
@@ -210,6 +195,18 @@ define([
                         model: section
                     });
                     LayoutManager.layout.setView(".content", this.currentSectionView).render();
+                }
+
+                if (attrs.loadedImages.length === 1) {
+                    console.log('loaded images length 1');
+                    Channel.trigger('Background.SetSingleImage', {
+                        stillImage: attrs.loadedImages[0]
+                    });
+                } else {
+                    console.log('loaded length bigger than 1');
+                    Channel.trigger('Background.PlaySequence', {
+                        loadedImages: attrs.loadedImages
+                    });
                 }
             },
 
