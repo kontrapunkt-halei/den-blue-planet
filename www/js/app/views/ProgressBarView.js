@@ -20,14 +20,20 @@ define([
             },
             setProgress: function(attrs) {
                 // console.log(attrs.progress);
-                $(this.el).find('.progress-bar').css('width', Math.round(attrs.progress * 100) + '%');
+                if (attrs.autoplay) {
+                    $(this.el).find('.progress-bar').css('width', Math.round(attrs.progress * 100) + '%');
+                }
             },
-            hideProgress: function(argument) {
-                $(this.el).find('.progress-bar').removeClass('loading');
+            hideProgress: function(attrs) {
+                if (attrs.autoplay) {
+                    $(this.el).find('.progress-bar').removeClass('loading');
+                }
             },
-            showProgress: function(argument) {
-                $(this.el).find('.progress-bar').css('width', '0%');
-                $(this.el).find('.progress-bar').addClass('loading');
+            showProgress: function(attrs) {
+                if (attrs.autoplay) {
+                    $(this.el).find('.progress-bar').css('width', '0%');
+                    $(this.el).find('.progress-bar').addClass('loading');
+                }
             },
             serialize: function() {},
             cleanup: function() {}

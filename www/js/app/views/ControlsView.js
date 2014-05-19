@@ -4,14 +4,16 @@ define([
 
         'channel',
 
+        'views/ControlsLoaderView',
+
         'backbone',
         'backbone.layoutmanager'
     ],
 
-    function($, Channel) {
+    function($, Channel, ControlsLoaderView) {
         var View = Backbone.LayoutView.extend({
             template: 'Controls',
-            className: 'ControlsView',
+            className: 'ControlsView first-section',
 
             events: {
                 'click .prev': 'prev_clickHandler',
@@ -19,10 +21,19 @@ define([
             },
 
             initialize: function(attrs) {},
+
             afterRender: function() {
-                Channel.on('Loader.SequenceProgress', this.setProgress, this);
-                Channel.on('Loader.SequenceReady', this.hideProgress, this);
-                Channel.on('Loader.LoadSequence', this.showProgress, this);
+                this.controlsLoaderView = ControlsLoaderView;
+                this.controlsLoaderView.initialize({
+                    el: this.el
+                });
+
+                Channel.on('Background.PlaySequence', function() {
+                    $(this.el).addClass('animating');
+                }, this);
+                Channel.on('Background.PlaybackComplete', function() {
+                    $(this.el).removeClass('animating');
+                }, this);
             },
             prev_clickHandler: function() {
                 Channel.trigger('Router.PrevSection');
@@ -30,11 +41,6 @@ define([
             next_clickHandler: function() {
                 Channel.trigger('Router.NextSection');
             },
-            setProgress: function(attrs) {
-                $(this.el).find('.procentage').text(Math.round(attrs.progress * 100));
-            },
-            hideProgress: function(argument) {},
-            showProgress: function(argument) {},
             serialize: function() {},
             cleanup: function() {}
         });

@@ -40,7 +40,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                         manifest.push({
                             id: index,
-                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                            src: "img/dev/" + pad.slice(str.length) + str + ".jpg"
                         });
 
                         index++;
@@ -50,7 +50,9 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 }
             },
             setPausedLargeQueue: function(paused) {
-                // this.largeQueue.setPaused(paused);
+                if (!Modernizr.touch) {
+                    // this.largeQueue.setPaused(paused);
+                }
             },
             loadSequence: function(attrs) {
                 this.setPausedLargeQueue(true);
@@ -128,7 +130,8 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             },
             singleQueue_progressHandler: function(event) {
                 Channel.trigger('Loader.SequenceProgress', {
-                    progress: event.progress
+                    progress: event.progress,
+                    autoplay: this.autoplay
                 });
             },
             singleQueue_errorHandler: function() {},

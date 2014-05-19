@@ -8,4 +8,5 @@ $base-line-height: 1.5;
 $spacing: 15px;
 
 //OVERLAY
-$overlay-bg: rgba(0,0,0,0.8);
+$overlay-color: #000A28;
+$overlay-bg: rgba($overlay-color,0.85);

@@ -92,7 +92,7 @@ define([
                     if (attrs.stillImage) {
                         this.setSingleImage(attrs.stillImage);
                     }
-                });
+                }, this);
 
                 Channel.on('Background.PlaySequence', function(attrs) {
                     self.animationFrame.cancel(self.requestID);
@@ -107,7 +107,7 @@ define([
                         self.animationFrame.cancel(self.requestID);
                         self.triggerAnimation();
                     }
-                });
+                }, this);
             },
             setSingleImage: function(stillImage) {
                 if (stillImage) {

@@ -49,14 +49,24 @@ define([
             newSection: null,
             newSectionView: null,
             playbackComplete: true,
+            viewMappings: [],
 
             routes: {
                 '': 'index'
                 // ':sectionUrl': 'showSection',
             },
 
-            initViews: function() {
-                var self = this;
+            //Adds the mappings between View names and the Views "classes".
+            addMapping: function(sectionViewName, viewClass) {
+                this.viewMappings[sectionViewName] = viewClass;
+            },
+
+            //Retrives the View Call based on data-view attr on the element
+            createView: function(sectionViewName, attrs) {
+                var ViewClass = this.viewMappings[sectionViewName];
+                if (ViewClass) {
+                    return new ViewClass(attrs);
+                }
             },
 
             windowResize_handler: function(e, callback) {
@@ -77,6 +87,9 @@ define([
                     self.windowResize_handler();
                 });
 
+                //Add view mapping
+                this.addMapping('BigGraphic', SectionBigGraphicView);
+
                 LayoutManager.useLayout("app").setViews({
                     ".background": new BackgroundView({}),
                     ".menu": new MenuView({
@@ -90,6 +103,7 @@ define([
                         console.log('SET PLAY SEQUENCE FASLSE');
                         self.playbackComplete = false;
                     }, self);
+
                     Channel.on('Background.PlaybackComplete', function() {
                         console.log('YEP YEP NOW ITS TRUE');
                         self.playbackComplete = true;
@@ -183,7 +197,7 @@ define([
                 if (this.currentSection) {
                     console.log('section 0');
                     this.newSection = section;
-                    this.newSectionView = new SectionBigGraphicView({
+                    this.newSectionView = this.createView(section.template, {
                         model: section
                     });
 
@@ -191,16 +205,17 @@ define([
                 } else {
                     console.log('section 1');
                     this.currentSection = this.newSection;
-                    this.currentSectionView = this.newSectionView = new SectionBigGraphicView({
+                    this.currentSectionView = this.newSectionView = this.createView(section.template, {
                         model: section
                     });
                     LayoutManager.layout.setView(".content", this.currentSectionView).render();
                 }
 
-                if (attrs.loadedImages.length === 1) {
+                if (attrs.loadedImages.length === 2) {
                     console.log('loaded images length 1');
+                    console.log(attrs.loadedImages[1]);
                     Channel.trigger('Background.SetSingleImage', {
-                        stillImage: attrs.loadedImages[0]
+                        stillImage: attrs.loadedImages[1]
                     });
                 } else {
                     console.log('loaded length bigger than 1');
@@ -211,8 +226,16 @@ define([
             },
 
             sectionAnimateOutCompleteHandler: function() {
-                console.log('0 called 1232112');
+                console.log('---SECTIONS: ' + this.newSection.title + ' - ' + this.currentSection.title);
+
+                if (this.newSection === this.currentSection && !this.firstLoad) {
+                    return false;
+                }
+
                 if (this.playbackComplete && this.newSection) {
+                    var self = this;
+
+                    console.log('0 called 1232112');
                     this.currentSection = this.newSection;
                     this.currentSectionView = this.newSectionView;
 
@@ -221,15 +244,19 @@ define([
                     });
 
                     if (!this.firstLoad) {
-                        LayoutManager.layout.setView(".content", this.newSectionView).render();
+                        LayoutManager.layout.setView(".content", this.newSectionView).render(function() {
+                            //New view rendered
+
+                            //Start loading animation-sequence to next section
+                            Channel.trigger('Loader.LoadSequence', {
+                                startFrame: self.currentSection.frame + 1,
+                                endFrame: self.getNextSection().frame
+                            });
+                        });
                     } else {
                         this.firstLoad = false;
                     }
 
-                    Channel.trigger('Loader.LoadSequence', {
-                        startFrame: this.currentSection.frame + 1,
-                        endFrame: this.getNextSection().frame
-                    });
                 }
             },
 
