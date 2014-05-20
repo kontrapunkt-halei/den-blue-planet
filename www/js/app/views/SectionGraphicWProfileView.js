@@ -11,21 +11,21 @@ define([
 
     function($, Section) {
         var View = Section.extend({
-            template: 'SectionBigGraphic',
-            className: 'SectionBigGraphicView',
+            template: 'SectionGraphicWProfile',
+            className: 'SectionGraphicWProfileView',
 
             initialize: function(attrs) {
                 Section.prototype.initialize.apply(this);
             },
-            afterRender: function(argument) {
+            beforeRender: function() {
+
+            },
+            afterRender: function() {
                 if (!$('html').hasClass('csscolumns')) {
                     $('.text-holder').columnize({
-                        columns: 3
+                        columns: 2
                     });
                 }
-            },
-            afterRasdender: function() {
-                //
             },
             serialize: function() {
                 return this.model;

@@ -7,16 +7,34 @@
 	bottom:20px;
 	margin-left:-100px;
 	text-align:center;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 	@include transition-property(opacity);
 	@include transition-duration(0.3s);
 	.prev, .next {
-		position: relative;
+		position: absolute;
 		display: inline-block;
 		width:104px;
 		height:104px;
 		box-sizing:border-box;
 		cursor:pointer;
 		margin:auto;
+		opacity:1;
+		@include transition-property(opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform);
+		@include transition-duration(0.4s);
+		@include transition-timing-function($easing);
+	}
+	.prev {
+		left:0px;
+		@include transition-delay(0.1s);
+		&:hover .prev-circle {
+			border:5px solid #fff;
+			margin-left:-30px;
+			margin-top:-30px;
+		}
+	}
+	.next {
+		left:104px;
 	}
 	.prev-circle {
 		position: absolute;
@@ -55,16 +73,21 @@
 	.udforsk {
 		display: none;
 	}
-	&:hover {
-		.prev-circle {
-			border:5px solid #fff;
-			margin-left:-30px;
-			margin-top:-30px;
-		}
-	}
 	&.first-section {
 		.prev {
-			display: none;
+			opacity:0;
+			-webkit-transform:translateX(-104px);
+			-moz-transform:translateX(-104px);
+			-ms-transform:translateX(-104px);
+			-o-transform:translateX(-104px);
+			transform:translateX(-104px);
+		}
+		.next {
+			-webkit-transform:translateX(-5px);
+			-moz-transform:translateX(-5px);
+			-ms-transform:translateX(-5px);
+			-o-transform:translateX(-5px);
+			transform:translateX(-5px);
 		}
 		.udforsk {
 			display: block;
@@ -73,7 +96,36 @@
 			display: none;
 		}
 	}
+	&.last-section {
+		.prev {
+			-webkit-transform:translateX(52px);
+			-moz-transform:translateX(52px);
+			-ms-transform:translateX(52px);
+			-o-transform:translateX(52px);
+			transform:translateX(52px);
+		}
+		.next {
+			opacity:0;
+			-webkit-transform:translateX(-104px);
+			-moz-transform:translateX(-104px);
+			-ms-transform:translateX(-104px);
+			-o-transform:translateX(-104px);
+			transform:translateX(-104px);
+		}
+	}
 	&.animating {
 		opacity:0.2;
+	}
+}
+.ie9 {
+	.ControlsView {
+		&.first-section {
+			.prev {
+				left:-104px !important;
+			}
+			.next {
+				left:52px !important;
+			}
+		}
 	}
 }

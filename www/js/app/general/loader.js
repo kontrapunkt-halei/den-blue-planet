@@ -16,11 +16,21 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             autoplay: false,
 
             initialize: function() {
-                this.singleQueue.on('complete', this.singleQueue_completeHandler, this);
-                this.singleQueue.on('progress', this.singleQueue_progressHandler, this);
-                this.singleQueue.on('fileload', this.singleQueue_fileLoadHandler, this);
+                var self = this;
+
+                this.singleQueue.addEventListener('complete', function(event) {
+                    self.singleQueue_completeHandler(event);
+                });
+                this.singleQueue.addEventListener('progress', function(event) {
+                    self.singleQueue_progressHandler(event);
+                });
+                this.singleQueue.addEventListener('fileload', function(event) {
+                    self.singleQueue_fileLoadHandler(event);
+                });
 
                 this.initLargeQueue();
+
+                this.singleQueue.setMaxConnections(30);
 
                 Channel.on('Loader.LoadSequence', this.loadSequence, this);
             },
@@ -40,7 +50,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                         manifest.push({
                             id: index,
-                            src: "img/dev/" + pad.slice(str.length) + str + ".jpg"
+                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
                         });
 
                         index++;
@@ -55,11 +65,13 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 }
             },
             loadSequence: function(attrs) {
+                var self = this;
                 this.setPausedLargeQueue(true);
 
                 this.autoplay = attrs.autoplay ||  false;
 
                 if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages.length === Math.abs(this.startFrame - this.endFrame)) {
+                    console.log('------------ALREADY THERE??---');
                     Channel.trigger('Loader.SequenceReady', {
                         autoplay: this.autoplay,
                         loadedImages: this.loadedImages
@@ -67,65 +79,71 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                     return false;
                 }
 
-                this.stopSequenceLoad();
+                this.stopSequenceLoad(function() {
 
-                var startFrame = this.startFrame = attrs.startFrame,
-                    endFrame = this.endFrame = attrs.endFrame,
-                    manifest = [],
-                    index = 1;
+                    var startFrame = self.startFrame = attrs.startFrame,
+                        endFrame = self.endFrame = attrs.endFrame,
+                        manifest = [],
+                        index = 0;
 
-                if (startFrame <= endFrame) {
-                    for (var i = startFrame; i <= endFrame; i++) {
-                        var pad = "0000";
-                        var str = String(i);
+                    if (startFrame <= endFrame) {
+                        for (var i = startFrame; i <= endFrame; i++) {
+                            var pad = "0000";
+                            var str = String(i);
 
-                        manifest.push({
-                            id: index,
-                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
-                        });
+                            manifest.push({
+                                id: index,
+                                src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                            });
 
-                        index++;
+                            index++;
+                        }
+                    } else {
+                        for (var j = startFrame; j >= endFrame; j--) {
+                            var pad2 = "0000";
+                            var str2 = String(j);
+
+                            manifest.push({
+                                id: index,
+                                src: "/img/dev/" + pad2.slice(str2.length) + str2 + ".jpg"
+                            });
+
+                            index++;
+                        }
                     }
-                } else {
-                    for (var j = startFrame; j >= endFrame; j--) {
-                        var pad2 = "0000";
-                        var str2 = String(j);
 
-                        manifest.push({
-                            id: index,
-                            src: "/img/dev/" + pad2.slice(str2.length) + str2 + ".jpg"
-                        });
+                    // console.log(manifest);
 
-                        index++;
-                    }
-                }
-
-                // console.log(manifest);
-
-                this.singleQueue.loadManifest(manifest);
+                    self.singleQueue.loadManifest(manifest);
+                });
             },
-            stopSequenceLoad: function(argument) {
-                this.singleQueue.setMaxConnections(50);
+            stopSequenceLoad: function(callback) {
                 this.singleQueue.removeAll();
                 this.singleQueue.close();
-                this.clearArray(this.loadedImages);
+                this.clearArray(this.loadedImages, function() {
+                    callback();
+                });
             },
             singleQueue_fileLoadHandler: function(event) {
-                var item = event.item;
 
-                this.largeQueue.remove(item.src);
+                // console.log(event.result);
 
-                if (item.type === 'image') {
-                    this.loadedImages[Number(item.id)] = event.result;
-                }
+                // this.largeQueue.remove(item.src);
+
+                // if (item.type === 'image') {
+                this.loadedImages[Number(event.item.id)] = event.result;
+                // }
             },
-            singleQueue_completeHandler: function() {
+            singleQueue_completeHandler: function(event) {
                 console.log('Loader: Complete loading.');
+                console.log('LOADER:::::: LOAED IMAGES');
+                // console.log(this.loadedImages);
+
+
                 Channel.trigger('Loader.SequenceReady', {
                     autoplay: this.autoplay,
                     loadedImages: this.loadedImages
                 });
-
                 this.setPausedLargeQueue(false);
             },
             singleQueue_progressHandler: function(event) {
@@ -136,10 +154,11 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
             },
             singleQueue_errorHandler: function() {},
 
-            clearArray: function(arr) {
+            clearArray: function(arr, callback) {
                 while (arr.length > 0) {
                     arr.pop();
                 }
+                callback();
             }
         };
         LoaderInstance.getInstance = function() {

@@ -26,7 +26,6 @@ require.config({
 
         // Core libraries.
         jquery: 'lib/jquery/jquery',
-        jqueryEasing: 'lib/jquery/jquery.easing',
         underscore: 'lib/underscore/underscore',
         backbone: 'lib/backbone/backbone',
         'backbone.layoutmanager': 'lib/backbone.layoutmanager/backbone.layoutmanager',
@@ -34,6 +33,7 @@ require.config({
         preloadjs: 'lib/preloadjs/preloadjs-0.4.0.min',
         animationFrame: 'lib/AnimationFrame/AnimationFrame',
         TweenLite: 'lib/TweenLite/TweenLite',
+        jqueryColumnizer: 'lib/columnizer/jquery.columnizer',
 
         // Templating.
         handlebars: 'lib/handlebars/handlebars',
@@ -72,7 +72,8 @@ require.config({
         preloadjs: {
             exports: 'createjs.LoadQueue'
         },
-        jqueryEasing: ['jquery'],
+
+        jqueryColumnizer: ['jquery'],
 
         'backbone.layoutmanager': ['backbone']
     }

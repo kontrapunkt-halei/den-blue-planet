@@ -7,17 +7,33 @@ define(function(require) {
             "index": 0,
             "url": "intro",
             "frame": 1,
-            "title": "Slide Title 0",
             "template": "BigGraphic",
-            "headline": "Test"
+            "title": "Akvariet udefra",
+            "text": "Hvis det er træet til dit bord der får dig op, er det snarere varmen over de andre. Selv om hun har sat alt mere frem, og derfor ikke længere kan betragtes som den glade giver, er det en nem sammenstilling, som bærer ved i lang tid. Det går der så nogle timer ud, hvor det er indlysende, at virkeligheden bliver tydelig istandsættelse. Det er opmuntrende og anderledes, at det er dampet af kurset i morgen. Der indgives hvert år enorme strenge af blade af større eller mindre tilsnit. Det gør heller ikke mere. Man kan fremad se, at de har været udset til at læse, at der skal dannes par af ligheder. Dermed kan der afsluttes uden løse ender, og de kan optimeres fra oven af at formidles stort uden brug fra presse. I en kant af landet går der blandt om, at de vil sætte den over forbehold for tiden. Vi flotter med et hold, der vil rundt og se sig om i byen. Det gør heller ikke mere. Men hvor vi nu overbringer denne størrelse til det den handler om, så kan der fortælles op til 3 gange.",
+            "image": "img/dba_arsrapport_grafikker-14.png",
+            "buttons": [{
+                "text": "Se film fra åbningen",
+                "icon": ">",
+                "link": "modalwithid1",
+                "x": 495,
+                "y": 250,
+                "width": 244
+            }, {
+                "text": "LÆS LEDELSESBERETNING V. DORTE GLIESE",
+                "icon": ">",
+                "link": "modalwithid1",
+                "x": 739,
+                "y": 250,
+                "width": 200
+            }]
         }, {
             "index": 1,
             "url": 1,
             "frame": 222,
+            "template": "GraphicWProfile",
             "title": "Akvariet udefra",
-            "template": "BigGraphic",
-            "headline": "",
-            "image": "img/dba_arsrapport_grafikker-14.png"
+            "text": "Hvis det er træet til dit bord der får dig op, er det snarere varmen over de andre. Selv om hun har sat alt mere frem, og derfor ikke længere kan betragtes som den glade giver, er det en nem sammenstilling, som bærer ved i lang tid. Det går der så nogle timer ud, hvor det er indlysende, at virkeligheden bliver tydelig istandsættelse. Det er opmuntrende og anderledes, at det er dampet af kurset i morgen. Der indgives hvert år enorme strenge af blade af større eller mindre tilsnit. Det gør heller ikke mere. Man kan fremad se, at de har været udset til at læse, at der skal dannes par af ligheder. Dermed kan der afsluttes uden løse ender, og de kan optimeres fra oven af at formidles stort uden brug fra presse. I en kant af landet går der blandt om, at de vil sætte den over forbehold for tiden. Vi flotter med et hold, der vil rundt og se sig om i byen. Det gør heller ikke mere. Men hvor vi nu overbringer denne størrelse til det den handler om, så kan der fortælles op til 3 gange.",
+            "image": "img/dba_arsrapport_grafikker-16.png"
         }, {
             "index": 2,
             "url": "2",
@@ -109,6 +125,11 @@ define(function(require) {
             "title": "Slide Title 14",
             "template": "BigGraphic",
             "headline": "Test"
+        }],
+        "modals": [{
+            "id": "modalwithid1",
+            "type": "gallery",
+            "title": "Siteimprove"
         }]
     };
 

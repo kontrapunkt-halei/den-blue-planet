@@ -7,6 +7,17 @@ $base-line-height: 1.5;
 
 $spacing: 15px;
 
+$easing: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+$border: 2px;
+$border-big: 4px;
+
+$green: #00EBBD;
+$green-dark: #00C5A1;
+$green-darker: #009D85;
+$green-darker2: #007568;
+$green-darker3: #004C4A;
+
 //OVERLAY
 $overlay-color: #000A28;
 $overlay-bg: rgba($overlay-color,0.85);

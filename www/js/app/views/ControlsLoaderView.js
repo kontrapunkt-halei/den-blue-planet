@@ -37,15 +37,15 @@ define(['backbone', 'channel', 'animationFrame'],
                 this.quart = Math.PI / 2;
                 this.context.lineWidth = 5;
 
-
-                $(this.el).on('mouseover', function() {
+                $(this.el).find('.next').on('mouseover', function() {
                     self.context.lineWidth = 10;
                     self.triggerAnimation();
                 });
-                $(this.el).on('mouseout', function() {
+                $(this.el).find('.next').on('mouseout', function() {
                     self.context.lineWidth = 5;
                     self.triggerAnimation();
                 });
+                self.triggerAnimation();
             },
 
             sectionSelected_handler: function(attrs) {

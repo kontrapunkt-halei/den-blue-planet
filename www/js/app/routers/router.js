@@ -12,14 +12,13 @@ define([
         'views/MenuView',
         'views/ProgressBarView',
         'views/SectionBigGraphicView',
+        'views/SectionGraphicWProfileView',
         'views/ControlsView',
+        'views/ModalVideoView',
 
         //General
         'channel',
-        'layoutmanager',
-
-        //Plugins
-        'jqueryEasing'
+        'layoutmanager'
     ],
 
     function(
@@ -32,7 +31,9 @@ define([
         MenuView,
         ProgressBarView,
         SectionBigGraphicView,
+        SectionGraphicWProfileView,
         ControlsView,
+        ModalVideoView,
 
         //General
         Channel,
@@ -89,6 +90,7 @@ define([
 
                 //Add view mapping
                 this.addMapping('BigGraphic', SectionBigGraphicView);
+                this.addMapping('GraphicWProfile', SectionGraphicWProfileView);
 
                 LayoutManager.useLayout("app").setViews({
                     ".background": new BackgroundView({}),
@@ -141,6 +143,11 @@ define([
                         }
                     }, self);
 
+                    //Open modal
+                    Channel.on('Modal.Open', self.openModal, self);
+                    Channel.on('Modal.Close', self.closeModal, self);
+                    $('.modal .close-btn').click(self.closeModal);
+
                     //Sequence loaded
                     Channel.on('Loader.SequenceReady', self.setSection, self);
 
@@ -157,6 +164,21 @@ define([
                 Channel.trigger('Section.GoToSection', {
                     index: 0
                 });
+            },
+
+            openModal: function(attrs) {
+                if (this.modalView) {
+                    this.modalView.cleanup();
+                    this.modalView = null;
+                }
+                this.modalView = new ModalVideoView({});
+                LayoutManager.layout.setView(".modal .inner", this.modalView).render(function() {
+                    $('body').addClass('modalOpen');
+                });
+            },
+
+            closeModal: function(attrs) {
+                $('body').removeClass('modalOpen');
             },
 
             getSectionByURL: function(url) {
@@ -211,22 +233,30 @@ define([
                     LayoutManager.layout.setView(".content", this.currentSectionView).render();
                 }
 
-                if (attrs.loadedImages.length === 2) {
+                console.log(';;; :: ;; ::: LOASDED IMAGES ::: START');
+                console.log(attrs.loadedImages);
+                console.log(attrs.loadedImages.length);
+                console.log(';;; :: ;; ::: LOASDED IMAGES ::: END');
+
+                if (attrs.loadedImages.length === 1 || attrs.loadedImages.length === 2) {
                     console.log('loaded images length 1');
                     console.log(attrs.loadedImages[1]);
-                    Channel.trigger('Background.SetSingleImage', {
-                        stillImage: attrs.loadedImages[1]
-                    });
+                    setTimeout(function() {
+                        Channel.trigger('Background.SetSingleImage', {
+                            stillImage: attrs.loadedImages[0]
+                        });
+                    }, 200);
                 } else {
                     console.log('loaded length bigger than 1');
-                    Channel.trigger('Background.PlaySequence', {
-                        loadedImages: attrs.loadedImages
-                    });
+                    setTimeout(function() {
+                        Channel.trigger('Background.PlaySequence', {
+                            loadedImages: attrs.loadedImages
+                        });
+                    }, 200);
                 }
             },
 
             sectionAnimateOutCompleteHandler: function() {
-                console.log('---SECTIONS: ' + this.newSection.title + ' - ' + this.currentSection.title);
 
                 if (this.newSection === this.currentSection && !this.firstLoad) {
                     return false;
@@ -235,7 +265,7 @@ define([
                 if (this.playbackComplete && this.newSection) {
                     var self = this;
 
-                    console.log('0 called 1232112');
+                    console.log('---SECTIONS: ' + this.newSection.title + ' - ' + this.currentSection.title);
                     this.currentSection = this.newSection;
                     this.currentSectionView = this.newSectionView;
 
@@ -247,7 +277,7 @@ define([
                         LayoutManager.layout.setView(".content", this.newSectionView).render(function() {
                             //New view rendered
 
-                            //Start loading animation-sequence to next section
+                            // Start loading animation-sequence to next section
                             Channel.trigger('Loader.LoadSequence', {
                                 startFrame: self.currentSection.frame + 1,
                                 endFrame: self.getNextSection().frame
@@ -255,6 +285,11 @@ define([
                         });
                     } else {
                         this.firstLoad = false;
+                        //Start loading animation-sequence to next section
+                        Channel.trigger('Loader.LoadSequence', {
+                            startFrame: self.currentSection.frame + 1,
+                            endFrame: self.getNextSection().frame
+                        });
                     }
 
                 }
