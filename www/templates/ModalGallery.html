@@ -1,0 +1,15 @@
+<div class="slider swipe">
+	<div class='swipe-wrap'>
+		{{#each images}}
+		<div class="slide" data-title="{{title}}">
+			<div><img src="{{src}}" alt=""></div>
+		</div>
+		{{/each}}
+	</ul>
+</div>
+<div class="slider-bottom">
+	<div class="text"></div>
+	<div class="number"><span class="current"></span>/<span class="total">{{images.length}}</span></div>
+</div>
+<div class="next-btn"><i class="icon-next"></i></div>
+<div class="prev-btn"><i class="icon-prev"></i></div>

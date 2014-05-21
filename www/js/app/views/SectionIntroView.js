@@ -4,26 +4,22 @@ define([
 
         'views/SectionView',
 
-        'jqueryColumnizer',
         'backbone',
         'backbone.layoutmanager'
     ],
 
     function($, Section) {
         var View = Section.extend({
-            template: 'SectionGraphicWProfile',
-            className: 'SectionGraphicWProfileView',
+            template: 'SectionIntro',
+            className: 'SectionIntroView',
 
             initialize: function(attrs) {
                 Section.prototype.initialize.apply(this);
             },
-            afterRender: function() {
-                if (!$('html').hasClass('csscolumns')) {
-                    $('.text-holder').columnize({
-                        columns: 2
-                    });
-                }
+            beforeRender: function() {
+
             },
+            afterRender: function() {},
             serialize: function() {
                 return this.model;
             },

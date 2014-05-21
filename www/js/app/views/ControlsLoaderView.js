@@ -27,22 +27,25 @@ define(['backbone', 'channel', 'animationFrame'],
                     this.canvas.height = this.canvas.height * window.devicePixelRatio;
                 }
 
+                var lineWidth = window.devicePixelRatio ? 4 : 2,
+                    lineWidthBig = window.devicePixelRatio ? 12 : 6;
+
                 this.context = this.canvas.getContext('2d');
                 this.cX = this.canvas.width / 2;
                 this.cY = this.canvas.height / 2;
-                this.radius = this.canvas.width / 2 - 5;
+                this.radius = this.canvas.width / 2 - lineWidthBig;
                 this.endPercent = 0;
                 this.curPerc = 0;
                 this.circ = Math.PI * 2;
                 this.quart = Math.PI / 2;
-                this.context.lineWidth = 5;
+                this.context.lineWidth = lineWidth;
 
                 $(this.el).find('.next').on('mouseover', function() {
-                    self.context.lineWidth = 10;
+                    self.context.lineWidth = lineWidthBig;
                     self.triggerAnimation();
                 });
                 $(this.el).find('.next').on('mouseout', function() {
-                    self.context.lineWidth = 5;
+                    self.context.lineWidth = lineWidth;
                     self.triggerAnimation();
                 });
                 self.triggerAnimation();

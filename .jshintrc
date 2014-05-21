@@ -23,6 +23,7 @@
         "document": true,
         "define": true,
         "require": true,
-        "createjs": true
+        "createjs": true,
+        "Swipe": true
     }
 }

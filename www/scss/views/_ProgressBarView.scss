@@ -8,7 +8,7 @@
 	top:0;
 	width:50%;
 	height:0px;
-	background:#ff9900;
+	@include background-image(linear-gradient(left, rgba($green,0.2), rgba($green,1.0)));
 	@include transition-property(width,height);
 	@include transition-duration(0.1s);
 	&.loading {

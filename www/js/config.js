@@ -34,6 +34,8 @@ require.config({
         animationFrame: 'lib/AnimationFrame/AnimationFrame',
         TweenLite: 'lib/TweenLite/TweenLite',
         jqueryColumnizer: 'lib/columnizer/jquery.columnizer',
+        jqueryGlide: 'lib/jquery.glide/jquery.glide',
+        swipe: 'lib/swipe/swipe',
 
         // Templating.
         handlebars: 'lib/handlebars/handlebars',
@@ -74,6 +76,7 @@ require.config({
         },
 
         jqueryColumnizer: ['jquery'],
+        jqueryGlide: ['jquery'],
 
         'backbone.layoutmanager': ['backbone']
     }

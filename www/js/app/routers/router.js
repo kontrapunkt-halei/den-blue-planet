@@ -13,8 +13,11 @@ define([
         'views/ProgressBarView',
         'views/SectionBigGraphicView',
         'views/SectionGraphicWProfileView',
+        'views/SectionIntroView',
         'views/ControlsView',
         'views/ModalVideoView',
+        'views/ModalGalleryView',
+        'views/ModalTextView',
 
         //General
         'channel',
@@ -32,8 +35,11 @@ define([
         ProgressBarView,
         SectionBigGraphicView,
         SectionGraphicWProfileView,
+        SectionIntroView,
         ControlsView,
         ModalVideoView,
+        ModalGalleryView,
+        ModalTextView,
 
         //General
         Channel,
@@ -91,6 +97,10 @@ define([
                 //Add view mapping
                 this.addMapping('BigGraphic', SectionBigGraphicView);
                 this.addMapping('GraphicWProfile', SectionGraphicWProfileView);
+                this.addMapping('Intro', SectionIntroView);
+                this.addMapping('modal-video', ModalVideoView);
+                this.addMapping('modal-gallery', ModalGalleryView);
+                this.addMapping('modal-text', ModalTextView);
 
                 LayoutManager.useLayout("app").setViews({
                     ".background": new BackgroundView({}),
@@ -146,7 +156,9 @@ define([
                     //Open modal
                     Channel.on('Modal.Open', self.openModal, self);
                     Channel.on('Modal.Close', self.closeModal, self);
-                    $('.modal .close-btn').click(self.closeModal);
+                    $('.modal .close-btn').click(function() {
+                        self.closeModal();
+                    });
 
                     //Sequence loaded
                     Channel.on('Loader.SequenceReady', self.setSection, self);
@@ -166,19 +178,41 @@ define([
                 });
             },
 
+            getModalById: function(id) {
+                for (var i = 0; i < APP_CONFIG.modals.length; i++) {
+                    if (String(APP_CONFIG.modals[i].id) === String(id)) {
+                        return APP_CONFIG.modals[i];
+                    }
+                }
+            },
+
             openModal: function(attrs) {
                 if (this.modalView) {
+                    $(this.modalView.el).remove();
                     this.modalView.cleanup();
                     this.modalView = null;
                 }
-                this.modalView = new ModalVideoView({});
-                LayoutManager.layout.setView(".modal .inner", this.modalView).render(function() {
-                    $('body').addClass('modalOpen');
-                });
+                var modalData = this.getModalById(attrs.link);
+                if (modalData) {
+                    this.modalView = this.createView('modal-' + modalData.type, {
+                        model: modalData
+                    });
+                    LayoutManager.layout.setView(".modal .inner", this.modalView).render(function() {
+                        $('body').addClass('modalOpen');
+                    });
+                }
             },
 
             closeModal: function(attrs) {
+                var self = this;
                 $('body').removeClass('modalOpen');
+                setTimeout(function() {
+                    if (self.modalView) {
+                        $(self.modalView.el).remove();
+                        self.modalView.cleanup();
+                        self.modalView = null;
+                    }
+                }, 1000);
             },
 
             getSectionByURL: function(url) {

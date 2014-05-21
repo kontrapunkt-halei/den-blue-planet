@@ -18,9 +18,9 @@
 
     "font-faces": 2,
     "import": false,
-    "regex-selectors": 2,
+    "regex-selectors": false,
     "universal-selector": false,
-    "unqualified-attributes": 2,
+    "unqualified-attributes": false,
     "zero-units": false,
     "overqualified-elements": false,
     "shorthand": 2,

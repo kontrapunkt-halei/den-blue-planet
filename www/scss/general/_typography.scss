@@ -19,28 +19,3 @@ h1,h2,h3,h4,h5 {
 	line-height:0.85;
 	margin-bottom: 5px
 }
-
-h1 {
-	@include font-size(8em, 8vw);
-}
-
-h2 {
-	@include font-size(6em, 6vw);
-}
-
-h3 {
-	font-family:$font;
-	font-style:italic;
-	@include font-size(2em, 1.3vw);
-	text-transform: none;
-	line-height:1.2;
-}
-
-h4 {
-	@include font-size(3em, 2vw);
-}
-
-p {
-	font-family:$font;
-	font-size:1em;
-}

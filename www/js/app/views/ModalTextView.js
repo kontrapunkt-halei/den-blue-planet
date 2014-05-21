@@ -8,8 +8,8 @@ define([
 
     function($, Channel) {
         var View = Backbone.LayoutView.extend({
-            template: 'ModalVideo',
-            className: 'ModalVideoView',
+            template: 'ModalText',
+            className: 'ModalTextView',
 
             events: {},
 

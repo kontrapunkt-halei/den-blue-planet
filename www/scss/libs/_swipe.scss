@@ -1,0 +1,27 @@
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  height: 100%;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.slide {
+  float:left;
+  width:100%;
+  position: relative;
+  height: 100%;
+  text-align: center;
+  display: table;
+  > div {
+  	height:100%;
+  	display: table-cell;
+    vertical-align: middle;
+    img {
+      max-height: 500px;
+    }
+  }
+}

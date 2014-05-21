@@ -5,6 +5,9 @@
 /** ------------ 		SETTINGS 		------------- */
 @import "general/settings";
 
+/** ------------ 		LIBS 		------------- */
+@import "libs/swipe";
+
 /** ------------ 		GENERAL 		------------- */
 
 @import "general/mixins";
@@ -12,9 +15,9 @@
 @import "general/grid";
 @import "general/general";
 @import "general/typography";
-@import "general/buttons";
 @import "general/forms";
 @import "general/content";
+@import "general/icons";
 
 /** ------------ 		VIEWS 			------------ */
 @import "views/BackgroundView";
@@ -22,7 +25,9 @@
 @import "views/ProgressBarView";
 @import "views/ControlsView";
 @import "views/ButtonView";
+@import "views/ModalViews";
 
 //SECTIONS
 @import "views/SectionBigGraphicView";
 @import "views/SectionGraphicWProfileView";
+@import "views/SectionIntroView";
