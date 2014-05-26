@@ -20,7 +20,7 @@ define([
             stillImage: null,
 
             initialize: function(attrs) {
-                console.log('BG Sequence: Init.');
+                // console.log('BG Sequence: Init.');
             },
 
             drawFrame: function(image) {
@@ -74,7 +74,6 @@ define([
 
             afterRender: function() {
                 var self = this;
-                console.log('BG Sequence: Rendered.');
 
                 Channel.on('window.resize', this.window_resizeHandler, this);
 

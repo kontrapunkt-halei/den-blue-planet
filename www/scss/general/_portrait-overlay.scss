@@ -1,0 +1,25 @@
+.portrait-overlay {
+	display: none;
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+	.portrait-overlay {
+		position: fixed;
+		left: 0;
+		right:0;
+		top:0;
+		bottom:0;
+		z-index: 100;
+		background:#000019 url(../img/turn_ipad.png) center center no-repeat;
+		background-size:297px 194px;
+		display: block;
+		font-size:50px;
+		color: #fff;
+		text-align:center;
+	}
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.portrait-overlay {
+		background-image:url(../img/turn_ipad@2x.png);
+	}
+}

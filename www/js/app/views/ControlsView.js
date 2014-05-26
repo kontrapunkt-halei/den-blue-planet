@@ -30,9 +30,11 @@ define([
 
                 Channel.on('Background.PlaySequence', function() {
                     $(this.el).addClass('animating');
+                    $('.btn-download-pdf').addClass('animating');
                 }, this);
                 Channel.on('Background.PlaybackComplete', function() {
                     $(this.el).removeClass('animating');
+                    $('.btn-download-pdf').removeClass('animating');
                 }, this);
             },
             prev_clickHandler: function() {

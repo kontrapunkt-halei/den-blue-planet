@@ -20,27 +20,28 @@ define([
 
         Backbone.LayoutManager.configure({
             paths: {
-                layout: "/templates/layouts/",
-                template: "/templates/"
+                layout: "layout_",
+                template: ""
             },
 
             fetch: function(path) {
                 var done;
 
                 // Add the html extension.
-                path = path + ".html";
+                // path = path + ".html";
 
                 // If the template has not been loaded yet, then load.
                 if (!JST[path]) {
                     done = this.async();
-                    return $.ajax({
-                        url: path
-                    }).then(function(contents) {
-                        JST[path] = Handlebars.compile(contents);
-                        JST[path].__compiled__ = true;
 
-                        done(JST[path]);
-                    });
+                    // return $.ajax({
+                    //     url: path
+                    // }).then(function(contents) {
+                    JST[path] = Handlebars.compile($('#' + path).html());
+                    JST[path].__compiled__ = true;
+
+                    done(JST[path]);
+                    // });
                 }
 
                 // If the template hasn't been compiled yet, then compile.
@@ -77,8 +78,8 @@ define([
                 // Create a new Layout.
                 var layout = new Backbone.Layout({
                     template: name,
-                    className: "layout " + name,
-                    id: "layout"
+                    className: "" + name,
+                    id: ""
                 });
 
                 // Insert into the DOM.

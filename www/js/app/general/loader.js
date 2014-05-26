@@ -71,7 +71,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 this.autoplay = attrs.autoplay ||  false;
 
                 if (attrs.startFrame === this.startFrame && attrs.endFrame === this.endFrame && this.loadedImages.length === Math.abs(this.startFrame - this.endFrame)) {
-                    console.log('------------ALREADY THERE??---');
+                    // console.log('------------ALREADY THERE??---');
                     Channel.trigger('Loader.SequenceReady', {
                         autoplay: this.autoplay,
                         loadedImages: this.loadedImages
@@ -112,7 +112,18 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                         }
                     }
 
-                    // console.log(manifest);
+                    if (attrs.image) {
+                        manifest.push({
+                            id: 'illu-image',
+                            src: attrs.image
+                        });
+                    }
+                    if (attrs.personImage) {
+                        manifest.push({
+                            id: 'illu-personImage',
+                            src: attrs.personImage
+                        });
+                    }
 
                     self.singleQueue.loadManifest(manifest);
                 });
@@ -125,19 +136,12 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
                 });
             },
             singleQueue_fileLoadHandler: function(event) {
-
-                // console.log(event.result);
-
-                // this.largeQueue.remove(item.src);
-
-                // if (item.type === 'image') {
-                this.loadedImages[Number(event.item.id)] = event.result;
-                // }
+                if (String(event.item.id) !== 'illu-image' ||  String(event.item.id) !== 'illu-personImage') {
+                    this.loadedImages[Number(event.item.id)] = event.result;
+                }
             },
             singleQueue_completeHandler: function(event) {
-                console.log('Loader: Complete loading.');
-                console.log('LOADER:::::: LOAED IMAGES');
-                // console.log(this.loadedImages);
+                // console.log('Loader: Complete loading.');
 
 
                 Channel.trigger('Loader.SequenceReady', {

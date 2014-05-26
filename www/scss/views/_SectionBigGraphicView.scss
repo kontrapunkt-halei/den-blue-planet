@@ -7,6 +7,12 @@
 		height:305px;
 		img {
 			width:100%;
+			@include transition-property(opacity);
+			@include transition-duration(0.4s);
+			opacity: 0;
+			&.show {
+				opacity: 1;
+			}
 		}
 	}
 	.line {
@@ -35,5 +41,16 @@
 		-ms-column-gap:18px;
 		column-count:3;
 		column-gap:18px;
+	}
+	
+	@include animation-name(SectionBigGraphicView-AnimateIn);
+	@include animation-duration(1.2s);
+}
+@include keyframes(SectionBigGraphicView-AnimateIn) {
+	0% {
+		opacity:0;
+	}
+	100% {
+		opacity:1;
 	}
 }

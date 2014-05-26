@@ -1,12 +1,20 @@
-<script data-main="js/config" src="js/lib/requirejs/require.js"></script>
 <script>
-    // Load common code that includes config, then load the app logic for
-    // this page. Do the require calls here instead of a separate file
-    // so after a build there are only 2 HTTP requests instead of three.
-    require(['config'], function(config) {
-        // baseUrl is js/ so we can just ask for `app/main` here instead of `js/app/main`.
-        require(['app/<!-- @appfile -->']);
-    });
+if (document.getElementsByTagName("html")[0].className.indexOf('oldie') === -1 ) {
+	// Load and init site
+	var s=document.createElement('script');
+	s.type='text/javascript';
+	if (window.location.href.indexOf(':9001') > -1) {
+		s.src = '/js/lib/requirejs/require.js';
+		s.setAttribute('data-main','/js/config');
+	} else {
+		s.src = '/js/app/mainpage.js';
+	}
+	document.body.appendChild(s);
+} else {
+	var f = document.createElement('div');
+	f.innerHTML = '<img src="img/fallback-bg.jpg" id="fallback-bg" alt="" style="display:none;"><div id="fallback" style="display:none"><img src="img/fallback.png" alt="" class="fallback-img"><a href="fil.pdf" target="_blank" class="fallback-btn"><img src="img/fallback-btn.png" alt=""></a></div>';
+    document.body.appendChild(f);
+}
 </script>
 </body>
 </html>

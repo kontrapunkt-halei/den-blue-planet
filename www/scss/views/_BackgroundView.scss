@@ -5,7 +5,12 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
-
+		opacity: 1;
+		@include animation-fill-mode(both);
+		&.show {
+			@include animation-name(BackgroundCanvas-AnimateIn);
+			@include animation-duration(1s);
+		}
 	}
 
 	.overlay {
@@ -18,10 +23,29 @@
 		-webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 		@include transition-property(opacity);
-		@include transition-duration(0.4s);
+		@include transition-duration(1.2s);
 		opacity:1;
 		&.hide {
 			opacity:0;
 		}
+	}
+
+	.video {
+		opacity:0;
+		overflow: hidden;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+}
+
+@include keyframes(BackgroundCanvas-AnimateIn) {
+	0% {
+		opacity:0;
+	}
+	100% {
+		opacity:1;
 	}
 }

@@ -22,7 +22,7 @@ define([
                 this_clickHandler: function(argument) {
                     var self = this;
 
-                    console.log(this.model.url);
+                    // console.log(this.model.url);
 
                     if ($('body').hasClass('menuOpen')) {
                         $('body').removeClass('menuOpen');
@@ -46,7 +46,7 @@ define([
 
             initialize: function(attrs) {
                 this.slides = attrs.slides;
-                console.log('Menu: Init.');
+                // console.log('Menu: Init.');
             },
             afterRender: function() {
                 var self = this;
@@ -81,8 +81,8 @@ define([
                 $('body').removeClass('menuOpen');
             },
             window_resizeHandler: function() {
-                console.log('resiiize');
-                console.log($(this.el).height() / 2);
+                // console.log('resiiize');
+                // console.log($(this.el).height() / 2);
                 $(this.el).css({
                     'margin-top': '-' + $(this.el).height() / 2 + 'px'
                 });
@@ -99,7 +99,7 @@ define([
                 this.slides.forEach(function(slide) {
                     this.insertView(".nodes", new this.MenuNodeView({
                         model: slide
-                    })).render();
+                    }));
                 }, this);
             },
             serialize: function() {

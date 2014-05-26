@@ -220,20 +220,27 @@ module.exports = function(grunt) {
 
                     preserveLicenseComments: false,
                     inlineText: true,
+                    almond: true,
 
                     // List of modules that will be optimized. All their immediate and deep dependencies will be included.
                     modules: [
                         // First set up the common build layer. Module names are relative to 'baseUrl'.
+                        // {
+                        //     name: 'config',
+                        //     // List common dependencies here. Only need to list top level dependencies, "include" will find nested dependencies.
+                        //     include: [
+                        //         'jquery',
+                        //         'backbone',
+                        //         'underscore',
+                        //         'text'
+                        //     ]
+                        // },
+
                         {
-                            name: 'config',
-                            // List common dependencies here. Only need to list top level dependencies, "include" will find nested dependencies.
-                            include: [
-                                'jquery',
-                                'backbone',
-                                'underscore',
-                                'text'
-                            ]
-                        },
+                            name: 'app/mainpage',
+                            insertRequire: ['app/mainpage']
+                            // exclude: ['config']
+                        }
 
 
                         // NOTE: If you're building a Single Page Application, you can combine the shim 
@@ -265,10 +272,10 @@ module.exports = function(grunt) {
                         // In this example, config.js will hold jquery, so other scripts need to be
                         // delayed from loading until config.js finishes. That loading sequence
                         // is controlled in mainpage.js.
-                        {
-                            name: 'app/mainpage',
-                            exclude: ['config']
-                        }
+                        // {
+                        //     name: 'app/mainpage',
+                        //     exclude: ['config']
+                        // }
                     ]
                 }
             }
@@ -332,7 +339,20 @@ module.exports = function(grunt) {
                     nonull: false // Set nonull to true if you want the concat task to warn if a given file is missing or invalid.
                 }]
             }
+        },
+
+        htmlmin: { // Task
+            dist: { // Target
+                options: { // Target options
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: { // Dictionary of files
+                    '<%= config.webroot %>/index.html': '<%= config.webroot %>/index.html'
+                }
+            }
         }
+
 
     });
 
@@ -345,11 +365,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-csslint');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    // grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-include-replace');
     // grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
 
     // The default (DEV) task can be run just by typing "grunt" on the command line.
@@ -367,6 +389,7 @@ module.exports = function(grunt) {
     // The optimized production build would be run by typing "grunt dist" on the command line.
     grunt.registerTask('dist', [
         'includereplace',
+        'htmlmin',
         'compass',
         'csslint',
         'jshint',

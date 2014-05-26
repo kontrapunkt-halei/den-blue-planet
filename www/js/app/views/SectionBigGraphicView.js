@@ -18,6 +18,7 @@ define([
                 Section.prototype.initialize.apply(this);
             },
             afterRender: function(argument) {
+                Section.prototype.afterRender.apply(this);
                 if (!$('html').hasClass('csscolumns')) {
                     $('.text-holder').columnize({
                         columns: 3

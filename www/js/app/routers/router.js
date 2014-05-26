@@ -57,6 +57,7 @@ define([
             newSectionView: null,
             playbackComplete: true,
             viewMappings: [],
+            animateOutComplete: true,
 
             routes: {
                 '': 'index'
@@ -87,7 +88,7 @@ define([
             initialize: function() {
                 var self = this;
 
-                console.log('INIT!');
+                // console.log('INIT!');
 
                 //Window resize
                 $(window).resize(function() {
@@ -112,18 +113,21 @@ define([
                 }).render(function() {
                     //Playback complete
                     Channel.on('Background.PlaySequence', function() {
-                        console.log('SET PLAY SEQUENCE FASLSE');
+                        // console.log('SET PLAY SEQUENCE FASLSE');
                         self.playbackComplete = false;
                     }, self);
 
                     Channel.on('Background.PlaybackComplete', function() {
-                        console.log('YEP YEP NOW ITS TRUE');
+                        // console.log('YEP YEP NOW ITS TRUE');
                         self.playbackComplete = true;
                         self.sectionAnimateOutCompleteHandler();
                     }, self);
 
                     //Animate out complete - change view
-                    Channel.on('Section.AnimateOutComplete', self.sectionAnimateOutCompleteHandler, self);
+                    Channel.on('Section.AnimateOutComplete', function() {
+                        self.animateOutComplete = true;
+                        self.sectionAnimateOutCompleteHandler();
+                    }, self);
 
                     //Next prev
                     Channel.on('Router.PrevSection', function(argument) {
@@ -144,7 +148,7 @@ define([
                     }, self);
                     Channel.on('Section.GoToSection', function(attrs) {
                         if (!self.playbackComplete) {
-                            console.log('Ignore that go to selection because we are animating.');
+                            // console.log('Ignore that go to selection because we are animating.');
                             return false;
                         }
                         var section = self.getSectionByIndex(attrs.index);
@@ -248,18 +252,19 @@ define([
 
                 var section = this.newSection;
 
-                console.log('set section');
+                // console.log('set section');
 
                 if (this.currentSection) {
-                    console.log('section 0');
+                    // console.log('section 0');
                     this.newSection = section;
                     this.newSectionView = this.createView(section.template, {
                         model: section
                     });
 
+                    this.animateOutComplete = false;
                     this.currentSectionView.animateOut();
                 } else {
-                    console.log('section 1');
+                    // console.log('section 1');
                     this.currentSection = this.newSection;
                     this.currentSectionView = this.newSectionView = this.createView(section.template, {
                         model: section
@@ -267,21 +272,21 @@ define([
                     LayoutManager.layout.setView(".content", this.currentSectionView).render();
                 }
 
-                console.log(';;; :: ;; ::: LOASDED IMAGES ::: START');
-                console.log(attrs.loadedImages);
-                console.log(attrs.loadedImages.length);
-                console.log(';;; :: ;; ::: LOASDED IMAGES ::: END');
+                // console.log(';;; :: ;; ::: LOASDED IMAGES ::: START');
+                // console.log(attrs.loadedImages);
+                // console.log(attrs.loadedImages.length);
+                // console.log(';;; :: ;; ::: LOASDED IMAGES ::: END');
 
                 if (attrs.loadedImages.length === 1 || attrs.loadedImages.length === 2) {
-                    console.log('loaded images length 1');
-                    console.log(attrs.loadedImages[1]);
+                    // console.log('loaded images length 1');
+                    // console.log(attrs.loadedImages[1]);
                     setTimeout(function() {
                         Channel.trigger('Background.SetSingleImage', {
                             stillImage: attrs.loadedImages[0]
                         });
                     }, 200);
                 } else {
-                    console.log('loaded length bigger than 1');
+                    // console.log('loaded length bigger than 1');
                     setTimeout(function() {
                         Channel.trigger('Background.PlaySequence', {
                             loadedImages: attrs.loadedImages
@@ -296,15 +301,17 @@ define([
                     return false;
                 }
 
-                if (this.playbackComplete && this.newSection) {
+                if (this.playbackComplete && this.newSection && this.animateOutComplete) {
                     var self = this;
 
-                    console.log('---SECTIONS: ' + this.newSection.title + ' - ' + this.currentSection.title);
+                    // console.log('---SECTIONS: ' + this.newSection.title + ' - ' + this.currentSection.title);
                     this.currentSection = this.newSection;
                     this.currentSectionView = this.newSectionView;
 
                     Channel.trigger('Section.SectionSelected', {
-                        index: this.currentSection.index
+                        index: this.currentSection.index,
+                        maxIndex: APP_CONFIG.slides.length - 1,
+                        section: this.currentSection
                     });
 
                     if (!this.firstLoad) {
@@ -319,6 +326,7 @@ define([
                         });
                     } else {
                         this.firstLoad = false;
+                        $('.background canvas').addClass('show');
                         //Start loading animation-sequence to next section
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: self.currentSection.frame + 1,
@@ -343,17 +351,23 @@ define([
 
                 //First load - special case
                 if (this.firstLoad) {
+                    this.playbackComplete = false;
                     Channel.trigger('Loader.LoadSequence', {
                         startFrame: section.frame,
                         endFrame: section.frame,
+                        image: section.image || false,
+                        personImage: section.personImage || false,
                         autoplay: true
                     });
                 } else {
+                    this.playbackComplete = false;
                     //Other laods
                     if (Math.abs(this.currentSection.index - section.index) > 1) {
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: section.frame,
                             endFrame: section.frame,
+                            image: section.image || false,
+                            personImage: section.personImage || false,
                             autoplay: true
                         });
                     } else {
@@ -369,6 +383,8 @@ define([
                         Channel.trigger('Loader.LoadSequence', {
                             startFrame: startFrame,
                             endFrame: endFrame,
+                            image: this.currentSection.image || false,
+                            personImage: this.currentSection.personImage || false,
                             autoplay: true
                         });
                     }

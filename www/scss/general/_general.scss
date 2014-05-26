@@ -12,13 +12,32 @@ body {
 	overflow: hidden;
 }
 
+.pre-loader {
+	background-color:none;
+	background-image:url(../img/preloader.gif);
+	background-repeat:no-repeat;
+	width: 104px;
+	height: 104px;
+	position: fixed;
+	left:50%;
+	top:50%;
+	margin-left:-52px;
+	margin-top:-52px;
+}
+
+.text-holder strong {
+	font-family:$font-bold;
+	text-transform:uppercase;
+	display: block;
+}
+
 .btn-download-pdf {
 	position: absolute;
 	left:50%;
 	top:20px;
 	border:$border solid white;
-	width:242px;
-	margin-left:-121px;
+	width:215px;
+	margin-left:-107px;
 	text-align:center;
 	line-height:38px;
 	height:38px;
@@ -28,11 +47,23 @@ body {
 	text-decoration:none;
 	font-family:$font-bold;
 
+	@include transition-property(transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform);
+	@include transition-duration(0.4s);
+	@include transition-timing-function($easing-back-out);
+
 	@include border-radius(38px);
 	&:hover {
 		border:$border-big solid white;
 		margin-top:-4px;
-		margin-left:-125px;
+		margin-left:-111px;
+	}
+
+	&.animating {
+		-webkit-transform:translateY(-70px);
+		-moz-transform:translateY(-70px);
+		-ms-transform:translateY(-70px);
+		-o-transform:translateY(-70px);
+		transform:translateY(-70px);
 	}
 }
 

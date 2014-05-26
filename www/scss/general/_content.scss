@@ -4,13 +4,51 @@
 	position: absolute;
 	left:50%;
 	top:50%;
-	margin-top:-280px;
+	margin-top:-272px;
 	margin-left:-466px;
 	color:#fff;
 	// display: none;
 	
-
 	&.show {
 		display: block;
+	}
+
+	//General button animation
+	.btn {
+		@include animation-name(Section-Button-AnimateIn);
+		@include animation-duration(1.2s);
+		@include animation-timing-function($easing-out);
+		@include animation-fill-mode(backwards);
+	}
+	.btn:nth-of-type(1) {
+		@include animation-delay(0s);
+	}
+	.btn:nth-of-type(2) {
+		@include animation-delay(0.4s);
+	}
+}
+
+@media screen and ( max-height: 696px ){
+	.content {
+		margin-top: -258px;
+	}
+}
+
+@include keyframes(Section-Button-AnimateIn) {
+	0% {
+		opacity: 0;
+		-webkit-transform:translateY(-40px);
+		-moz-transform:translateY(-40px);
+		-ms-transform:translateY(-40px);
+		-o-transform:translateY(-40px);
+		transform:translateY(-40px);
+	}
+	100% {
+		opacity:1;
+		-webkit-transform:translateY(0px);
+		-moz-transform:translateY(0px);
+		-ms-transform:translateY(0px);
+		-o-transform:translateY(0px);
+		transform:translateY(0px);
 	}
 }

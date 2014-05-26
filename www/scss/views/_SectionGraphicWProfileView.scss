@@ -7,14 +7,34 @@
 		height:305px;
 		img {
 			width:100%;
+			@include transition-property(opacity);
+			@include transition-duration(0.4s);
+			opacity: 0;
+			&.show {
+				opacity: 1;
+			}
 		}
 	}
 	.person-image {
 		position: absolute;
 		left:12px;
-		top:0px;
-		height:335px;
+		top:12px;
+		height:324px;
 		width:179px;
+		overflow: hidden;
+		text-align:center;
+		img {
+			margin: auto;
+			height: 324px;
+			@include animation-name(SectionGraphicWProfileView-Person-AnimateIn);
+			@include animation-duration(1.2s);
+			@include transition-property(opacity);
+			@include transition-duration(0.4s);
+			opacity: 0;
+			&.show {
+				opacity: 1;
+			}
+		}
 	}
 	.person-text {
 		position: absolute;
@@ -55,6 +75,34 @@
 		-ms-column-gap:18px;
 		column-count:2;
 		column-gap:18px;
+	}
 
+	@include animation-name(SectionGraphicWProfileView-AnimateIn);
+	@include animation-duration(1.2s);
+}
+@include keyframes(SectionGraphicWProfileView-AnimateIn) {
+	0% {
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}
+@include keyframes(SectionGraphicWProfileView-Person-AnimateIn) {
+	0% {
+		opacity: 0;
+		-webkit-transform:translateY(50px);
+		-moz-transform:translateY(50px);
+		-ms-transform:translateY(50px);
+		-o-transform:translateY(50px);
+		transform:translateY(50px);
+	}
+	100% {
+		opacity:1;
+		-webkit-transform:translateY(0px);
+		-moz-transform:translateY(0px);
+		-ms-transform:translateY(0px);
+		-o-transform:translateY(0px);
+		transform:translateY(0px);
 	}
 }

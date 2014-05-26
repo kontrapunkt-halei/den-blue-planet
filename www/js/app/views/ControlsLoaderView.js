@@ -12,8 +12,10 @@ define(['backbone', 'channel', 'animationFrame'],
                 Channel.on('Loader.SequenceReady', this.loading_endHandler, this);
                 Channel.on('Loader.LoadSequence', this.loading_startHandler, this);
                 Channel.on('Section.SectionSelected', this.sectionSelected_handler, this);
+                Channel.on('window.resize', this.window_resizeHandler, this);
 
                 this.el = attrs.el;
+                this.windowHeight = $(window).height();
 
                 var self = this;
 
@@ -22,39 +24,72 @@ define(['backbone', 'channel', 'animationFrame'],
                 //Canvas properties
                 this.canvas = $(this.el).find('.loading-circle')[0];
 
-                if (window.devicePixelRatio) {
+                if (window.devicePixelRatio > 1) {
                     this.canvas.width = this.canvas.width * window.devicePixelRatio;
                     this.canvas.height = this.canvas.height * window.devicePixelRatio;
                 }
 
-                var lineWidth = window.devicePixelRatio ? 4 : 2,
-                    lineWidthBig = window.devicePixelRatio ? 12 : 6;
+                this.lineWidth = window.devicePixelRatio > 1 ? 4 : 2,
+                this.lineWidthBig = window.devicePixelRatio > 1 ? 12 : 6;
 
                 this.context = this.canvas.getContext('2d');
-                this.cX = this.canvas.width / 2;
-                this.cY = this.canvas.height / 2;
-                this.radius = this.canvas.width / 2 - lineWidthBig;
                 this.endPercent = 0;
                 this.curPerc = 0;
                 this.circ = Math.PI * 2;
                 this.quart = Math.PI / 2;
-                this.context.lineWidth = lineWidth;
+                this.context.lineWidth = this.lineWidth;
 
                 $(this.el).find('.next').on('mouseover', function() {
-                    self.context.lineWidth = lineWidthBig;
+                    self.context.lineWidth = self.lineWidthBig;
                     self.triggerAnimation();
                 });
                 $(this.el).find('.next').on('mouseout', function() {
-                    self.context.lineWidth = lineWidth;
+                    self.context.lineWidth = self.lineWidth;
                     self.triggerAnimation();
                 });
                 self.triggerAnimation();
             },
 
-            sectionSelected_handler: function(attrs) {
-                if (attrs.index === 0) {
-                    $(this.el).addClass('first-section');
+            window_resizeHandler: function(attrs) {
+                this.windowHeight = attrs.height;
+                this.triggerAnimation();
+            },
+
+            getCircleCY: function() {
+                if (this.windowHeight < 696) {
+                    return (window.devicePixelRatio > 1 ? 104 : 52);
                 } else {
+                    return this.canvas.height / 2;
+                }
+            },
+            getCircleCX: function() {
+                if (this.windowHeight < 696) {
+                    return (window.devicePixelRatio > 1 ? 64 : 32);
+                } else {
+                    return this.canvas.width / 2;
+                }
+            },
+            getCircleRadius: function() {
+                if (this.windowHeight < 696) {
+                    return (window.devicePixelRatio > 1 ? 64 : 32) - this.lineWidthBig;
+                } else {
+                    return this.canvas.width / 2 - this.lineWidthBig;
+                }
+            },
+
+            sectionSelected_handler: function(attrs) {
+                // console.log('----maxIndex!!!');
+                // console.log(attrs.maxIndex);
+                // console.log(attrs.index);
+                if (attrs.index === 0) {
+                    $(this.el).removeClass('last-section');
+                    $(this.el).addClass('first-section');
+                } else if (attrs.index === attrs.maxIndex) {
+
+                    $(this.el).removeClass('first-section');
+                    $(this.el).addClass('last-section');
+                } else {
+                    $(this.el).removeClass('last-section');
                     $(this.el).removeClass('first-section');
                 }
             },
@@ -77,34 +112,34 @@ define(['backbone', 'channel', 'animationFrame'],
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
                 this.context.beginPath();
-                this.context.arc(this.cX, this.cY, this.radius, 0, 2 * Math.PI, false);
+                this.context.arc(this.getCircleCX(), this.getCircleCY(), this.getCircleRadius(), 0, 2 * Math.PI, false);
                 this.context.strokeStyle = 'rgba(255,255,255,0.4)';
 
                 this.context.stroke();
 
                 this.context.beginPath();
-                this.context.arc(this.cX, this.cY, this.radius, -(this.quart) + (this.circ * current), -(this.quart), true);
+                this.context.arc(this.getCircleCX(), this.getCircleCY(), this.getCircleRadius(), -(this.quart) + (this.circ * current), -(this.quart), true);
                 this.context.strokeStyle = '#fff';
 
                 this.context.stroke();
             },
 
             loading_startHandler: function(attrs) {
-                if (!attrs.autoplay) {
+                if (attrs.autoplay) {
                     this.curPerc = 0;
                     this.animate(0);
                 }
             },
 
             loading_endHandler: function(attrs) {
-                if (!attrs.autoplay) {
+                if (attrs.autoplay) {
                     this.endPercent = 100;
                     this.animate(1);
                 }
             },
 
             loading_setHandler: function(attrs) {
-                if (!attrs.autoplay) {
+                if (attrs.autoplay) {
                     this.triggerAnimation(attrs.progress);
                 }
             }

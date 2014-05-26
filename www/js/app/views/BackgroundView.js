@@ -5,28 +5,32 @@ define([
         'channel',
 
         'views/BackgroundSequenceView',
+        'views/BackgroundVideoView',
 
         'backbone',
         'backbone.layoutmanager'
     ],
 
-    function($, Channel, BackgroundSequenceView) {
+    function($, Channel, BackgroundSequenceView, BackgroundVideoView) {
         var View = Backbone.LayoutView.extend({
             template: 'Background',
 
             initialize: function(attrs) {
-                console.log('BG: Init.');
+                // console.log('BG: Init.');
 
                 this.SequenceView = new BackgroundSequenceView({});
+                this.VideoView = new BackgroundVideoView({});
             },
             beforeRender: function(argument) {
-
                 // Background sequence
-                this.insertView(".sequence", this.SequenceView).render(function() {});
+                // console.log('before render!!');
+
+                this.insertView(".sequence", this.SequenceView);
+                this.insertView(".video", this.VideoView);
             },
             afterRender: function() {
                 var self = this;
-                console.log('BG: Rendered.');
+                // console.log('BG: Rendered.');
 
                 var $overlay = $(self.el).find('.overlay');
 

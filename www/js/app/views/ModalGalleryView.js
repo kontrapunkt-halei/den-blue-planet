@@ -53,10 +53,10 @@ define([
                 $(this.el).find('.slider .slide, .slider .slide > div').height(attrs.height);
             },
             setNavigation: function(index, elem) {
-                console.log('--------set navigation--------');
+                // console.log('--------set navigation--------');
                 var self = this;
                 elem.find('img').load(function() {
-                    console.log('IMAGE ____LOADED');
+                    // console.log('IMAGE ____LOADED');
                     self.$sliderBottom.find('.text').text(elem.attr('data-title'));
                     self.$sliderBottom.find('.number .current').text(index + 1);
 

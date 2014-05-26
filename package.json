@@ -1,18 +1,18 @@
 {
-    "name": "Den Blå Planet Årsrapport",
+    "name": "den-blaa-planet-aarsrapport",
     "version": "0.0.1",
     "description": "Den Blå Planet Årsrapport.",
     "main": "Gruntfile.js",
     "author": {
-        "name": "Mads Viktor (@madsviktor)",
+        "name": "Kontrapunkt. Developed by @madsviktor.",
         "url": "http://www.diin.dk"
     },
-    "license": "MIT",
+    "license": "Copyright",
     "dependencies": {},
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-jshint": "~0.5.4",
-        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-requirejs": "0.4.0",
         "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-yuidoc": "~0.4.0",
         "grunt-contrib-csslint": "~0.1.2",
@@ -24,6 +24,7 @@
         "grunt-karma": "~0.4.4",
         "karma": "~0.8.5",
         "grunt-contrib-watch": "~0.4.4",
-        "grunt-contrib-imagemin": "~0.1.4"
+        "grunt-contrib-imagemin": "~0.1.4",
+        "grunt-contrib-htmlmin": "0.3.0"
     }
 }

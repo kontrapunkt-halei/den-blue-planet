@@ -44,6 +44,16 @@
 		left:50%;
 		margin-top:-206px;
 		margin-left:-367px;
+		background-size:cover;
+		background-repeat:no-repeat;
+		iframe {
+			display: none
+		}
+	}
+	&.showVideo {
+		.video iframe {
+			display: block;
+		}
 	}
 }
 

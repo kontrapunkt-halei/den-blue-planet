@@ -16,10 +16,9 @@ define([
             initialize: function(attrs) {
                 Section.prototype.initialize.apply(this);
             },
-            beforeRender: function() {
-
+            afterRender: function() {
+                Section.prototype.afterRender.apply(this);
             },
-            afterRender: function() {},
             serialize: function() {
                 return this.model;
             },

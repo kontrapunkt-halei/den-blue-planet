@@ -20,6 +20,8 @@
 
 require.config({
 
+    deps: ['app/mainpage'],
+
     paths: {
 
         'APP_CONFIG': 'app/APP_CONFIG',
@@ -32,10 +34,11 @@ require.config({
         'layoutmanager': 'app/general/layoutmanager',
         preloadjs: 'lib/preloadjs/preloadjs-0.4.0.min',
         animationFrame: 'lib/AnimationFrame/AnimationFrame',
-        TweenLite: 'lib/TweenLite/TweenLite',
         jqueryColumnizer: 'lib/columnizer/jquery.columnizer',
         jqueryGlide: 'lib/jquery.glide/jquery.glide',
         swipe: 'lib/swipe/swipe',
+        bigvideo: 'lib/bigvideo/bigvideo',
+        videojs: 'lib/videojs/video.min',
 
         // Templating.
         handlebars: 'lib/handlebars/handlebars',
@@ -54,9 +57,7 @@ require.config({
         views: 'app/views',
 
         channel: 'app/channel',
-        loader: 'app/general/loader',
-
-        reqAniFramePolyfill: 'lib/reqAniFramePolyfill/reqAniFramePolyfill'
+        loader: 'app/general/loader'
     },
 
     // Dependencies for scripts that are not wrapped as AMD modules.
@@ -77,6 +78,8 @@ require.config({
 
         jqueryColumnizer: ['jquery'],
         jqueryGlide: ['jquery'],
+
+        bigvideo: ['videojs', 'jquery'],
 
         'backbone.layoutmanager': ['backbone']
     }

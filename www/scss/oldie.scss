@@ -1,0 +1,35 @@
+#main {
+	display: none;
+}
+
+#fallback {
+	display: block !important;
+	z-index:2;
+	position: fixed;
+	top:50%;
+	left:50%;
+	width:600px;
+	height:480px;
+	margin-top:-240px;
+	margin-left:-300px;
+	text-align:center;
+}
+
+.fallback-img {
+	margin:auto;
+}
+
+.fallback-btn {
+	display: block;
+	margin-top:50px;
+}
+
+#fallback-bg {
+	display: block !important;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%;
+  z-index:1;
+}

@@ -8,6 +8,8 @@ $base-line-height: 1.5;
 $spacing: 15px;
 
 $easing: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$easing-out: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$easing-back-out: cubic-bezier(0.600, -0.280, 0.735, 0.045);
 
 $border: 2px;
 $border-big: 6px;

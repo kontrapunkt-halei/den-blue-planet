@@ -15,7 +15,14 @@ define([
 
             initialize: function(attrs) {},
 
-            afterRender: function() {},
+            afterRender: function() {
+                var self = this;
+                setTimeout(function() {
+                    if (self.el) {
+                        $(self.el).addClass('showVideo');
+                    }
+                }, 900);
+            },
             prev_clickHandler: function() {},
             next_clickHandler: function() {},
             serialize: function() {

@@ -18,6 +18,7 @@
 @import "general/forms";
 @import "general/content";
 @import "general/icons";
+@import "general/portrait-overlay";
 
 /** ------------ 		VIEWS 			------------ */
 @import "views/BackgroundView";
@@ -25,9 +26,10 @@
 @import "views/ProgressBarView";
 @import "views/ControlsView";
 @import "views/ButtonView";
+@import "views/ClickAreaView";
 @import "views/ModalViews";
 
 //SECTIONS
 @import "views/SectionBigGraphicView";
-@import "views/SectionGraphicWProfileView";
 @import "views/SectionIntroView";
+@import "views/SectionGraphicWProfileView";

@@ -12,7 +12,7 @@
 	@include transition-timing-function($easing);
 
 	.menu-inner {
-		width: 280px;
+		width: 310px;
 		position: absolute;
 		right:0;
 		top:50%;
@@ -104,14 +104,14 @@
 }
 .menuOpen {
 	.menu {
-		width:280px;
+		width:310px;
 	}
 	.push-wrapper {
-		-webkit-transform:translateX(-280px);
-		-moz-transform:translateX(-280px);
-		-ms-transform:translateX(-280px);
-		-o-transform:translateX(-280px);
-		transform:translateX(-280px);
+		-webkit-transform:translateX(-310px);
+		-moz-transform:translateX(-310px);
+		-ms-transform:translateX(-310px);
+		-o-transform:translateX(-310px);
+		transform:translateX(-310px);
 	}
 	.menu-toggle-btn {
 		.icon-menu {
@@ -130,7 +130,7 @@
 		-ms-transform:translate(0);
 		-o-transform:translate(0);
 		transform:translate(0);
-		margin-left:-280px;
+		margin-left:-310px;
 	}
 	.menu-toggle-btn{
 		right:310px;
