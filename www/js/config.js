@@ -20,6 +20,8 @@
 
 require.config({
 
+    waitSeconds: 1000,
+
     deps: ['app/mainpage'],
 
     paths: {
@@ -57,7 +59,8 @@ require.config({
         views: 'app/views',
 
         channel: 'app/channel',
-        loader: 'app/general/loader'
+        loader: 'app/general/loader',
+        analytics: 'app/general/analytics'
     },
 
     // Dependencies for scripts that are not wrapped as AMD modules.

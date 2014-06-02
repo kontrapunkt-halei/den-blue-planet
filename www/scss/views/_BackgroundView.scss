@@ -41,6 +41,10 @@
 	}
 }
 
+video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
 @include keyframes(BackgroundCanvas-AnimateIn) {
 	0% {
 		opacity:0;

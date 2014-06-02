@@ -24,6 +24,7 @@
         "define": true,
         "require": true,
         "createjs": true,
-        "Swipe": true
+        "Swipe": true,
+        "_gaq":true
     }
 }

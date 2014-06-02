@@ -6,21 +6,21 @@ define(function(require) {
         "slides": [{
             "index": 0,
             "frame": 1,
-            "loop": "videos/loop1.mp4",
+            "loop": "videos/loop1",
             "template": "Intro",
             "title": "Introduktion",
-            "text": "I forbindelse med vores årsberetning for 2013, inviterer vi på en digital rundtur i Den Blå Planet, med præsentation af nogle af de historier, mennesker og tal der har været med til at forme vores første år i Kastrup. Du kan også finde hele årsberetningen til download.",
+            "text": "En ny kulturinstitution tog fart. Den Blå Planet, Danmarks Akvariums årsberetning for 2013. Vi inviterer dig på en virtuel rejse gennem Den Blå Planet med præsentation af historier, mennesker og tal, der har været med til at skabe det første år. Du kan også finde hele årsberetningen til download. God fornøjelse!",
             "image": window.devicePixelRatio > 1 ? "img/illu_00@2x.png" : "img/illu_00.png"
         }, {
             "index": 1,
             "frame": 2,
-            "loop": "videos/loop1.mp4",
+            "loop": "videos/loop1",
             "template": "BigGraphic",
             "title": "Nyt nationalt akvarium",
             "text": "<strong>Et nyt nationalt akvarium</strong> Den Blå Planet, Danmarks Akvarium eksploderede som en granat i marts 2013. Det nye nationale akvarium åbnede til enorm medieinteresse. Ikke mange kunne være i tvivl om, at ti stålgrå hammerhajer og 20.000 andre fisk og havdyr var flyttet ind i splinterny, spektakulær arkitektur på Amager. Hendes Majestæt Dronningen var passende klædt i helt blåt til den officielle åbning den 21. marts. Dagen efter trodsede forventningsfulde gæster den bidende forårskulde og stod i kø i timevis i for at opleve akvariet på første åbningsdag. 1,1 million gæster fulgte trop - dobbelt så mange som forventet. Velkomsten var varm og overvældende. Ni måneders verdensomsejling under havet senere, kan der gøres status. Alt ligner en plads mellem landets fem mest besøgte attraktioner og et solidt overskud på 34 millioner kr. er sat trygt i banken. Det skal gå direkte til udvikling af Den Blå Planet, Danmarks Akvarium.",
             "image": window.devicePixelRatio > 1 ? "img/illu_01@2x.png" : "img/illu_01.png",
             "buttons": [{
-                "text": "LÆS LEDELSESBERETNING<br/>V. DORTE GLIESE",
+                "text": "LÆS LEDELSESBERETNING<br/>V. DORTE GLEIE",
                 "icon": "plus",
                 "link": "nyt-akvarium-beretning",
                 "x": 495,
@@ -37,7 +37,7 @@ define(function(require) {
         }, {
             "index": 2,
             "frame": 3,
-            "loop": "videos/loop1.mp4",
+            "loop": "videos/loop1",
             "template": "BigGraphic",
             "title": "Hvirvelstrømmen",
             "text": "<strong>Hvirvelstrømmen</strong> Er det en strandet hvalfisk dækket af glitrende sølvskæl? Eller en gigantisk søstjerne? Den Blå Planet, Danmarks Akvarium vækker fantasien og ser bestemt ud til at være kravlet op af Øresund ved egen kraft. Arkitekterne 3XN er inspireret af naturens hvirvelformer, som f.eks. vandets strømhvirvler og fiskestimers bevægelser. Med stor originalitet har de skabt et nyt akitektonisk vartegn, der kan opleves fra land, fra havet og fra flyet på vej til og fra Københavns Lufthavn, Kastrup. Den Blå Planet, Danmarks Akvarium er en hyldest til vores smukke blå planet og til vandets fascinerende liv. Arkitekturens strømhvirvel og udstillingens scenografi skaber illusionen af at blive draget med ned under vandets overflade til et møde med vandets dyr i deres egen verden - fra Danmarks kølige søer og Amazonas' varme flodvand til tropiske koralrev og Nordatlantens iskolde hav.",
@@ -45,22 +45,22 @@ define(function(require) {
         }, {
             "index": 3,
             "frame": 299,
-            "loop": "videos/loop2.mp4",
+            "loop": "videos/loop2",
             "template": "GraphicWProfile",
             "title": "Billetten",
-            "text": "<strong>Enestående værter</strong> Uniformen er blå. På ryggen står 'fortæller', 'gæstevært' eller måske 'dyrepasser' - og du kan trygt spørge dem alle om, hvor blæksprutten gemmer sig eller, hvor fodringen af piratfisk foregår. Måske spørger de dig om noget først, for måske har du ikke set de nye nøgensnegle eller, at der er æg hos klovnfisken? Enestående værter og enestående service. Det er det bankende menneskehjerte i Den Blå Planet, Danmarks Akvarium, og det starter allerede i indgangen. Billetten og gæsteværterne har sagt goddag til samtlige knap 1.086.857 gæster i 2013. De har solgt billetter, taget tæt på 35.000 portrætbilleder til nye Blåt Kort, sat plaster på, når det var nødvendigt og vist vej til alt fra toiletterne til Amazonas og Færøerne. Og hvis de ikke står og gør alt det lige nu, gør de det igen i morgen, når akvariet åbner kl. 10.",
+            "text": "<strong>Enestående værter</strong> Uniformen er blå. På ryggen står 'fortæller', 'gæstevært' eller måske 'dyrepasser' - og du kan trygt spørge dem alle om, hvor blæksprutten gemmer sig eller, hvor fodringen af piratfisk foregår. Måske spørger de dig om noget først, for måske har du ikke set de nye nøgensnegle eller, at der er æg hos klovnfisken? Enestående værter og enestående service. Det er det bankende menneskehjerte i Den Blå Planet, Danmarks Akvarium, og det starter allerede i indgangen. Billetten og gæsteværterne har sagt goddag til samtlige 1.086.857 gæster i 2013. De har solgt billetter, taget tæt på 35.000 portrætbilleder til nye Blåt Kort, sat plaster på, når det var nødvendigt og vist vej til alt fra toiletterne til Amazonas og Færøerne. Og hvis de ikke står og gør alt det lige nu, gør de det igen i morgen, når akvariet åbner kl. 10.",
             "image": window.devicePixelRatio > 1 ? "img/illu_03@2x.png" : "img/illu_03.png",
             "personImage": window.devicePixelRatio > 1 ? "img/person_annemette-billetsalg@2x.png" : "img/person_annemette-billetsalg.png",
             "personName": "Anne-Mette",
-            "personTitle": "Billetsalg"
+            "personTitle": "Gæstevært"
         }, {
             "index": 4,
             "frame": 361,
-            "loop": "videos/loop3.mp4",
+            "loop": "videos/loop3",
             "template": "GraphicWProfile",
             "title": "Brandunivers",
-            "text": "<strong>Et blåt univers</strong> Den Blå Planet, Danmarks Akvarium er et besøg i en smuk, blå, dragende verden - fyldt med mysterier, viden og dyr, som trodser fantasien.  Det er et eventyr, og så er det også et unikt og letgenkendeligt brandunivers. Den Blå Planet, Danmarks Akvarium er et nyt og et gammelt brand på samme tid. 'Den Blå Planet' er det spændende nye og 'Danmarks Akvarium' det hæderkronede traditionelle.  De to sider spiller tæt sammen og får liv gennem f.eks. PR-indsats, reklamekampagner, indhold på digitale kanaler og årsberetningen, du læser lige nu. Brandværdierne, der underbygger det hele er: Modige, Berigende, Personlige og Sanselige. Det grafiske udtryk er den visuelle side af branduniverset. Det er særligt udviklet til Den Blå Planet, Danmarks Akvarium. Logo og skrifttypen bølger, som var de sænket i havet og dyr som hammerhajer, rokker og blæksprutter pryder alt fra entrébilletter til lufthavnsbusser og bannere i Metroen.",
-            "image": window.devicePixelRatio > 1 ? "img/illu_123123@2x.png" : "img/illu_123123.png",
+            "text": "<strong>Et blåt univers</strong> Den Blå Planet, Danmarks Akvarium er et besøg i en smuk, blå, dragende verden - fyldt med mysterier, viden og dyr, som trodser fantasien.  Det er et eventyr, og så er det også et unikt og letgenkendeligt brandunivers. Den Blå Planet, Danmarks Akvarium er et nyt og et gammelt brand på samme tid. 'Den Blå Planet' er det spændende nye og 'Danmarks Akvarium' det hæderkronede traditionelle.  De to sider spiller tæt sammen og får liv gennem f.eks. PR-indsats, reklamekampagner, indhold på digitale kanaler og årsberetningen, du læser lige nu. Brandværdierne, der underbygger det hele er: Modige, Berigende, Personlige og Sanselige. Det grafiske udtryk er den visuelle side af branduniverset. Logo og skrifttypen bølger, som var de sænket i havet og dyr som hammerhajer, rokker og blæksprutter pryder alt fra entrébilletter til lufthavnsbusser og bannere i Metroen.",
+            "image": window.devicePixelRatio > 1 ? "img/illu_17@2x.png" : "img/illu_17.png",
             "personImage": window.devicePixelRatio > 1 ? "img/person_hik-maskot@2x.png" : "img/person_hik-maskot.png",
             "personName": "Hammerhajen Hik",
             "personTitle": "Maskot",
@@ -75,7 +75,7 @@ define(function(require) {
         }, {
             "index": 5,
             "frame": 503,
-            "loop": "videos/loop4.mp4",
+            "loop": "videos/loop4",
             "template": "GraphicWProfile",
             "title": "Koralrevet",
             "text": "<strong>Bankende hjerter og gode fortællinger</strong> Den Blå Planet, Danmarks Akvariums mission er at få børn og voksnes hjerter til at banke for vandets forunderlige liv. Vores smukke klode er dækket af 70 procent vand, men have, floder og søer er under pres af forurening, klimaforandringer og overfiskeri. Heldigvis er det sådan, at når hjertet banker for noget, passer vi også bedre på det. På Den Blå Planet, Danmarks Akvarium er de gode fortællinger i centrum. Det gælder om at give gæsterne spændende og overraskende viden med hjem. Hjerterne skal helst banke for vandets forunderlige liv længere end blot til parkeringspladsen. Fortællerne fortæller entusiastisk gode historier ved enhver lejlighed, som f.eks. rundvisninger, shows og fodringer. Ikke mange af dem kunne kende en rødspætte fra en havkat, da de blev ansat efter en stor audition. Men de kunne fortælle en god historie og alt det om fisk, har de naturligvis lært siden. Gode historier har det med at være lette at huske og fortælle videre.",
@@ -86,10 +86,10 @@ define(function(require) {
         }, {
             "index": 6,
             "frame": 604,
-            "loop": "videos/loop5.mp4",
+            "loop": "videos/loop5",
             "template": "GraphicWProfile",
             "title": "Pjaltefisk",
-            "text": "<strong>Med pjaltefisk på Rigshospitalet</strong> Hvordan opererer man en kæmpestor bars for en byld?  Hvordan bedøver man egentlig en fisk? En fastansat dyrlæge er et af de mange nye tiltag på Den Blå Planet, Danmarks Akvarium og med tusindvis af dyr og hundredvis af arter, er der nok at se til. Opgaverne er mange, og dyrlægen må ofte eksperimentere for at finde helt nye behandlinger. Det skaber ny viden og andre zoologiske haver og akvarier har stor glæde af at spørge fiske-dyrlægen til råds. Pjaltefisk har f.eks. tendens til stress, og symptomerne er bl.a. &quot;luft i maven&quot;.  Den kan ikke længere svømme eller stå lige i vandet og flyder op til overfladen, hvor den dør af sult og udtørring. Normalt stikkes en kanyle ind i maven på pjaltefisken, og luften suges ud. Men under kyndig ledelse af dyrlægen blev en ny og mere nænsom behandling forsøgt, hvor de velcamouflerede og sjældne fisk kom i trykkammer på Rigshospitalet. Desværre døde pjaltefiskene, men måske bliver det til en ny behandling i fremtiden?",
+            "text": "<strong>Med pjaltefisk på Rigshospitalet</strong> Hvordan opererer man en kæmpestor bars for en byld?  Hvordan bedøver man egentlig en fisk? En fastansat dyrlæge er et af de mange nye tiltag på Den Blå Planet, Danmarks Akvarium og med tusindvis af dyr og hundredvis af arter, er der nok at se til. Opgaverne er mange, og dyrlægen må ofte eksperimentere for at finde helt nye behandlinger. Det skaber ny viden og andre zoologiske haver og akvarier har stor glæde af at spørge fiske-dyrlægen til råds. Pjaltefisk har f.eks. tendens til stress, og symptomerne er bl.a. &quot;luft i maven&quot;.  Den kan ikke længere svømme eller stå lige i vandet og flyder op til overfladen, hvor den dør af sult og udtørring. Normalt stikkes en kanyle ind i maven på pjaltefisken, og luften suges ud. Men under kyndig ledelse af dyrlægen blev en ny og mere nænsom behandling forsøgt, hvor de velcamouflerede og sjældne fisk kom i trykkammer på Rigshospitalet.",
             "image": window.devicePixelRatio > 1 ? "img/illu_11@2x.png" : "img/illu_11.png",
             "personImage": window.devicePixelRatio > 1 ? "img/person_kasper-dyrlaege@2x.png" : "img/person_kasper-dyrlaege.png",
             "personName": "Kasper",
@@ -105,10 +105,10 @@ define(function(require) {
         }, {
             "index": 7,
             "frame": 709,
-            "loop": "videos/loop6.mp4",
+            "loop": "videos/loop6",
             "template": "BigGraphic",
             "title": "Oceantanken",
-            "text": "<strong>Det store selskabsakvarium</strong> Oceantanken er Nordeuropas største tropiske akvarium. Det er et gigantisk selskabsakvarium med hajer, rokker og stimer af smukke tropiske fisk. Den store panoramarude består af seks store akrylruder, der er svejset sammen kemisk. Panoramaruden er enorm, men selvom den er 46 cm tyk, virker den alligevel så tynd som et almindeligt vindue, og har frit kig direkte ud i koralrevets myldrende liv. Det tog 14 dage at fylde Oceantanken med vand tappet direkte fra Øresund. Der blev tilført 80 tons salt og 50 tons grus, foruden de kunstige klipper. Lige op til åbningen kom dyrene til fra hele kloden. De sorttippede revhajer kom med politieskorte fra Danmarks Akvarium i Charlottenlund og hammerhajerne med passagerfly fra Taiwan. Alle fandt de sig lynhurtigt til rette i de nye, spektakulære omgivelser.Hammerhajerne er stadig ungdyr, men de vil vokse til og nå en længde på ca. 3,5 meter. Til den tid vil de være 20-30 år gamle.",
+            "text": "<strong>Det store selskabsakvarium</strong> Oceantanken er Nordeuropas største tropiske akvarium. Det er et gigantisk selskabsakvarium med hajer, rokker og stimer af smukke tropiske fisk. Den store panoramarude består af seks store akrylruder, der er svejset sammen kemisk. Panoramaruden er enorm, men selvom den er 46 cm tyk, virker den alligevel så tynd som et almindeligt vindue, og har frit kig direkte ud i koralrevets myldrende liv. Det tog 14 dage at fylde Oceantanken med vand tappet direkte fra Øresund. Der blev tilført 80 tons salt og 50 tons grus, foruden de kunstige klipper. Lige op til åbningen kom dyrene til fra hele kloden. De sorttippede revhajer kom med politieskorte fra Danmarks Akvarium i Charlottenlund og hammerhajerne med passagerfly fra Taiwan. Alle fandt de sig lynhurtigt til rette i de nye, spektakulære omgivelser. Hammerhajerne er stadig ungdyr, men de vokser og vil nå en længde på ca. 3,5 meter. Til den tid vil de være 20-30 år gamle.",
             "image": window.devicePixelRatio > 1 ? "img/illu_07@2x.png" : "img/illu_07.png",
             "buttons": [{
                 "text": "SE UNDERVANDSFILM FRA DA<br/>HAMMERHAJERNE BLEV SLUPPET UD",
@@ -121,7 +121,7 @@ define(function(require) {
         }, {
             "index": 8,
             "frame": 990,
-            "loop": "videos/loop7.mp4",
+            "loop": "videos/loop7",
             "template": "GraphicWProfile",
             "title": "Evolution",
             "text": "<strong>Fra klassisk akvarium til oplevelser i dybet</strong> Da Danmarks Akvarium åbnede i 1939 i Charlottenlund, stod der nok lige så mange gæster i kø, som da Den Blå Planet, Danmarks Akvarium slog dørene op i 2013. Dengang som i dag, tryllebinder vandets liv både voksne og børn. Rejsen fra det nedslidte Danmarks Akvarium til Den Blå Planet, Danmarks Akvarium var en rejse på flere planer. 3.000 dyr og en kerne af medarbejdere skulle flyttes. 100 nye mennesker og 17.000 nye dyr kom til -- sådan rundt regnet. Men det var også en rejse mod en ny vision om en ny topattraktion, der også kunne bedrive forskning og undervisning og skabe helt unikke oplevelser. I Charlottenlund kunne gæsterne opleve smukke akvarier, der bragte en fremmed verden op til beskuelse på land. Den Blå Planet, Danmarks Akvarium skaber med arkitektur og scenografi illusionen om det modsatte. Nu er det os, der er på besøg. Èn fisk har set det hele og mere til, nemlig den australske lungefisk, der kom til Danmarks Akvarium i 1967.",
@@ -132,7 +132,7 @@ define(function(require) {
         }, {
             "index": 9,
             "frame": 1091,
-            "loop": "videos/loop8.mp4",
+            "loop": "videos/loop8",
             "template": "GraphicWProfile",
             "title": "Amazonas",
             "text": "<strong>En ny regnskov - helt fra scratch!</strong> Ved akvarierne er vi helt tæt på koralrevets myriade af smukke tropiske fisk, vi dykker ned i Nordatlantens dyb og er kun centimeter fra piratfiskenes glubske tandsæt. Den Blå Planet, Danmarks Akvarium kommer hele kloden rundt og pasningen af de mange dyr kræver seje, dygtige dyrepassere. Der skal særligt grej og stærke arme til at indfange en hidsig anakonda, og der skal mere end blot en god dykkerdragt til at håndfodre guitarfisk og hajer i Oceantanken. Amazonas er et af de områder, der har krævet størst kærlighed og indsats fra dyrepasserne. Planterne kommer fra Costa Rica og skulle komme sig efter en lang skibsrejse og slå rod midt i den danske vinter. Der er blevet opbygget en smuk sommerfuglebestand, der i øvrigt kvitterede med at spise et af træerne. Papegøjer, giftfrøer og kæmpetusindben er sat ud, og frøerne yngler lystigt. Dyrepasserne har skabt en smuk regnskov, og de er slet ikke færdige endnu. Den Blå Planet, Danmarks Akvarium er en rejse.",
@@ -151,7 +151,7 @@ define(function(require) {
         }, {
             "index": 10,
             "frame": 1442,
-            "loop": "videos/loop9.mp4",
+            "loop": "videos/loop9",
             "template": "GraphicWProfile",
             "title": "Færøerne",
             "text": "<strong>Forskning og naturbevarelse</strong> Han er vildt klog, han er ph.d. og det, han ikke ved om dyr, det er han bogstaveligt talt ved at finde ud af! Forskningschef Peter Gravlund er i spidsen for Den Blå Planet, Danmarks Akvariums forsknings- og naturbevaringsindsats. Når han ikke ligger og snorkler rundt ude i Øresund for at tælle fisk til et kommende atlas over danske saltvandsfisk, er han på havslangeekspedition i Indonesien eller forbereder spændende forskningsprojekter i samarbejde med danske eller internationale forskere. Alt den viden, der kommer ud af forskning i f.eks. aborrers gydning i saltvand, blæksprutters intelligens eller grønlandshajernes alder, det kommer Den Blå Planet, Danmarks Akvariums gæster til gode. Måske bliver det til en artikel på hjemmesiden, en ny udstilling eller måske en Søforklaring eller en rundvisning. Det bliver selvfølgelig også til videnskabelige artikler, specialer og afhandlinger og til naturbevaringsindsatser, der skal beskytte sårbare dyrearter.",
@@ -162,29 +162,37 @@ define(function(require) {
         }, {
             "index": 11,
             "frame": 1866,
-            "loop": "videos/loop10.mp4",
+            "loop": "videos/loop10",
             "template": "BigGraphic",
             "title": "Menneskeakvariet",
-            "text": "<strong>Hop i menneskeakvariet</strong> 20.000 fisk og 120 mennesker. Der er klart flest havdyr på Den Blå Planet, Danmarks Akvarium. Men hovedparten af menneskene er nok mest amfibier, for der er utroligt mange dykkere, snorklere, søfolk og våde vandhunde i mellem. En lille kerne flyttede med fra Danmarks Akvarium i Charlottenlund, og ca. 100 nye medarbejdere kom til i månederne lige op til åbningen. Der var kun kort tid til at lære hinanden at kende. Men opgaven blev løst med stærkt teamwork og lysten til altid at skabe de bedste oplevelser for gæsterne. På visitkortet står der 'fortæller', 'dykker' og 'dyrepasser' eller måske 'sponsorchef'. På CV'erne står der kunsthistoriker, professionel fodboldspiller, studerende eller vinder af &quot;Hvem vil være millionæ r ?&quot;. 'Menneskeakvariet' har nok næsten lige så mange 'arter' som Koralrevet eller Oceantanken.",
-            "image": window.devicePixelRatio > 1 ? "img/illu_05@2x.png" : "img/illu_05.png"
+            "text": "<strong>Hop i menneskeakvariet</strong> Hele 20.000 havdyr og kun 120 mennesker. Der er klart flest havdyr på Den Blå Planet, Danmarks Akvarium. Men hovedparten af menneskene er nok mest amfibier, for der er utroligt mange dykkere, snorklere, søfolk og våde vandhunde i mellem. En lille kerne flyttede med fra Danmarks Akvarium i Charlottenlund, og ca. 100 nye medarbejdere kom til i månederne lige op til åbningen. Der var kun kort tid til at lære hinanden at kende. Men opgaven blev løst med stærkt teamwork og lysten til altid at skabe de bedste oplevelser for gæsterne. På visitkortet står der 'fortæller', 'dykker' og 'dyrepasser' eller måske 'sponsorchef'. På CV'erne står der kunsthistoriker, professionel fodboldspiller, studerende eller vinder af &quot;Hvem vil være millionær?&quot;. 'Menneskeakvariet' har nok næsten lige så mange 'arter' som Koralrevet eller Oceantanken.",
+            "image": window.devicePixelRatio > 1 ? "img/illu_05@2x.png" : "img/illu_05.png",
+            "buttons": [{
+                "text": "SE BILLEDE AF ALLE<br/>VORES MEDARBEJDERE",
+                "icon": "plus",
+                "link": "menneskeakvariet-gallery",
+                "x": 319,
+                "y": 240,
+                "width": 266
+            }]
         }, {
             "index": 12,
             "frame": 2094,
-            "loop": "videos/loop11.mp4",
+            "loop": "videos/loop11",
             "template": "BigGraphic",
             "title": "Filtersystemet",
-            "text": "<strong>7 millioner liter rent vand på kun 1 time</strong> Har du haft akvarium derhjemme, ved du, at der skal et godt filter til. Ellers gror akvariet til i skidt, og så er det hverken pænt at se på eller godt for fiskene. Er det tropiske fisk, skal der et varmelegeme til, og der skal være lys til planterne. Den Blå Planet, Danmarks Akvarium benytter noget af verdens mest avancerede akvarie- og vandbehandlingsteknologi. Alle 7 millioner liter vand kan renses på kun én time. Det sker bl.a. med UV-filtre, der hver koster det samme som en stor Mercedes. Der skal bruges meget vand og strøm. Både når der varmes op til tropisk klima eller køles ned til nordatlantiske temperaturer. Det kører uafbrudt -- også juleaften. Det er forsøgt gjort så miljøvenligt som muligt. Der hentes kølevand til aircondition og vand til en række akvarier direkte fra Øresund, og når strømforbruget kendes for et år, skal Den Blå Planet, Danmarks Akvarium gøres CO2-neutral med køb af strøm knyttet til investering i vedvarende energi.",
+            "text": "<strong>7 millioner liter rent vand på kun 1 time</strong> Har du haft akvarium derhjemme, ved du, at der skal et godt filter til. Ellers gror akvariet til i skidt, og så er det hverken pænt at se på eller godt for fiskene. Er det tropiske fisk, skal der et varmelegeme til, og der skal være lys til planterne. Den Blå Planet, Danmarks Akvarium benytter noget af verdens mest avancerede akvarie- og vandbehandlingsteknologi. Alle 7 millioner liter vand kan renses på kun én time. Det sker bl.a. med store UV- og ozonfiltre. Der skal bruges meget vand og strøm. Både når der varmes op til tropisk klima eller køles ned til nordatlantiske temperaturer. Det kører uafbrudt -- også juleaften. Det er forsøgt gjort så miljøvenligt som muligt. Der hentes kølevand til aircondition og vand til en række akvarier direkte fra Øresund, og når strømforbruget kendes for et år, skal Den Blå Planet, Danmarks Akvarium gøres CO2-neutral med køb af strøm knyttet til investering i vedvarende energi.",
             "image": window.devicePixelRatio > 1 ? "img/illu_08@2x.png" : "img/illu_08.png"
         }, {
             "index": 13,
             "frame": 2291,
-            "loop": "videos/loop12.mp4",
+            "loop": "videos/loop12",
             "template": "BigGraphic",
             "title": "Auditoriet",
-            "text": "<strong>Til fest på koralrevet</strong> Er du forelsket, og er kun det bedste godt nok? Så invitér dit hjertes udkårne til intim middag med 4,1 millioner liter vand, hajer og majestætiske rokker som baggrund. Det bliver ikke mere romantisk! Eller hvad med at holde den næste konference i et lækkert, nyt auditorium og bagefter nyde gourmetmad af højeste kvalitet blandt smukke tropiske akvarier? Muligheder er der nok af på Den Blå Planet, Danmarks Akvarium. Meyers Køkken og de tidligere noma-kokke, Søren Westh og Torsten Vildgaard står for maden, som kan tilpasses enhver lejlighed. Om I kun er jer to alene eller 800 kollegaer -- det spiller ingen rolle. Alt kan skræddersyes til format, smag og ønsker.Kombiner med evt. en rundvisning -- det er populært! I 2013 var 32.000 gæster på rundvisning på Den Blå Planet, Danmarks Akvarium og var enten rundt i udstillingen, bag kulisserne eller begge dele.",
+            "text": "<strong>Til fest på koralrevet</strong> Er du forelsket, og er kun det bedste godt nok? Så invitér dit hjertes udkårne til intim middag med 4,1 millioner liter vand, hajer og majestætiske rokker som baggrund. Det bliver ikke mere romantisk! Eller hvad med at holde den næste konference i et lækkert, nyt auditorium og bagefter nyde gourmetmad af højeste kvalitet blandt smukke tropiske akvarier? Muligheder er der nok af på Den Blå Planet, Danmarks Akvarium. Meyers Køkken og de tidligere noma-kokke, Søren Westh og Torsten Vildgaard står for maden, som kan tilpasses enhver lejlighed. Om I kun er jer to alene eller 800 kollegaer -- det spiller ingen rolle. Alt kan skræddersyes til format, smag og ønsker. Kombiner med evt. en rundvisning -- det er populært! I 2013 var 32.000 gæster på rundvisning på Den Blå Planet, Danmarks Akvarium og var enten rundt i udstillingen, bag kulisserne eller begge dele.",
             "image": window.devicePixelRatio > 1 ? "img/illu_14@2x.png" : "img/illu_14.png",
             "buttons": [{
-                "text": "SE BILLEDER FRA FRA EVENTS<br/>PÅ DEN BLÅ PLANET",
+                "text": "SE BILLEDER FRA EVENTS<br/>PÅ DEN BLÅ PLANET",
                 "icon": "plus",
                 "link": "auditoriet-gallery",
                 "x": 658,
@@ -194,10 +202,10 @@ define(function(require) {
         }, {
             "index": 14,
             "frame": 2461,
-            "loop": "videos/loop13.mp4",
+            "loop": "videos/loop13",
             "template": "GraphicWProfile",
             "title": "Skoletjenesten",
-            "text": "<strong>&quot;Vi skal på Den Blå Planet&quot;</strong> Den sætning har 40.000 skole- og gymnasieelever hørt deres lærer sige i 2013 og mon ikke, der er blevet jublet? Ok, måske to, tre stykker har brokket sig, men de er blevet klogere. For Den Blå Planet,Danmarks Akvarium er fyldt med viden og medrivende undervisning. Der er rift om muligheden for at lære om f.eks. evolution, camouflage, lave film om hajer eller se dukketeater. Undervisningen er dialogbaseret med fokus på de naturvidenskabelige arbejdsmåder og tankegange, og der er mange forskellige undervisningstilbud at vælge imellem. De levende dyr er altid omdrejningspunktet. Her er ingen tørre bøger med kedelige illustrationer, fra da far var dreng. Nej, børnene kommer helt tæt på de blinde hulefisk, små bambushajer eller måske søanemoner i Skoletjenestens smarte vandborde, eller de kommer ud i udstillingen og ser på hammerhajer eller måske sild. Og madpakken kan spises med den smukkeste havudsigt.",
+            "text": "<strong>&quot;Vi skal på Den Blå Planet&quot;</strong> Den sætning har 39.924 skole- og gymnasieelever hørt deres lærer sige i 2013 og mon ikke, der er blevet jublet? Ok, måske to, tre stykker har brokket sig, men de er blevet klogere. For Den Blå Planet,Danmarks Akvarium er fyldt med viden og medrivende undervisning. Der er rift om muligheden for at lære om f.eks. evolution, camouflage, lave film om hajer eller se dukketeater. Undervisningen er dialogbaseret med fokus på de naturvidenskabelige arbejdsmåder og tankegange, og der er mange forskellige undervisningstilbud at vælge imellem. De levende dyr er altid omdrejningspunktet. Her er ingen tørre bøger med kedelige illustrationer, fra da far var dreng. Nej, børnene kommer helt tæt på de blinde hulefisk, små bambushajer eller måske søanemoner i Skoletjenestens smarte vandborde, eller de kommer ud i udstillingen og ser på hammerhajer eller måske sild. Og madpakken kan spises med den smukkeste havudsigt.",
             "image": window.devicePixelRatio > 1 ? "img/illu_12@2x.png" : "img/illu_12.png",
             "personImage": window.devicePixelRatio > 1 ? "img/person_rikke-underviser@2x.png" : "img/person_rikke-underviser.png",
             "personName": "Rikke",
@@ -205,7 +213,7 @@ define(function(require) {
         }, {
             "index": 15,
             "frame": 2718,
-            "loop": "videos/loop14.mp4",
+            "loop": "videos/loop14",
             "template": "GraphicWProfile",
             "title": "Spisestedet ØST",
             "text": "<strong>Serverer I også hammerhaj?</strong> Der er lagt op til totaloplevelser i fiskenes tegn på Den Blå Planet, Danmarks Akvarium. Fiskene er nemlig ikke bare i akvarierne, de indtager også tallerknerne. Fisk er lækkert, sundt og en sand oplevelse, når Spisestedet ØST disker op med det nordiske køkken, årstidernes friske råvarer og fisk og skaldyr fra havene omkring os. Serveret, naturligvis, med et smil og en spektakulær udsigt over Øresund. Gerne ude i den friske luft, hvis vejret er til det. Meyers Køkken er den stærke, gastronomiske partner for Den Blå Planet, Danmarks Akvarium og den daglige ledelse er lagt i hænderne på Simon Edvardsen og et team af kokke og serveringspersonale. Menukortet skiftes der jævnligt ud i, men blandt klassikerne er Meyers lækre Fish 'n' Chips og de hjemmelavede fiskefrikadeller. Kan man ikke lide fisk, er der naturligvis Meyers prisbelønnede flæskestegssandwich at falde sikkert tilbage på. Men hammerhaj, det serverer ØST altså alligevel ikke.",
@@ -216,10 +224,10 @@ define(function(require) {
         }, {
             "index": 16,
             "frame": 2841,
-            "loop": "videos/loop15.mp4",
+            "loop": "videos/loop15",
             "template": "BigGraphic",
             "title": "Udsigt over Øresund",
-            "text": "<strong>Et rent smørhul</strong> Øresund er Den Blå Planet, Danmarks Akvariums største akvarium. Lidt svært at bedømme, hvor mange liter det er på, og hvor mange fisk og havdyr, der er i. Men der er lagt op til sjov og oplevelser, når der skal fiskes krabber eller hornfisk fra stensætningen, eller når harpundykkeren hjemtager dagens fangst.Den Blå Planet, Danmarks Akvarium ligger i et rent smørhul og i de smukkeste omgivelser. Det er også et smørhul trafikalt set. Tæt ved Metroen, der bringer op mod en fjerdedel af gæsterne næsten direkte til døren. Tæt på er også buslinjer, motorvejen, Øresundsbroen til Sverige og Københavns Lufthavn, Kastrup. Den Blå Planet, Danmarks Akvarium ligger altid lige i nærheden. I horisonten venter udvikling og spændende nyheder. Blandt de tiltag, der er på tegnebrættet, er et nydesignet udeområde, et anlæg til havoddere og en ny udstilling til 13 millioner kroner. Næste større udvidelse af bygningen ventes inden for fem år. Se frem til en overraskelse!",
+            "text": "<strong>Et rent smørhul</strong> Øresund er Den Blå Planet, Danmarks Akvariums største akvarium. Lidt svært at bedømme, hvor mange liter det er på, og hvor mange fisk og havdyr, der er i. Men der er lagt op til sjov og oplevelser, når der skal fiskes krabber eller hornfisk fra stensætningen, eller når harpundykkeren hjemtager dagens fangst. Den Blå Planet, Danmarks Akvarium ligger i et rent smørhul og i de smukkeste omgivelser. Det er også et smørhul trafikalt set. Tæt ved Metroen, der bringer op mod en fjerdedel af gæsterne næsten direkte til døren. Tæt på er også buslinjer, motorvejen, Øresundsbroen til Sverige og Københavns Lufthavn, Kastrup. Den Blå Planet, Danmarks Akvarium ligger altid lige i nærheden. I horisonten venter udvikling og spændende nyheder. Blandt de tiltag, der er på tegnebrættet, er et nydesignet udeområde, et anlæg til havoddere og en ny udstilling til 13 millioner kroner. Næste større udvidelse af bygningen ventes inden for fem år. Se frem til en overraskelse!",
             "image": window.devicePixelRatio > 1 ? "img/illu_16@2x.png" : "img/illu_16.png",
             "buttons": [{
                 "text": "SE LISTE OVER VORES<br/>MANGE SPONSORER",
@@ -238,7 +246,7 @@ define(function(require) {
         }, {
             "id": "nyt-akvarium-beretning",
             "type": "text",
-            "text": "<strong>LEDELSESBERETNING</strong>, <em>v. Dorte Gleie</em><p>2013 var et fantastisk år for Den Blå Planet, Danmarks Akvarium. Det nye nationale akvarium i Kastrup Havn åbnede den 21. marts 2013 og blev mødt af en overstrømmende interesse med besøg af hele 1,1 millioner gæster de første ni måneder, dobbelt så mange som forventet.</p><p>Særligt åbningen op til påske og den efterfølgende lockout på folkeskoleområdet gjorde, at mange gæster fik mulighed for at aflægge besøg i den første tid. Årets resultat på 34 millioner kr. ud af en nettoomsætning på 166 millioner kr. betragtes som særdeles tilfredsstillende og langt over det oprindeligt forventede resultat.</p><p>Den Blå Planet, Danmarks Akvarium har en målsætning om at være blandt Danmarks fem mest besøgte attraktioner, og med 1,1 millioner gæster er det mål allerede nået med ni måneders drift i 2013. Målsætningen om at skabe mange loyale gæster afspejles i salget af Blåt Kort, der også blev næsten dobbelt så højt som forventet. Aftalen med Tårnby Kommune har betydet, at 14.000 ud af de over 35.000 solgte Blåt Kort blev erhvervet af indbyggere i Tårnby, hvilket svarer til ca. en tredjedel af kommunens befolkning.</p><strong>Brandstrategi</strong><p>Høj personlig service og nærværende, unikke oplevelser er byggesten i Den Blå Planet, Danmarks Akvariums strategi, og der er dagligt ca. 20 programsatte oplevelser for gæsterne. Oplevelserne spænder lige fra børneteater med Hammerhajen HIK, over dissekeringer af blæksprutter og fodringer, til koncepter, der er helt unikke for Den Blå Planet, Danmarks Akvarium. Det gælder f.eks. Fortællerbattle, hvor to dygtige fortællere dyster indbyrdes på sjov og overraskende viden om vandets liv foran gæsterne.</p><p>Den Blå Planet, Danmarks Akvarium er lanceret i et nyt markant grafisk univers, bygget op omkring ”en forunderlig verden i dybet”. Universet er stringent og gennemgående på alle platforme fx digitale kanaler, printmedier og Outdoor. Lokale, nationale og internationale medier har givet Den Blå Planet, Danmarks Akvarium stor og vedvarende omtale.</p><p>Det nye brand ”Den Blå Planet, Danmarks Akvarium” er blevet landskendt, hvilket også fremgår af verdens største brandanalyse BAV (Brand Asset Valuator). Den Blå Planet, Danmarks Akvariums brand er målt på styrke og vitalitet i forhold til 800 andre brands i Danmark. Den første måling viser, at Den Blå Planet, Danmarks Akvarium allerede nu er karakteriseret som ”Power brand”.</p><p>Med arkitektur i verdensklasse som spydspids har Den Blå Planet, Danmarks Akvarium modtaget både priser og nomineringer i ind- og udland. Mest spektakulært modtog arkitekterne, 3XN, prisen for bedste bygning i kategorien Display Building ved den prestigefyldte arkitekturfestival World Architecture Festival i Singapore. Læserne hos AOK.dk stemte oplevelsen i top således, at Den Blå Planet, Danmarks Akvarium kunne hjemtage prisen som Byens Bedste Børneoplevelse 2013. Allerede inden åbningen blev Den Blå Planet, Danmarks Akvarium kåret som Danmarks bedste fyrtårnsprojekt inden for turisme og oplevelsesøkonomi.</p><strong>Medarbejdere</strong><p>Der er 120 medarbejdere (91 årsværk) på Den Blå Planet, Danmarks Akvarium. Hertil kommer medarbejdere hos forpagterne af hhv. butik og Spisestedet ØST. Resultatet af årets medrbejdertilfredshedsanalyse foretaget af Ennova viser, at Den Blå Planet, Danmarks Akvarium har en høj arbejdsglæde og en høj loyalitet blandt medarbejderne. Resultatet ligger 14 indekspoint over det generelle niveau for det danske arbejdsmarked, hvorfor Den Blå Planet, Danmarks Akvarium kan betragtes som værende blandt Danmarks bedste arbejdspladser. Tilfredse og loyale medarbejdere skaber begejstrede og loyale gæster og understreger sammenhængen mellem medarbejdertrivsel og økonomisk resultat.</p><strong>Dyr og anlæg</strong><p>Den Blå Planet, Danmarks Akvarium drives på et videnskabeligt grundlag. I det forløbne år har Den Blå Planet, Danmarks Akvarium medvirket i en række relevante forsknings- og naturbevarelsesprojekter.</p><p>Akvariets dyrehold tager udgangspunkt i ønsket om at formidle viden om livet i og omkring vandet og viser en bred biodiversitet, der repræsenterer de vigtigste økologiske biotoper.</p><strong>Fremtiden</strong><p>Åbningen af Den Blå Planet, Danmarks Akvarium og driften det første år har været en kraftpræstation, hvor alle medarbejdere har ydet en imponerende indsats. At målene ikke blot blev nået, men også overgået, skyldes i høj grad denne dedikerede indsats, som fortjener en meget stor tak.</p><p>Også en meget stor tak til bestyrelsen for Den Blå Planet, Danmarks Akvarium og til Bygningsfonden Den Blå Planet for et altid visionært og stærkt samarbejde.</p><p>Nye kulturinstitutioner oplever traditionelt et fald i gæstetal efter det første åbningsår. For fortsat at kunne tiltrække gæster skal Den Blå Planet, Danmarks Akvarium fortsat arbejde for at være relevant som oplevelsesdestination for de mange gæster. Det kræver udvikling, geninvestering og et fokus på at skabe nærværende og personlige oplevelser for gæsterne. Skoleelever skal tiltrækkes med interessante og relevante undervisningstilbud, og Den Blå Planet skal bidrage aktivt til forskning og naturbevarelse, hvor dette synes relevant i forhold til dyreholdet.</p><p>Kort sagt, Den Blå Planet, Danmarks Akvarium skal fortsat blive ved med at få børn og voksnes hjerter til at banke for vandets forunderlige liv.</p><p><strong>MEDLEMMER AF BESTYRELSEN FORDEN BLÅ PLANET, DANMARKS AKVARIUM</strong></p><strong>Formand: Flemming Normand Frandsen</strong><br/>Professor, Dr. Scient.<br/><strong>Næstformand: Niels Axel Nielsen</strong><br/>Koncerndirektør DTU, Cand. Stat.<br/><strong>Peter Koefoed Bjørnsen</strong><br/>Direktør UNEP-DHI CENTRE, Ph.d.<br/><strong>Lars Bernhard Jørgensen</strong><br/>CEO Wonderful Copenhagen<br/><strong>Benny Dalgaard Loft</strong><br/>CFO & Executive Vice President Novozymes A/S<br/><strong>Helle Lis Søholt</strong><br/>CEO GEHL Architects<br/><p><strong>DIREKTIONEN BESTÅR AF:</strong></p><strong>Dorte Gleie</strong><br/>Adm. direktør<br/><strong>Mette Broksø Thygesen</strong><br/>Kommerciel direktør<br/><strong>Kai Frydendahl</strong><br/>Driftsdirektør<br/><br/>"
+            "text": "<strong>LEDELSESBERETNING</strong>, <em>v. Dorte Gleie</em><p>2013 var et fantastisk år for Den Blå Planet, Danmarks Akvarium. Det nye nationale akvarium i Kastrup Havn åbnede den 21. marts 2013 og blev mødt af en overstrømmende interesse med besøg af hele 1,1 millioner gæster de første ni måneder, dobbelt så mange som forventet.</p><p>Særligt åbningen op til påske og den efterfølgende lockout på folkeskoleområdet gjorde, at mange gæster fik mulighed for at aflægge besøg i den første tid. Årets resultat på 34 millioner kr. ud af en nettoomsætning på 166 millioner kr. betragtes som særdeles tilfredsstillende og langt over det oprindeligt forventede resultat.</p><p>Den Blå Planet, Danmarks Akvarium har en målsætning om at være blandt Danmarks fem mest besøgte attraktioner, og med 1,1 millioner gæster er det mål allerede nået med ni måneders drift i 2013. Målsætningen om at skabe mange loyale gæster afspejles i salget af Blåt Kort, der også blev næsten dobbelt så højt som forventet. Aftalen med Tårnby Kommune har betydet, at 14.000 ud af de over 35.000 solgte Blåt Kort blev erhvervet af indbyggere i Tårnby, hvilket svarer til ca. en tredjedel af kommunens befolkning.</p><strong>Brandstrategi</strong><p>Høj personlig service og nærværende, unikke oplevelser er byggesten i Den Blå Planet, Danmarks Akvariums strategi, og der er dagligt ca. 20 programsatte oplevelser for gæsterne. Oplevelserne spænder lige fra børneteater med Hammerhajen HIK, over dissekeringer af blæksprutter og fodringer, til koncepter, der er helt unikke for Den Blå Planet, Danmarks Akvarium. Det gælder f.eks. Fortællerbattle, hvor to dygtige fortællere dyster indbyrdes på sjov og overraskende viden om vandets liv foran gæsterne.</p><p>Den Blå Planet, Danmarks Akvarium er lanceret i et nyt markant grafisk univers, bygget op omkring ”en forunderlig verden i dybet”. Universet er stringent og gennemgående på alle platforme fx digitale kanaler, printmedier og Outdoor. Lokale, nationale og internationale medier har givet Den Blå Planet, Danmarks Akvarium stor og vedvarende omtale.</p><p>Det nye brand ”Den Blå Planet, Danmarks Akvarium” er blevet landskendt, hvilket også fremgår af verdens største brandanalyse BAV (Brand Asset Valuator). Den Blå Planet, Danmarks Akvariums brand er målt på styrke og vitalitet i forhold til 800 andre brands i Danmark. Den første måling viser, at Den Blå Planet, Danmarks Akvarium allerede nu er karakteriseret som ”Power brand”.</p><p>Med arkitektur i verdensklasse som spydspids har Den Blå Planet, Danmarks Akvarium modtaget både priser og nomineringer i ind- og udland. Mest spektakulært modtog arkitekterne, 3XN, prisen for bedste bygning i kategorien Display Building ved den prestigefyldte arkitekturfestival World Architecture Festival i Singapore. Læserne hos AOK.dk stemte oplevelsen i top således, at Den Blå Planet, Danmarks Akvarium kunne hjemtage prisen som Byens Bedste Børneoplevelse 2013. Allerede inden åbningen blev Den Blå Planet, Danmarks Akvarium kåret som Danmarks bedste fyrtårnsprojekt inden for turisme og oplevelsesøkonomi.</p><strong>Medarbejdere</strong><p>Der er 120 medarbejdere (91 årsværk) på Den Blå Planet, Danmarks Akvarium. Hertil kommer medarbejdere hos forpagterne af hhv. butik og Spisestedet ØST. Resultatet af årets medrbejdertilfredshedsanalyse foretaget af Ennova viser, at Den Blå Planet, Danmarks Akvarium har en høj arbejdsglæde og en høj loyalitet blandt medarbejderne. Resultatet ligger 14 indekspoint over det generelle niveau for det danske arbejdsmarked, hvorfor Den Blå Planet, Danmarks Akvarium kan betragtes som værende blandt Danmarks bedste arbejdspladser. Tilfredse og loyale medarbejdere skaber begejstrede og loyale gæster og understreger sammenhængen mellem medarbejdertrivsel og økonomisk resultat.</p><strong>Dyr og anlæg</strong><p>Den Blå Planet, Danmarks Akvarium drives på et videnskabeligt grundlag. I det forløbne år har Den Blå Planet, Danmarks Akvarium medvirket i en række relevante forsknings- og naturbevarelsesprojekter.</p><p>Akvariets dyrehold tager udgangspunkt i ønsket om at formidle viden om livet i og omkring vandet og viser en bred biodiversitet, der repræsenterer de vigtigste økologiske biotoper.</p><strong>Fremtiden</strong><p>Åbningen af Den Blå Planet, Danmarks Akvarium og driften det første år har været en kraftpræstation, hvor alle medarbejdere har ydet en imponerende indsats. At målene ikke blot blev nået, men også overgået, skyldes i høj grad denne dedikerede indsats, som fortjener en meget stor tak.</p><p>Også en meget stor tak til bestyrelsen for Den Blå Planet, Danmarks Akvarium og til Bygningsfonden Den Blå Planet for et altid visionært og stærkt samarbejde.</p><p>Nye kulturinstitutioner oplever traditionelt et fald i gæstetal efter det første åbningsår. For fortsat at kunne tiltrække gæster skal Den Blå Planet, Danmarks Akvarium fortsat arbejde for at være relevant som oplevelsesdestination for de mange gæster. Det kræver udvikling, geninvestering og et fokus på at skabe nærværende og personlige oplevelser for gæsterne. Skoleelever skal tiltrækkes med interessante og relevante undervisningstilbud, og Den Blå Planet skal bidrage aktivt til forskning og naturbevarelse, hvor dette synes relevant i forhold til dyreholdet.</p><p>Kort sagt, Den Blå Planet, Danmarks Akvarium skal fortsat blive ved med at få børn og voksnes hjerter til at banke for vandets forunderlige liv.</p><br/><br/>"
         }, {
             "id": "sponsor-text",
             "type": "text",
@@ -247,51 +255,133 @@ define(function(require) {
             "id": "brandunivers-gallery",
             "type": "gallery",
             "images": [{
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 1"
+                "src": "img/gallery/brand/kgs12.jpg",
+                "title": "Lanceringskampagne marts 2013 - 3D-artwork i Metro"
             }, {
-                "src": "img/slideshow2.jpg",
-                "title": "Billedetekst 2"
+                "src": "img/gallery/brand/14315_DenBlaaPlanet_380x48_PRINT.jpg",
+                "title": "Sommerkampagne juli 2013"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 3"
+                "src": "img/gallery/brand/14315_DenBlaaPlanet_480x48_PRINT-1.jpg",
+                "title": "Sommerkampagne juli 2013"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 4"
+                "src": "img/gallery/brand/14315_DenBlaaPlanet_Scania_PRINT.jpg",
+                "title": "Sommerkampagne juli 2013"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 5"
+                "src": "img/gallery/brand/AltAndetendoverfladiskLightbox_christianshavn_jul.jpg",
+                "title": "Julekampagne december 2013 - Poster i Metro"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 6"
+                "src": "img/gallery/brand/Banner_NP_KgsNytorv_700x840_xmed10.jpg",
+                "title": "Lanceringskampagne marts 2013 - Banner i Metro"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 7"
+                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-1.jpg",
+                "title": "Julekampagne december 2013 - Poster"
+            }, {
+                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-2.jpg",
+                "title": "Julekampagne december 2013 - Poster"
+            }, {
+                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-3.jpg",
+                "title": "Julekampagne december 2013 - Poster"
+            }, {
+                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-4.jpg",
+                "title": "Julekampagne december 2013 - Poster"
+            }, {
+                "src": "img/gallery/brand/DenBlaaPlanet_Malmo_Adshels_Medium_040713.jpg",
+                "title": "Efterårskampagne oktober 2013 - Svensk poster"
+            }, {
+                "src": "img/gallery/brand/DenBlaaPlanet_Malmo_Adshels_Store_040713-1.jpg",
+                "title": "Efterårskampagne oktober 2013 - Svensk poster"
+            }, {
+                "src": "img/gallery/brand/GOcards_DBP.jpg",
+                "title": "Lanceringskampagne marts 2013 - GO-CARD "
+            }, {
+                "src": "img/gallery/brand/GOcards_DBP3.jpg",
+                "title": "Lanceringskampagne marts 2013 - GO-CARD "
+            }, {
+                "src": "img/gallery/brand/GOcards_DBP5.jpg",
+                "title": "Lanceringskampagne marts 2013 - GO-CARD "
+            }, {
+                "src": "img/gallery/brand/GOcards_DBP7.jpg",
+                "title": "Lanceringskampagne marts 2013 - GO-CARD "
+            }, {
+                "src": "img/gallery/brand/Hammerhaj.png",
+                "title": "Billet - Hammerhaj"
+            }, {
+                "src": "img/gallery/brand/klovnfisk.png",
+                "title": "Billet - Klovnfisk"
+            }, {
+                "src": "img/gallery/brand/kontrapunkt_blaaplanet_20.jpg",
+                "title": "Lanceringskampagne marts 2013 - Folio Wonderful Copenhagens turistinformation"
+            }, {
+                "src": "img/gallery/brand/MangeFisk.png",
+                "title": "Billet - Fiskestime"
+            }, {
+                "src": "img/gallery/brand/Perrondoere_1.jpg",
+                "title": "Lanceringskampagne marts 2013 - Perrondøre i Metro "
+            }, {
+                "src": "img/gallery/brand/Perrondoere_2.jpg",
+                "title": "Lanceringskampagne marts 2013 - Perrondøre i Metro "
+            }, {
+                "src": "img/gallery/brand/Perrondoere_3.jpg",
+                "title": "Lanceringskampagne marts 2013 - Perrondøre i Metro "
+            }, {
+                "src": "img/gallery/brand/Perrondoere_4.jpg",
+                "title": "Lanceringskampagne marts 2013 - Perrondøre i Metro "
+            }, {
+                "src": "img/gallery/brand/piratfisk.png",
+                "title": "Billet - Piratfisk"
+            }, {
+                "src": "img/gallery/brand/vandmand.png",
+                "title": "Billet - vandmand "
+            }, {
+                "src": "img/gallery/brand/wewillrockyou.jpg",
+                "title": "Efterårskampagne oktober 2013 - Banner"
             }]
         }, {
             "id": "auditoriet-gallery",
             "type": "gallery",
             "images": [{
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 1"
+                "src": "img/gallery/b2b/_DSC1227.jpg",
+                "title": "Forberedelser til gæsternes ankomst "
             }, {
-                "src": "img/slideshow2.jpg",
-                "title": "Billedetekst 2"
+                "src": "img/gallery/b2b/_DSC1318.jpg",
+                "title": "Forberedelser til gæsternes ankomst"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 3"
+                "src": "img/gallery/b2b/10_osteanret_DBP.jpg",
+                "title": "Osteanretning"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 4"
+                "src": "img/gallery/b2b/016_Cafe-aften.jpg",
+                "title": "Spisestedet ØST ved aftentid"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 5"
+                "src": "img/gallery/b2b/016_Cafe-lounge.jpg",
+                "title": "Spisestedet ØST ved aftentid"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 6"
+                "src": "img/gallery/b2b/B2B_Ocean_Borde_DBP_RuneLundoe.jpg",
+                "title": "Middag ved Oceantanken"
             }, {
-                "src": "img/slideshow.jpg",
-                "title": "Billedetekst 7"
+                "src": "img/gallery/b2b/B2B_Welcome_DBP_firewoman_Martin Kaufmann.jpg",
+                "title": "Velkommen (foto: Martin Kaufmann)"
+            }, {
+                "src": "img/gallery/b2b/borde_koral.jpg",
+                "title": "Middag ved Koralrevet"
+            }, {
+                "src": "img/gallery/b2b/DBP_View_DSC1595.jpg",
+                "title": "Spisestedet ØST ved aftentid"
+            }, {
+                "src": "img/gallery/b2b/Meyers_DBP_dinner.jpg",
+                "title": "Middag ved Koralrevet"
+            }, {
+                "src": "img/gallery/b2b/meyersmad.jpg",
+                "title": "Underholdning (foto Martin Kaufmann)"
+            }, {
+                "src": "img/gallery/b2b/Ocean_Meyers_GAB3599_DenBlaaPlanet_22.jpg",
+                "title": "Caféstemning foran Oceantanken "
+            }]
+        }, {
+            "id": "menneskeakvariet-gallery",
+            "type": "gallery",
+            "images": [{
+                "src": "img/gallery/DBP_Medarb2013_159.jpg",
+                "title": "Alle medarbejdere"
             }]
         }, {
             "id": "oceantanken-video",

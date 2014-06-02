@@ -14,6 +14,7 @@ define([
         var View = Backbone.LayoutView.extend({
             template: 'Controls',
             className: 'ControlsView first-section',
+            firstClick: true,
 
             events: {
                 'click .prev': 'prev_clickHandler',
@@ -42,6 +43,11 @@ define([
             },
             next_clickHandler: function() {
                 Channel.trigger('Router.NextSection');
+                if (this.firstClick && navigator.platform === 'iPad') {
+                    this.firstClick = false;
+
+                    window.videoEl.play();
+                }
             },
             serialize: function() {},
             cleanup: function() {}

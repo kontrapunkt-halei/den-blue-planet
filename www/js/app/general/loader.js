@@ -50,7 +50,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                         manifest.push({
                             id: index,
-                            src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                            src: "img/bg/" + pad.slice(str.length) + str + ".jpg"
                         });
 
                         index++;
@@ -93,7 +93,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                             manifest.push({
                                 id: index,
-                                src: "/img/dev/" + pad.slice(str.length) + str + ".jpg"
+                                src: "img/bg/" + pad.slice(str.length) + str + ".jpg"
                             });
 
                             index++;
@@ -105,7 +105,7 @@ define(['jquery', 'channel', 'APP_CONFIG', 'preloadjs'],
 
                             manifest.push({
                                 id: index,
-                                src: "/img/dev/" + pad2.slice(str2.length) + str2 + ".jpg"
+                                src: "img/bg/" + pad2.slice(str2.length) + str2 + ".jpg"
                             });
 
                             index++;

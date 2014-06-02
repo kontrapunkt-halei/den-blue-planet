@@ -21,7 +21,8 @@ define([
 
         //General
         'channel',
-        'layoutmanager'
+        'layoutmanager',
+        'analytics'
     ],
 
     function(
@@ -43,7 +44,8 @@ define([
 
         //General
         Channel,
-        LayoutManager
+        LayoutManager,
+        Analytics
     ) {
 
         'use strict';
@@ -282,7 +284,8 @@ define([
                     // console.log(attrs.loadedImages[1]);
                     setTimeout(function() {
                         Channel.trigger('Background.SetSingleImage', {
-                            stillImage: attrs.loadedImages[0]
+                            stillImage: attrs.loadedImages[0],
+                            sectionIndex: section.index
                         });
                     }, 200);
                 } else {
