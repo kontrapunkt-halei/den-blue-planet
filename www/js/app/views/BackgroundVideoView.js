@@ -19,12 +19,12 @@ define([
             afterRender: function() {
                 var self = this;
 
-                console.log('backgroundvideoview afterRender');
+                // console.log('backgroundvideoview afterRender');
 
                 Channel.on('Background.PlaySequence', this.playSequence_handler, this);
                 Channel.on('Section.SectionSelected', this.sectionSelected_handler, this);
                 Channel.on('Background.SetSingleImage', function(attrs) {
-                    if (attrs.sectionIndex > 2) {
+                    if (attrs.sectionIndex > 2 && attrs.sectionIndex < 16) {
                         $('.video').css('opacity', '0');
                     }
                 }, this);
@@ -54,7 +54,7 @@ define([
             },
 
             playSequence_handler: function(attrs) {
-                console.log('playSequence_handler');
+                // console.log('playSequence_handler');
                 var self = this;
                 $('.video').animate({
                     'opacity': '0'
@@ -64,7 +64,7 @@ define([
             },
 
             sectionSelected_handler: function(attrs) {
-                console.log('sectionSelected_handler');
+                // console.log('sectionSelected_handler');
                 var self = this;
                 if (this.currentVideo !== attrs.section.loop) {
                     this.currentVideo = attrs.section.loop;

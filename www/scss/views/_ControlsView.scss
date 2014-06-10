@@ -25,6 +25,9 @@
 		@include transition-property(opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform);
 		@include transition-duration(0.4s);
 		@include transition-timing-function($easing);
+		.prev-circle {
+			line-height:1.2em;
+		}
 	}
 	.prev {
 		left:0px;
@@ -33,13 +36,6 @@
 		.btn-text {
 			left:34px;
 			font-size:18px;
-		}
-		&:hover {
-			.prev-circle {
-				border:5px solid #fff;
-				margin-left:-11px;
-				margin-top:-30px;
-			}
 		}
 	}
 	.next {
@@ -137,6 +133,18 @@
 		-ms-transform:translateY(125px);
 		-o-transform:translateY(125px);
 		transform:translateY(125px);
+	}
+}
+
+.no-touch .ControlsView {
+	.prev {
+		&:hover {
+			.prev-circle {
+				border:5px solid #fff;
+				margin-left:-11px;
+				margin-top:-30px;
+			}
+		}
 	}
 }
 

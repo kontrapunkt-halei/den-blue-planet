@@ -40,12 +40,16 @@ define(['backbone', 'channel', 'animationFrame'],
                 this.context.lineWidth = this.lineWidth;
 
                 $(this.el).find('.next').on('mouseover', function() {
-                    self.context.lineWidth = self.lineWidthBig;
-                    self.triggerAnimation();
+                    if ($('html').hasClass('no-touch')) {
+                        self.context.lineWidth = self.lineWidthBig;
+                        self.triggerAnimation();
+                    }
                 });
                 $(this.el).find('.next').on('mouseout', function() {
-                    self.context.lineWidth = self.lineWidth;
-                    self.triggerAnimation();
+                    if ($('html').hasClass('no-touch')) {
+                        self.context.lineWidth = self.lineWidth;
+                        self.triggerAnimation();
+                    }
                 });
                 self.triggerAnimation();
             },

@@ -52,18 +52,22 @@ body {
 	@include transition-timing-function($easing-back-out);
 
 	@include border-radius(38px);
-	&:hover {
-		border:$border-big solid white;
-		margin-top:-4px;
-		margin-left:-111px;
-	}
-
 	&.animating {
 		-webkit-transform:translateY(-70px);
 		-moz-transform:translateY(-70px);
 		-ms-transform:translateY(-70px);
 		-o-transform:translateY(-70px);
 		transform:translateY(-70px);
+	}
+}
+
+.no-touch {
+	.btn-download-pdf {
+		&:hover {
+			border:$border-big solid white;
+			margin-top:-4px;
+			margin-left:-111px;
+		}
 	}
 }
 

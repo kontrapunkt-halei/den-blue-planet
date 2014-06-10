@@ -667,7 +667,7 @@
 
             if (($rest.last())[0].tagName != $tag1.toUpperCase()) {
                 if (this.debug) {
-                    console.log("Last item in previous column, isn't a list...");
+                    // console.log("Last item in previous column, isn't a list...");
                 }
                 return 0;
             }
@@ -714,7 +714,7 @@
             }
             if (this.nest > 1) {
                 if (this.debug) {
-                    console.log("Supposed to be a nested list...decr");
+                    // console.log("Supposed to be a nested list...decr");
                 }
                 $tint--;
                 // some how, id previous list starts split, need  secins decrement, 
@@ -722,7 +722,7 @@
                 var $tt = $($cols[this.offset - 1]).find($tag1 + ':first li.split:first');
                 if ($tt.length > 0) {
                     if (this.debug) {
-                        console.log("Previous column started with a split item, so that count is one less than expected");
+                        // console.log("Previous column started with a split item, so that count is one less than expected");
                     }
                     $tint--;
                 }
@@ -732,7 +732,7 @@
                 $tt.children().remove();
                 if ($.trim($tt.text()).length > 0) {
                     if (this.debug) {
-                        console.log("If that was a complete list in the previous column, don't decr.");
+                        // console.log("If that was a complete list in the previous column, don't decr.");
                     }
                     $tint++;
 
@@ -748,7 +748,7 @@
                 var $tt = $($cols[this.offset]).find($tag1 + ':first li:first ' + $tag1 + ".split li.split");
                 if ($tt.length > 0) {
                     if (this.debug) {
-                        console.log("[Nested] Column started with a split item, so that count is one less than expected");
+                        // console.log("[Nested] Column started with a split item, so that count is one less than expected");
                     }
                     $tint--;
                 }
@@ -756,7 +756,7 @@
             }
 
             if (this.debug) {
-                console.log("Setting the start value to " + $tint + " (" + this.prevMax + ")");
+                // console.log("Setting the start value to " + $tint + " (" + this.prevMax + ")");
             }
             if ($tint > 0) {
                 // if the above computation leads to 0, or an empty list (more likely), don't set, leave as 1
@@ -792,7 +792,7 @@
 
         this.cols = $($target);
         if (this.debug) {
-            console.log("There are " + this.cols.length + " items, looking for " + $tag1);
+            // console.log("There are " + this.cols.length + " items, looking for " + $tag1);
         }
 
         this.before = $(this.cols[0]).find($tag1 + ':last');
@@ -801,12 +801,12 @@
         // start at 1, as must compare to previous...
         for (this.offset = 1; this.offset < this.cols.length; this.offset++) {
             if (this.debug) {
-                console.log("iterating " + this.offset + "...[of " + this.cols.length + "]");
+                // console.log("iterating " + this.offset + "...[of " + this.cols.length + "]");
             }
             // if the first column again, nothing to the left of you, do nothing...
             if (this.offset % $colno == 0) {
                 if (this.debug) {
-                    console.log("First column (in theory..)");
+                    // console.log("First column (in theory..)");
                 }
 
                 this.prevMax = 1;
@@ -817,7 +817,7 @@
             // if there are no occurences of the searchTag, do nothing
             if (this.before.length) {
                 if (this.debug) {
-                    console.log("Have some " + $searchTag + " elements in the previous column");
+                    // console.log("Have some " + $searchTag + " elements in the previous column");
                 }
 
                 var $list = $(this.cols[this.offset]).find($tag1 + ':first');

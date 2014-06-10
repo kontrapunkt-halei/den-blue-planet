@@ -23,6 +23,10 @@
 		@include animation-duration(0.5s);
 		@include animation-duration(1s);
 		@include animation-timing-function($easing-out);
+		a {
+			color:$green;
+			text-decoration:none;
+		}
 	}
 	@include animation-name(SectionIntroView-AnimateIn);
 	@include animation-duration(1.2s);

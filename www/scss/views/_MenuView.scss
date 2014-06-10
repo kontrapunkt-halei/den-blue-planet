@@ -123,16 +123,15 @@
 	}
 }
 
-.ie9 .menuOpen{
-	.push-wrapper {
-		-webkit-transform:translate(0);
-		-moz-transform:translate(0);
-		-ms-transform:translate(0);
-		-o-transform:translate(0);
-		transform:translate(0);
-		margin-left:-310px;
-	}
-	.menu-toggle-btn{
-		right:310px;
-	}
-}
+// .ie9 .menuOpen{
+// 	.push-wrapper {
+// 		-webkit-transform:translateX(-310px);
+// 		-moz-transform:translateX(-310px);
+// 		-ms-transform:translateX(-310px);
+// 		-o-transform:translateX(-310px);
+// 		transform:translateX(-310px);
+// 	}
+// 	.menu-toggle-btn{
+// 		// right:310px;
+// 	}
+// }

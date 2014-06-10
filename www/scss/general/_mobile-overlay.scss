@@ -1,0 +1,24 @@
+.mobile-overlay {
+	display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+	.mobile-overlay {
+		position: fixed;
+		left: 0;
+		right:0;
+		top:0;
+		bottom:0;
+		z-index: 99;
+		background:#000019 url(../img/mobile_fallback.png) center center no-repeat;
+		background-size:320px 207px;
+		display: block;
+		color: #fff;
+		text-align:center;
+	}
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.mobile-overlay {
+		background-image:url(../img/mobile_fallback@2x.png);
+	}
+}
