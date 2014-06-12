@@ -14,19 +14,25 @@ define([
     function($, Channel, BackgroundSequenceView, BackgroundVideoView) {
         var View = Backbone.LayoutView.extend({
             template: 'Background',
+            isiPad: navigator.userAgent.match(/iPad/i) != null,
 
             initialize: function(attrs) {
                 // console.log('BG: Init.');
 
                 this.SequenceView = new BackgroundSequenceView({});
-                this.VideoView = new BackgroundVideoView({});
+
+                if (!this.isiPad) {
+                    this.VideoView = new BackgroundVideoView({});
+                }
             },
             beforeRender: function(argument) {
                 // Background sequence
                 // console.log('before render!!');
 
                 this.insertView(".sequence", this.SequenceView);
-                this.insertView(".video", this.VideoView);
+                if (!this.isiPad) {
+                    this.insertView(".video", this.VideoView);
+                }
             },
             afterRender: function() {
                 var self = this;

@@ -106,3 +106,18 @@ body.modalOpen {
 		transform:translateX(0%);
 	}
 }
+
+//IE column hack
+.ie9 {
+	.column {
+		box-sizing:border-box;
+		padding-left:9px;
+		padding-right:9px;
+		&.first {
+			padding-left:0px;
+		}
+		&.last {
+			padding-right:0px;
+		}
+	}
+}

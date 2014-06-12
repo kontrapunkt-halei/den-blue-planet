@@ -37,7 +37,6 @@ require.config({
         preloadjs: 'lib/preloadjs/preloadjs-0.4.0.min',
         animationFrame: 'lib/AnimationFrame/AnimationFrame',
         jqueryColumnizer: 'lib/columnizer/jquery.columnizer',
-        jqueryGlide: 'lib/jquery.glide/jquery.glide',
         swipe: 'lib/swipe/swipe',
         bigvideo: 'lib/bigvideo/bigvideo',
         videojs: 'lib/videojs/video.min',
