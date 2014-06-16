@@ -272,23 +272,11 @@ define(function(require) {
                 "src": "img/gallery/brand/Perrondoere_1.jpg",
                 "title": "Lanceringskampagne 2013 - Perrondøre i Metro"
             }, {
-                "src": "img/gallery/brand/Perrondoere_2.jpg",
-                "title": "Lanceringskampagne 2013 - Perrondøre i Metro "
-            }, {
                 "src": "img/gallery/brand/Perrondoere_3.jpg",
                 "title": "Lanceringskampagne 2013 - Perrondøre i Metro "
             }, {
                 "src": "img/gallery/brand/Perrondoere_4.jpg",
                 "title": "Lanceringskampagne 2013 - Perrondøre i Metro "
-            }, {
-                "src": "img/gallery/brand/Banner_NP_KgsNytorv_700x840_xmed10.jpg",
-                "title": "Lanceringskampagne 2013 - Banner i Metro"
-            }, {
-                "src": "img/gallery/brand/GOcards_DBP.jpg",
-                "title": "Lanceringskampagne 2013 - GO-CARD "
-            }, {
-                "src": "img/gallery/brand/GOcards_DBP3.jpg",
-                "title": "Lanceringskampagne 2013 - GO-CARD "
             }, {
                 "src": "img/gallery/brand/GOcards_DBP5.jpg",
                 "title": "Lanceringskampagne 2013 - GO-CARD "
@@ -297,9 +285,6 @@ define(function(require) {
                 "title": "Lanceringskampagne 2013 - GO-CARD "
             }, {
                 "src": "img/gallery/brand/14315_DenBlaaPlanet_380x48_PRINT.jpg",
-                "title": "Sommerkampagne 2013"
-            }, {
-                "src": "img/gallery/brand/14315_DenBlaaPlanet_480x48_PRINT-1.jpg",
                 "title": "Sommerkampagne 2013"
             }, {
                 "src": "img/gallery/brand/14315_DenBlaaPlanet_Scania_PRINT.jpg",
@@ -320,29 +305,8 @@ define(function(require) {
                 "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-1.jpg",
                 "title": "Julekampagne 2013 - Poster"
             }, {
-                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-2.jpg",
-                "title": "Julekampagne 2013 - Poster"
-            }, {
-                "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-3.jpg",
-                "title": "Julekampagne 2013 - Poster"
-            }, {
                 "src": "img/gallery/brand/blaaplanet_julekampagne_adshels_lowres_DBP-4.jpg",
                 "title": "Julekampagne 2013 - Poster"
-            }, {
-                "src": "img/gallery/brand/Hammerhaj.png",
-                "title": "Billet - Hammerhaj"
-            }, {
-                "src": "img/gallery/brand/klovnfisk.png",
-                "title": "Billet - Klovnfisk"
-            }, {
-                "src": "img/gallery/brand/MangeFisk.png",
-                "title": "Billet - Fiskestime"
-            }, {
-                "src": "img/gallery/brand/piratfisk.png",
-                "title": "Billet - Piratfisk"
-            }, {
-                "src": "img/gallery/brand/vandmand.png",
-                "title": "Billet - vandmand "
             }]
         }, {
             "id": "auditoriet-gallery",
